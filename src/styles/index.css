@@ -1,0 +1,44 @@
+:root {
+    /* Light theme */
+    --accent-light-theme: #ED202E;
+    --secondary-light-theme: #9DB0BB;
+    --black-light-theme: #000000;
+    --additional-light-theme: #0065E2;
+    --neutral-light-theme: #E6F0FD;
+    --white-light-theme: #FFFFFF;
+
+    /* Dark theme*/
+    --accent-dark-theme: #ED202E;
+    --secondary-dark-theme: #9DB0BB;
+    --black-dark-theme: #0C0C0C;
+    --additional-dark-theme: #0065E2;
+    --neutral-dark-theme: #B3D1F7;
+    --white-dark-theme: #FFFFFF;
+}
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background: var(--white-light-theme);
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        border-radius: 4px;
+        background-color: transparent;
+        border: 0;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background: var(--secondary-light-theme);
+    }
+}
+
+button {
+    cursor: pointer;
+}
+
