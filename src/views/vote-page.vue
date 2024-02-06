@@ -1,20 +1,21 @@
 <template>
   <div class="background">
     <div class="vote">
-      <div class="question" v-for="({ title, typeQuestion, answers }, index) in question" :key="index">
+      <div class="question" v-for="({ title, typeQuestion, answersToQuestions }, index) in question" :key="index">
         <one-answer v-if="typeQuestion === 'one answer'"
           :title="title"
-          :answers="answers"
-          @update:oneItems="handleOneItems"
+          :answersToQuestions="answersToQuestions"
+          @update:oneItems="handleOneItems($event, index)"
         />
         <several-answers v-if="typeQuestion === 'several answers'"
           :title="title"
-          :answers="answers"
-          @update:selectedItems="handleSelectedItems"
+          :answersToQuestions="answersToQuestions"
+          @update:severalItems="handleSeveralItems($event, index)"
         />
         <user-answers v-if="typeQuestion === 'user response'"
           :title="title"
-          :answers="answers"
+          :answersToQuestions="answersToQuestions"
+          @update:userItems="handleUserItems($event, index)"
         />
       </div>
       <div class="test">
@@ -37,18 +38,23 @@ const store = useStore();
 const question = computed(() => store.getters.getVote);
 
 const oneItems = ref([]);
-const selectedItems = ref([]);
+const severalItems = ref([]);
+const userItems = ref([]);
 
-function handleSelectedItems(items) {
-  selectedItems.value = items;
-  store.commit("addAnswer", toRaw(selectedItems.value));
-  console.log(toRaw(selectedItems.value));
+function handleSeveralItems(items, index) {
+  severalItems.value = items
+  store.commit("addAnswer", toRaw(severalItems.value))
+  console.log(toRaw(severalItems.value));
 }
 
-function handleOneItems(items) {
+function handleOneItems(items, index) {
   oneItems.value = items;
-  store.commit("addAnswer", toRaw(oneItems.value));
-  console.log(toRaw(oneItems.value));
+  store.commit("addAnswer", items)
+}
+
+function handleUserItems(items, index) {
+  userItems.value = items;
+  store.commit("addAnswer", toRaw(userItems.value))
 }
 
 function sendAnswers() {

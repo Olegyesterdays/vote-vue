@@ -1,7 +1,7 @@
 <template>
   <div class="oneAnswers">
     <div class="title">{{ title }}</div>
-    <label class="answer" v-for="(item, index) in answers" :key="index">
+    <label class="answer" v-for="(item, index) in answersToQuestions" :key="index">
       <span>{{ item }}</span>
       <input type="radio" :value="item" v-model="oneItems" @change="handleSelection(title)">
     </label>
@@ -9,14 +9,14 @@
 </template>
 
 <script setup>
-import {defineProps, defineEmits, ref, toRaw} from 'vue'
+import {defineProps, defineEmits, ref} from 'vue'
 
 defineProps({
   title: {
     type: String,
     default: "title"
   },
-  answers: {
+  answersToQuestions: {
     type: Array,
     default: []
   }

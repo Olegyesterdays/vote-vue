@@ -1,38 +1,47 @@
 <template>
   <div class="userAnswers">
     <div class="title">{{ title }}</div>
-    <div class="answer" :class="`answer-${ index }`" v-for="(_, index) in answers" :key="index">
-      <div class="label">{{ answers[index] }}</div>
-      <input type="text">
+    <div class="answer" v-for="(answer, index) in answersToQuestions" :key="index">
+      <span>{{ answer }}</span>
+      <input type="text" @input="updateInputValue($event.target.value, index)"  placeholder="Введите текст">
     </div>
   </div>
 </template>
 
 <script setup>
-import { defineProps, defineEmits, ref, toRaw } from 'vue'
+import { defineEmits, defineProps, ref, toRaw } from 'vue';
 
-defineProps({
+const props = defineProps({
   title: {
     type: String,
     default: "title"
   },
-  answers: {
+  answersToQuestions: {
     type: Array,
     default: []
   }
 })
 
+const inputValues = ref([]);
+const submitted = ref(false);
+const submittedAnswers = ref([]);
 const emit = defineEmits();
 
-const selectedItems = ref([]);
+function updateInputValue(value, index) {
+  inputValues.value[index] = value;
+  submitted.value = true;
+  submittedAnswers.value = inputValues.value.slice();
+  handleSelection();
+}
 
-const handleSelection = (title) => {
-  emit('update:selectedItems', {
-    title: title,
-    answer: toRaw(selectedItems.value)
+function handleSelection() {
+  emit('update:userItems', {
+    title: props.title,
+    answer: toRaw(submittedAnswers.value)
   });
 };
 </script>
+
 
 <style scoped lang="scss">
 .userAnswers {

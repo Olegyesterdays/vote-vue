@@ -1,26 +1,28 @@
-import {createStore} from 'vuex';
+import { createStore } from 'vuex';
 import axios from 'axios';
 
 const store = createStore({
     state: {
+        userID: 123,
+
         votingTitle: "",
 
         vote: [
             {
                 title: "title 1",
                 typeQuestion: "one answer",
-                answers: [
+                answersToQuestions: [
                     "title 1 answer 1",
                     "title 1 answer 2",
                     "title 1 answer 3",
                     "title 1 answer 4",
                     "title 1 answer 5",
-                ]
+                ],
             },
             {
                 title: "title 2",
                 typeQuestion: "several answers",
-                answers: [
+                answersToQuestions: [
                     "title 2 answer 1",
                     "title 2 answer 2",
                     "title 2 answer 3",
@@ -31,42 +33,14 @@ const store = createStore({
             {
                 title: "title 3",
                 typeQuestion: "user response",
-                answers: [
+                answersToQuestions: [
                     "name",
                     "surname"
                 ]
             }
         ],
 
-        answers: [
-            {
-                title: "title 1",
-                answer: [
-                    "title 1 answer 1",
-                    "title 1 answer 2",
-                    "title 1 answer 3",
-                ]
-            },
-            {
-                title: "title 2",
-                answer: [
-                    "title 2 answer 1",
-                ]
-            },
-            {
-                title: "title 2",
-                answer: [
-                    {
-                        name: "Oleg"
-                    },
-                    {
-                        surname: "Yesterday`s"
-                    }
-                ]
-            }
-        ],
-
-        userID: 123
+        answers: []
     },
 
     getters: {
@@ -84,30 +58,15 @@ const store = createStore({
             state.vote = vote
         },
 
-        addAnswer(state, title, answer) {
-            // <!-- TODO: Сделать нормальную проверку уже существующего ответа -->
-            // let x = false
-            // let xi = 0
-            // for (let i = 0; i < state.answers.length; i++) {
-            //     if (state.answers[i].title === title) {
-            //         x = !x
-            //         xi = i
-            //         break
-            //     }
-            // }
-            // if (x) {
-            //     state.answers[xi].answer = answer
-            // } else {
-            //     state.answers.push({
-            //         title: title,
-            //         answer: answer
-            //     });
-            // }
-
-            state.answers.push({
-                title: title,
-                answer: answer
-            });
+        addAnswer(state, payload) {
+            const existingAnswerIndex = state.answers.findIndex(answer => answer.title === payload.title);
+            if (existingAnswerIndex !== -1) {
+                // Если объект с таким title уже существует, заменяем его
+                state.answers.splice(existingAnswerIndex, 1, payload);
+            } else {
+                // Иначе добавляем новый объект в массив
+                state.answers.push(payload);
+            }
         },
 
         answerClear(state) {

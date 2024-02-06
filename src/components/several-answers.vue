@@ -1,22 +1,22 @@
 <template>
   <div class="severalAnswers">
     <div class="title">{{ title }}</div>
-    <label class="answer" v-for="(item, index) in answers" :key="index">
+    <label class="answer" v-for="(item, index) in answersToQuestions" :key="index">
       <span>{{ item }}</span>
-      <input type="checkbox" :value="item" v-model="selectedItems" @change="handleSelection(title)">
+      <input type="checkbox" :value="item" v-model="severalItems" @change="handleSelection(title, index)">
     </label>
   </div>
 </template>
 
 <script setup>
-import {defineProps, defineEmits, ref, toRaw} from 'vue'
+import { defineProps, defineEmits, ref, toRaw } from 'vue'
 
 defineProps({
   title: {
     type: String,
     default: "title"
   },
-  answers: {
+  answersToQuestions: {
     type: Array,
     default: []
   }
@@ -24,12 +24,12 @@ defineProps({
 
 const emit = defineEmits();
 
-const selectedItems = ref([]);
+const severalItems = ref([]);
 
-const handleSelection = (title) => {
-  emit('update:selectedItems', {
+const handleSelection = (title, index) => {
+  emit('update:severalItems', {
     title: title,
-    answer: toRaw(selectedItems.value)
+    answer: toRaw(severalItems.value)
   });
 };
 </script>
