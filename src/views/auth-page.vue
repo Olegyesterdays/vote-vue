@@ -19,13 +19,36 @@
       </div>
 
       <div class="form">
-        <div
-            class="input"
-            v-for="({ name, type }, index) in form"
-            :key="index"
-        >
-          <span>{{ name }}</span>
-          <input :type="type" @input="addDataFormAnswer($event.target.value, name)">
+<!--        login-->
+        <div v-if="loginOrRegistration === 'login'" class="form-login">
+          <div class="input">
+            <span>email</span>
+            <input type="email" @input="addDataForm($event.target.value, 'email')">
+          </div>
+          <div class="input">
+            <span>пароль</span>
+            <input type="password" @input="addDataForm($event.target.value, 'пароль')">
+          </div>
+        </div>
+
+<!--        registration-->
+        <div v-if="loginOrRegistration === 'registration'" class="form-registration">
+          <div class="input">
+            <span>Имя</span>
+            <input type="text" @input="addDataForm($event.target.value, 'Имя')">
+          </div>
+          <div class="input">
+            <span>Фамилия</span>
+            <input type="text" @input="addDataForm($event.target.value, 'Фамилия')">
+          </div>
+          <div class="input">
+            <span>email</span>
+            <input type="email" @input="addDataForm($event.target.value, 'email')">
+          </div>
+          <div class="input">
+            <span>пароль</span>
+            <input type="password" @input="addDataForm($event.target.value, 'пароль')">
+          </div>
         </div>
       </div>
     </div>
@@ -34,26 +57,25 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import { useStore } from "vuex";
 
 const store = useStore();
 
 const loginOrRegistration = ref( "login")
-const form = computed(() => store.getters["authModule/getForm"]);
 
 function clickLogin() {
   loginOrRegistration.value = "login"
-  store.commit("authModule/dataFormAnswerClear")
+  store.commit("authModule/formAnswersClear")
 }
 
 function clickRegistration() {
   loginOrRegistration.value = "registration"
-  store.commit("authModule/dataFormAnswerClear")
+  store.commit("authModule/formAnswersClear")
 }
 
-function addDataFormAnswer(value, name) {
-  store.commit("authModule/addDataFormAnswer", {
+function addDataForm(value, name) {
+  store.commit("authModule/addDataForm", {
     name: name,
     data: value
   })

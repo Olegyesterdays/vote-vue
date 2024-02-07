@@ -2,64 +2,13 @@ import axios from "axios";
 
 export const authModule = {
     state: {
-        loginForm: [
-            {
-                name: "email",
-                type: "email",
-                data: ""
-            },
-            {
-                name: "пароль",
-                type: "password",
-                data: ""
-            }
-        ],
-
-        registrationForm: [
-            {
-                name: "Имя",
-                type: "text",
-                data: ""
-            },
-            {
-                name: "Фамилия",
-                type: "text",
-                data: ""
-            },
-            {
-                name: "email",
-                type: "email",
-                data: ""
-            },
-            {
-                name: "пароль",
-                type: "password",
-                data: ""
-            }
-        ],
-
-        form: [
-            {
-                name: "email",
-                type: "email",
-            },
-            {
-                name: "пароль",
-                type: "password",
-            }
-        ],
-
         formAnswers: []
     },
 
-    getters: {
-        getForm(state) {
-            return state.form;
-        },
-    },
+    getters: {},
 
     mutations: {
-        addDataFormAnswer(state, payload) {
+        addDataForm(state, payload) {
             const existingAnswerIndex = state.formAnswers.findIndex(item => item.name === payload.name);
             if (existingAnswerIndex !== -1) {
                 state.formAnswers.splice(existingAnswerIndex, 1, payload);
@@ -68,7 +17,7 @@ export const authModule = {
             }
         },
 
-        dataFormAnswerClear(state) {
+        formAnswersClear(state) {
             state.formAnswers = []
         },
     },
@@ -77,8 +26,6 @@ export const authModule = {
         async authLogin({ state, commit }){
             try {
                 await axios.post("http://127.0.0.1:8000/login", state.formAnswers);
-
-                commit('dataFormAnswerClear')
             } catch (error) {
                 console.error('Ошибка при отправке запроса: ', error);
             }
@@ -87,8 +34,6 @@ export const authModule = {
         async authRegistration({ state, commit }){
             try {
                 await axios.post("http://127.0.0.1:8000/registration",  state.formAnswers);
-
-                commit('dataFormAnswerClear')
             } catch (error) {
                 console.error('Ошибка при отправке запроса: ', error);
             }
