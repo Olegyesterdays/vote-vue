@@ -3,7 +3,7 @@
     <div class="title">{{ title }}</div>
     <div class="answer" v-for="(answer, index) in answersToQuestions" :key="index">
       <span>{{ answer }}</span>
-      <input type="text" @input="updateInputValue($event.target.value, index)"  placeholder="Введите текст">
+      <input class="input" type="text" @input="updateInputValue($event.target.value, index)"  placeholder="Введите текст">
     </div>
   </div>
 </template>
@@ -60,7 +60,7 @@ function handleSelection() {
       margin-top: 8px;
     }
 
-    input {
+    .input {
       margin-top: 8px;
       border-radius: 12px;
       padding: 16px;

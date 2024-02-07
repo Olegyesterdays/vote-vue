@@ -18,11 +18,11 @@
           @update:userItems="handleUserItems($event, index)"
         />
       </div>
-      <div class="test">
-        <button class="button-push" @click="sendAnswers">Отправить</button>
+      <div class="button-push">
+        <button class="button" @click="sendAnswers">Отправить</button>
       </div>
     </div>
-    <button class="button-auth">Войти</button>
+    <button class="button-auth" @click="$router.push('/')">Войти</button>
   </div>
 </template>
 
@@ -35,30 +35,29 @@ import severalAnswers from "@/components/several-answers.vue"
 import userAnswers from "@/components/user-answers.vue"
 
 const store = useStore();
-const question = computed(() => store.getters.getVote);
+const question = computed(() => store.getters["voteModule/getVote"]);
 
 const oneItems = ref([]);
 const severalItems = ref([]);
 const userItems = ref([]);
 
-function handleSeveralItems(items, index) {
+function handleSeveralItems(items) {
   severalItems.value = items
-  store.commit("addAnswer", toRaw(severalItems.value))
-  console.log(toRaw(severalItems.value));
+  store.commit("voteModule/addAnswer", toRaw(severalItems.value))
 }
 
-function handleOneItems(items, index) {
+function handleOneItems(items) {
   oneItems.value = items;
-  store.commit("addAnswer", items)
+  store.commit("voteModule/addAnswer", items)
 }
 
-function handleUserItems(items, index) {
+function handleUserItems(items) {
   userItems.value = items;
-  store.commit("addAnswer", toRaw(userItems.value))
+  store.commit("voteModule/addAnswer", toRaw(userItems.value))
 }
 
 function sendAnswers() {
-  store.dispatch("sendAnswer")
+  store.dispatch("voteModule/sendAnswer")
 }
 </script>
 
@@ -82,10 +81,10 @@ function sendAnswers() {
       border-radius: 16px;
     }
 
-    .test {
+    .button-push {
       margin: 0 12px 12px 12px;
 
-      .button-push {
+      .button {
         padding: 20px;
         width: 100%;
         border-radius: 16px;

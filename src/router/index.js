@@ -1,9 +1,16 @@
+import { createRouter, createWebHistory } from "vue-router"
+
+import AuthPage from "@/views/auth-page.vue";
 import AdminPage from "@/views/admin-page.vue";
 import QuestionPage from "@/views/question-page.vue";
 import VotePage from "@/views/vote-page.vue";
-import { createRouter, createWebHistory } from "vue-router"
+
 
 const routes = [
+    {
+        path: '/',
+        component: AuthPage
+    },
     {
         path: '/votePage',
         component: VotePage
