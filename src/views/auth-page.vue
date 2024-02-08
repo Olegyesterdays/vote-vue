@@ -3,14 +3,14 @@
     <div class="login-window">
       <div class="login-or-registration">
         <button
-            class="button login"
+            class="button"
             :class="loginOrRegistration === 'login' ? 'button__active' : ''"
             @click="clickLogin"
         >
           Авторизация
         </button>
         <button
-            class="button registration"
+            class="button"
             :class="loginOrRegistration === 'registration' ? 'button__active' : ''"
             @click="clickRegistration"
         >

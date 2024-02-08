@@ -46,10 +46,6 @@ export const voteModule = {
         getVote(state) {
             return state.vote;
         },
-
-        getAnswer(state) {
-            return state.answers;
-        },
     },
 
     mutations: {

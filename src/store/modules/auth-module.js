@@ -5,8 +5,6 @@ export const authModule = {
         formAnswers: []
     },
 
-    getters: {},
-
     mutations: {
         addDataForm(state, payload) {
             const existingAnswerIndex = state.formAnswers.findIndex(item => item.name === payload.name);

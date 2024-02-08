@@ -1,6 +1,6 @@
 <template>
   <div>
-    question page
+    CreateVote
   </div>
 </template>
 
