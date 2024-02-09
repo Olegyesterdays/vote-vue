@@ -23,31 +23,31 @@
         <div v-if="loginOrRegistration === 'login'" class="form-login">
           <div class="input">
             <span>email</span>
-            <input type="email" @input="addDataForm($event.target.value, 'email')">
+            <input type="email" @input="store.commit('authModule/loginEmail', $event.target.value)">
           </div>
           <div class="input">
             <span>пароль</span>
-            <input type="password" @input="addDataForm($event.target.value, 'пароль')">
+            <input type="password" @input="store.commit('authModule/loginPassword', $event.target.value)">
           </div>
         </div>
 
 <!--        registration-->
         <div v-if="loginOrRegistration === 'registration'" class="form-registration">
-          <div class="input">
-            <span>Имя</span>
-            <input type="text" @input="addDataForm($event.target.value, 'Имя')">
-          </div>
-          <div class="input">
-            <span>Фамилия</span>
-            <input type="text" @input="addDataForm($event.target.value, 'Фамилия')">
-          </div>
+<!--          <div class="input">-->
+<!--            <span>Имя</span>-->
+<!--            <input type="text" @input="store.commit('authModule/loginEmail', $event.target.value)">-->
+<!--          </div>-->
+<!--          <div class="input">-->
+<!--            <span>Фамилия</span>-->
+<!--            <input type="text" @input="store.commit('authModule/loginEmail', $event.target.value)">-->
+<!--          </div>-->
           <div class="input">
             <span>email</span>
-            <input type="email" @input="addDataForm($event.target.value, 'email')">
+            <input type="email" @input="store.commit('authModule/registrationEmail', $event.target.value)">
           </div>
           <div class="input">
             <span>пароль</span>
-            <input type="password" @input="addDataForm($event.target.value, 'пароль')">
+            <input type="password" @input="store.commit('authModule/registrationPassword', $event.target.value)">
           </div>
         </div>
       </div>
@@ -57,7 +57,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import {ref } from "vue";
 import { useStore } from "vuex";
 
 const store = useStore();
@@ -74,12 +74,12 @@ function clickRegistration() {
   store.commit("authModule/formAnswersClear")
 }
 
-function addDataForm(value, name) {
-  store.commit("authModule/addDataForm", {
-    name: name,
-    data: value
-  })
-}
+// function addDataForm(value, name) {
+//   store.commit("authModule/addDataForm", {
+//     name: name,
+//     data: value
+//   })
+// }
 
 function push() {
   store.dispatch(loginOrRegistration.value === "login" ? "authModule/authLogin" : "authModule/authRegistration")

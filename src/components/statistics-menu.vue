@@ -18,7 +18,6 @@
     </div>
 
     <button class="menu-item button">Завершить голосование</button>
-    <button class="menu-item button">Редактировать голосование</button>
     <button class="menu-item button end">Удалить голосование</button>
   </div>
 </template>

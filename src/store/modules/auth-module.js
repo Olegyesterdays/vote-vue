@@ -1,37 +1,70 @@
 import axios from "axios";
+import { toRaw } from "vue";
 
 export const authModule = {
     state: {
-        formAnswers: []
+        formLogin: {
+            email: "",
+            password: ""
+        },
+
+        formRegistration: {
+            email: "",
+            password: ""
+        }
+    },
+
+    getters: {
+        getFormLogin(state) {
+            return state.formLogin
+        },
+
+        getFormRegistration(state) {
+            return state.formRegistration
+        }
     },
 
     mutations: {
-        addDataForm(state, payload) {
-            const existingAnswerIndex = state.formAnswers.findIndex(item => item.name === payload.name);
-            if (existingAnswerIndex !== -1) {
-                state.formAnswers.splice(existingAnswerIndex, 1, payload);
-            } else {
-                state.formAnswers.push(payload);
-            }
+        loginEmail(state, email) {
+            state.formLogin.email = email
+        },
+
+        loginPassword(state, password) {
+            state.formLogin.password = password
+        },
+
+        registrationEmail(state, email) {
+            state.formRegistration.email = email
+        },
+
+        registrationPassword(state, password) {
+            state.formRegistration.password = password
         },
 
         formAnswersClear(state) {
-            state.formAnswers = []
+            state.formLogin = {
+                email: "",
+                password: ""
+            }
+
+            state.formRegistration = {
+                email: "",
+                password: ""
+            }
         },
     },
 
     actions: {
-        async authLogin({ state, commit }){
-            try {
-                await axios.post("http://127.0.0.1:8000/login", state.formAnswers);
+        async authLogin({ state }){
+            try {await axios.post("http://localhost:8000/api/v1/user/login", toRaw(state.formLogin));
             } catch (error) {
                 console.error('Ошибка при отправке запроса: ', error);
             }
         },
 
-        async authRegistration({ state, commit }){
+        async authRegistration({ state }){
             try {
-                await axios.post("http://127.0.0.1:8000/registration",  state.formAnswers);
+                await axios.post("http://localhost:8000/api/v1/user",  toRaw(state.formRegistration));
             } catch (error) {
                 console.error('Ошибка при отправке запроса: ', error);
             }

@@ -99,5 +99,6 @@ export const voteModule = {
             }
         },
     },
+
     namespaced: true
 }

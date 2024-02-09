@@ -162,10 +162,6 @@ export const statisticsModule = {
             return state.vote.creationDate;
         },
 
-        getUpdateDate(state) {
-            return state.vote.updateDate;
-        },
-
         getNumberOfParticipants(state) {
             return state.vote.numberOfParticipants;
         },

@@ -25,7 +25,7 @@ const routes = [
         component: StatisticsVotePage
     },
     {
-        path: "/createVote",
+        path: "/adminPage/createVote",
         component: CreateVote
     }
 ]
