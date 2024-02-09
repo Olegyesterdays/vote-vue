@@ -56,7 +56,8 @@ export const authModule = {
 
     actions: {
         async authLogin({ state }){
-            try {await axios.post("http://localhost:8000/api/v1/user/login", toRaw(state.formLogin));
+            try {
+                await axios.post("http://localhost:8000/api/v1/user/login", toRaw(state.formLogin));
             } catch (error) {
                 console.error('Ошибка при отправке запроса: ', error);
             }
