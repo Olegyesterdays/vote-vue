@@ -1,6 +1,6 @@
 <template>
   <div class="menu">
-    <button class="menu-item button" @click="$router.push('/adminPage')">Назад</button>
+    <button class="menu-item button" @click="$router.push('/account')">Назад</button>
 
     <div class="menu-item item-number-of-questions">
       <span>Количество вопросов</span>

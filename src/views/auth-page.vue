@@ -57,34 +57,34 @@
 </template>
 
 <script setup>
-import {ref } from "vue";
+import { ref } from "vue";
 import { useStore } from "vuex";
+import { useRouter } from "vue-router"; // Импортируем роутер из Vue Router
 
 const store = useStore();
+const router = useRouter(); // Инициализируем роутер
 
-const loginOrRegistration = ref( "login")
+const loginOrRegistration = ref("login");
 
 function clickLogin() {
-  loginOrRegistration.value = "login"
-  store.commit("authModule/formAnswersClear")
+  loginOrRegistration.value = "login";
+  store.commit("authModule/formLoginClear");
 }
 
 function clickRegistration() {
-  loginOrRegistration.value = "registration"
-  store.commit("authModule/formAnswersClear")
+  loginOrRegistration.value = "registration";
+  store.commit("authModule/formRegistrationClear");
 }
 
-// function addDataForm(value, name) {
-//   store.commit("authModule/addDataForm", {
-//     name: name,
-//     data: value
-//   })
-// }
+async function push() {
+  const action = loginOrRegistration.value === "login" ? "authModule/authLogin" : "authModule/authRegistration";
 
-function push() {
-  store.dispatch(loginOrRegistration.value === "login" ? "authModule/authLogin" : "authModule/authRegistration")
+  await store.dispatch(action)
+  router.push("/account");
 }
+
 </script>
+
 
 <style scoped lang="scss">
 .background {

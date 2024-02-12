@@ -41,12 +41,14 @@ export const authModule = {
             state.formRegistration.password = password
         },
 
-        formAnswersClear(state) {
+        formLoginClear(state) {
             state.formLogin = {
                 email: "",
                 password: ""
             }
+        },
 
+        formRegistrationClear(state) {
             state.formRegistration = {
                 email: "",
                 password: ""
@@ -55,17 +57,26 @@ export const authModule = {
     },
 
     actions: {
-        async authLogin({ state }){
+        async authLogin({ commit, state }) {
             try {
-                await axios.post("http://localhost:8000/api/v1/user/login", toRaw(state.formLogin));
+                const response = await axios.post("http://localhost:8000/api/v1/user/login", toRaw(state.formLogin));
+                // Сохраняем ответ от сервера в локальное хранилище
+                localStorage.setItem('authToken', response.data.token);
+                localStorage.setItem('role', response.data.role);
+                // store.commit("authModule/formAnswersClear");
+                commit('formLoginClear');
+
             } catch (error) {
                 console.error('Ошибка при отправке запроса: ', error);
             }
         },
 
-        async authRegistration({ state }){
+        async authRegistration({ commit, state }){
             try {
-                await axios.post("http://localhost:8000/api/v1/user",  toRaw(state.formRegistration));
+                const response = await axios.post("http://localhost:8000/api/v1/user",  toRaw(state.formRegistration));
+                localStorage.setItem('authToken', response.data.token);
+                localStorage.setItem('role', response.data.role);
+                commit('formRegistrationClear');
             } catch (error) {
                 console.error('Ошибка при отправке запроса: ', error);
             }

@@ -1,17 +1,43 @@
 <template>
   <div class="background">
-    <div class="admin-panel">
+    <div class="account-panel">
       <div class="profile">
         <img class="ava" :src="ava" alt="аватарка">
-        <button class="button create-vote" @click="$router.push('/adminPage/createVote')">Создать голосование</button>
-        <button class="button exit" @click="$router.push('/')">Выход</button>
+        <button class="button create-vote" @click="$router.push('/account/createVote')">Создать голосование</button>
+        <button class="button">Настройки</button>
+        <button class="button exit" @click="exit">Выход</button>
       </div>
       <div class="voting-list">
+        <div class="voting-list-type">
+          <button
+              @click="votingTypeSelection('getMyVote')"
+              class="button my-vote"
+              :class="typeVote === 'getMyVote' ? 'button__active' : ''"
+          >
+            Мои голосования
+          </button>
+
+          <button
+              @click="votingTypeSelection('getNew')"
+              class="button new"
+              :class="typeVote === 'getNew' ? 'button__active' : ''"
+          >
+            Новые
+          </button>
+
+          <button
+              @click="votingTypeSelection('getPassed')"
+              class="button passed"
+              :class="typeVote === 'getPassed' ? 'button__active' : ''"
+          >
+            Пройденные
+          </button>
+        </div>
         <input class="input vote-search" type="text" placeholder="Название голосования"/>
         <img v-if="voting.length === 0" class="logo" :src="OCRVLogo" alt="Логотип компании ОЦРВ">
         <div class="vote" v-for="({ titleVote }, index) in voting" :key="index">
           <span>{{ titleVote }}</span>
-          <button @click="$router.push('/adminPage/statisticsVotePage')">inf0</button>
+          <button v-if="typeVote === 'getMyVote'" @click="$router.push('/account/statisticsVotePage')">info</button>
         </div>
       </div>
     </div>
@@ -19,21 +45,35 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import {computed, ref} from "vue";
 import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 
 import ava from "@/assets/ava.jpg"
 import OCRVLogo from "@/assets/OCRV-Logo.svg"
 
 const store = useStore();
-const voting = computed(() => store.getters["adminModule/getVote"]);
+const router = useRouter();
+const typeVote = ref("getMyVote")
+const voting = computed(() => store.getters[`accountModule/${typeVote.value}`]);
+
+function votingTypeSelection(type) {
+  voting.value = computed(() => store.getters[`accountModule/${type}`]);
+  typeVote.value = type
+}
+
+async function exit() {
+  await localStorage.removeItem('authToken');
+  await localStorage.removeItem('role');
+  router.push("/");
+}
 </script>
 
 <style scoped lang="scss">
 .background {
   display: flex;
 
-  .admin-panel {
+  .account-panel {
     margin: 40px auto;
     display: flex;
     padding: 20px;
@@ -76,9 +116,39 @@ const voting = computed(() => store.getters["adminModule/getVote"]);
     }
 
     .voting-list {
+      width: 1000px;
       background: var(--neutral-light-theme);
       padding: 12px;
       border-radius: 12px;
+
+      &-type {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .my-vote {
+
+        }
+
+        .new {
+
+        }
+
+        .passed {
+
+        }
+
+        .button {
+          padding: 12px;
+          border: 0;
+          background: var(--neutral-light-theme);
+          margin-bottom: 8px;
+          width: 100%;
+        }
+
+        .button__active {
+          border-bottom: 4px solid var(--secondary-light-theme);
+        }
+      }
 
       .vote {
         align-items: center;
@@ -102,6 +172,7 @@ const voting = computed(() => store.getters["adminModule/getVote"]);
         padding: 16px;
         background: var(--secondary-light-theme);
         border: 0;
+        width: 968px;
 
         &:focus {
           outline: none;

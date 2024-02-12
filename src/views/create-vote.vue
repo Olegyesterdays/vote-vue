@@ -2,7 +2,7 @@
   <div class="background">
     <div class="create-vote-panel">
       <div class="create-question">
-        <button class="button" @click="$router.push('/adminPage')">Назад</button>
+        <button class="button" @click="$router.push('/account')">Назад</button>
 
         <div class="voting-template">
           <div class="input">
