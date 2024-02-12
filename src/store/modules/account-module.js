@@ -6,12 +6,45 @@ export const accountModule = {
             myVote: [
                 {
                     titleVote: "myVote"
-                }
+                },
+                {
+                    titleVote: "AmyVote"
+                },
+                {
+                    titleVote: "ABmyVote"
+                },
+                {
+                    titleVote: "ABCmyVote"
+                },
+                {
+                    titleVote: "myVoteABC"
+                },
+                {
+                    titleVote: "myVoteABCD"
+                },
             ],
             new: [
                 {
                     titleVote: "new"
-                }
+                },
+                {
+                    titleVote: "Anew"
+                },
+                {
+                    titleVote: "nAew"
+                },
+                {
+                    titleVote: "nABew"
+                },
+                {
+                    titleVote: "ABnew"
+                },
+                {
+                    titleVote: "newCD"
+                },
+                {
+                    titleVote: "CD  new"
+                },
             ],
             passed: [
                 {

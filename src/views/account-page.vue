@@ -3,13 +3,20 @@
     <div class="account-panel">
       <div class="profile">
         <img class="ava" :src="ava" alt="аватарка">
-        <button class="button create-vote" @click="$router.push('/account/createVote')">Создать голосование</button>
+        <button
+            v-if="role === 'admin'"
+            class="button create-vote"
+            @click="$router.push('/account/createVote')"
+        >
+          Создать голосование
+        </button>
         <button class="button">Настройки</button>
         <button class="button exit" @click="exit">Выход</button>
       </div>
       <div class="voting-list">
         <div class="voting-list-type">
           <button
+              v-if="role === 'admin'"
               @click="votingTypeSelection('getMyVote')"
               class="button my-vote"
               :class="typeVote === 'getMyVote' ? 'button__active' : ''"
@@ -33,9 +40,9 @@
             Пройденные
           </button>
         </div>
-        <input class="input vote-search" type="text" placeholder="Название голосования"/>
-        <img v-if="voting.length === 0" class="logo" :src="OCRVLogo" alt="Логотип компании ОЦРВ">
-        <div class="vote" v-for="({ titleVote }, index) in voting" :key="index">
+        <input class="input vote-search" type="text" placeholder="Название голосования" v-model="searchText"/>
+<!--        <img v-if="filteredVoting.length === 0" class="logo" :src="OCRVLogo" alt="Логотип компании ОЦРВ">-->
+        <div class="vote" v-for="({ titleVote }, index) in filteredVoting" :key="index">
           <span>{{ titleVote }}</span>
           <button v-if="typeVote === 'getMyVote'" @click="$router.push('/account/statisticsVotePage')">info</button>
         </div>
@@ -54,12 +61,19 @@ import OCRVLogo from "@/assets/OCRV-Logo.svg"
 
 const store = useStore();
 const router = useRouter();
+
+const role = ref(localStorage && localStorage.getItem('role'))
 const typeVote = ref("getMyVote")
 const voting = computed(() => store.getters[`accountModule/${typeVote.value}`]);
+const searchText = ref("");
+
+const filteredVoting = computed(() => {
+  const search = searchText.value.toLowerCase();
+  return voting.value.filter(vote => vote.titleVote.toLowerCase().includes(search));
+});
 
 function votingTypeSelection(type) {
-  voting.value = computed(() => store.getters[`accountModule/${type}`]);
-  typeVote.value = type
+  typeVote.value = type;
 }
 
 async function exit() {

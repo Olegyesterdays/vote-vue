@@ -60,10 +60,10 @@ export const authModule = {
         async authLogin({ commit, state }) {
             try {
                 const response = await axios.post("http://localhost:8000/api/v1/user/login", toRaw(state.formLogin));
-                // Сохраняем ответ от сервера в локальное хранилище
                 localStorage.setItem('authToken', response.data.token);
-                localStorage.setItem('role', response.data.role);
-                // store.commit("authModule/formAnswersClear");
+                // localStorage.setItem('role', response.data.role);
+                localStorage.setItem('role', "admin");
+                // localStorage.setItem('role', "user");
                 commit('formLoginClear');
 
             } catch (error) {
@@ -75,7 +75,9 @@ export const authModule = {
             try {
                 const response = await axios.post("http://localhost:8000/api/v1/user",  toRaw(state.formRegistration));
                 localStorage.setItem('authToken', response.data.token);
-                localStorage.setItem('role', response.data.role);
+                // localStorage.setItem('role', response.data.role);
+                localStorage.setItem('role', "admin");
+                // localStorage.setItem('role', "user");
                 commit('formRegistrationClear');
             } catch (error) {
                 console.error('Ошибка при отправке запроса: ', error);

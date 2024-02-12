@@ -1,9 +1,11 @@
 import { createStore } from 'vuex';
+
 import { voteModule } from "@/store/modules/vote-module.js";
 import { authModule } from "@/store/modules/auth-module.js";
 import { accountModule } from "@/store/modules/account-module.js"
 import { statisticsModule } from "@/store/modules/statistics-module.js";
 import { createVoteModule } from "@/store/modules/create-vote-module.js";
+import { settingsModule } from "@/store/modules/settings-module.js"
 
 const store = createStore({
     modules: {
@@ -11,7 +13,8 @@ const store = createStore({
         authModule: authModule,
         accountModule: accountModule,
         statisticsModule: statisticsModule,
-        createVoteModule: createVoteModule
+        createVoteModule: createVoteModule,
+        settingsModule: settingsModule
     },
 });
 

@@ -5,6 +5,7 @@ import AccountPage from "@/views/account-page.vue";
 import VotePage from "@/views/vote-page.vue";
 import StatisticsVotePage from "@/views/statistics-vote-page.vue";
 import CreateVote from "@/views/create-vote.vue";
+import Settings from "@/views/settings-page.vue"
 
 const routes = [
     {
@@ -18,17 +19,22 @@ const routes = [
     {
         path: '/account',
         component: AccountPage,
-        meta: { requiresAdmin: true } // указываем, что доступ к этой странице должен быть только для администраторов
+        meta: { requiresAccount: true }
     },
     {
         path: '/account/statisticsVotePage',
         component: StatisticsVotePage,
-        meta: { requiresAdmin: true } // указываем, что доступ к этой странице должен быть только для администраторов
+        meta: { requiresAccount: true }
     },
     {
         path: "/account/createVote",
         component: CreateVote,
-        meta: { requiresAdmin: true } // указываем, что доступ к этой странице должен быть только для администраторов
+        meta: { requiresAccount: true }
+    },
+    {
+        path: "/account/settings",
+        component: Settings,
+        meta: { requiresAccount: true }
     }
 ]
 
@@ -40,18 +46,14 @@ const router = createRouter({
 // Навигационный охранник
 router.beforeEach((to, from, next) => {
     const isAdmin = localStorage.getItem('authToken');
-    // const isAdmin = localStorage.getItem('authToken') && (localStorage.getItem('role') === "admin");
 
-    if (to.matched.some(record => record.meta.requiresAdmin)) {
+    if (to.matched.some(record => record.meta.requiresAccount)) {
         if (!isAdmin) {
-            // Если пользователь не администратор, перенаправляем его на страницу авторизации
             next('/');
         } else {
-            // Если пользователь администратор, разрешаем ему доступ
             next();
         }
     } else {
-        // Если страница не требует администраторских прав, разрешаем доступ
         next();
     }
 });
