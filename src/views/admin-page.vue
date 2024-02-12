@@ -3,7 +3,7 @@
     <div class="admin-panel">
       <div class="profile">
         <img class="ava" :src="ava" alt="аватарка">
-        <button class="button create-vote" @click="$router.push('/createVote')">Создать голосование</button>
+        <button class="button create-vote" @click="$router.push('/adminPage/createVote')">Создать голосование</button>
         <button class="button exit" @click="$router.push('/')">Выход</button>
       </div>
       <div class="voting-list">

@@ -23,11 +23,11 @@
         <div v-if="loginOrRegistration === 'login'" class="form-login">
           <div class="input">
             <span>email</span>
-            <input type="email" @input="store.commit('authModule/loginEmail', $event.target.value)">
+            <input type="email" @input="store.commit('authModule/loginEmail', {email: $event.target.value})">
           </div>
           <div class="input">
             <span>пароль</span>
-            <input type="password" @input="store.commit('authModule/loginPassword', $event.target.value)">
+            <input type="password" @input="store.commit('authModule/loginPassword', {password: $event.target.value})">
           </div>
         </div>
 
@@ -43,11 +43,11 @@
 <!--          </div>-->
           <div class="input">
             <span>email</span>
-            <input type="email" @input="store.commit('authModule/registrationEmail', $event.target.value)">
+            <input type="email" @input="store.commit('authModule/registrationEmail', {email: $event.target.value})">
           </div>
           <div class="input">
             <span>пароль</span>
-            <input type="password" @input="store.commit('authModule/registrationPassword', $event.target.value)">
+            <input type="password" @input="store.commit('authModule/registrationPassword', {password: $event.target.value})">
           </div>
         </div>
       </div>

@@ -50,11 +50,6 @@ const handleSelection = (title) => {
     padding: 16px;
     display: flex;
     justify-content: space-between;
-
-    //&:hover {
-    //  background: var(--accent);
-    //  color: var(--white-light-theme);
-    //}
   }
 }
 </style>

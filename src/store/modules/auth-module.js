@@ -25,19 +25,19 @@ export const authModule = {
     },
 
     mutations: {
-        loginEmail(state, email) {
+        loginEmail(state, {email}) {
             state.formLogin.email = email
         },
 
-        loginPassword(state, password) {
+        loginPassword(state, {password}) {
             state.formLogin.password = password
         },
 
-        registrationEmail(state, email) {
+        registrationEmail(state, {email}) {
             state.formRegistration.email = email
         },
 
-        registrationPassword(state, password) {
+        registrationPassword(state, {password}) {
             state.formRegistration.password = password
         },
 

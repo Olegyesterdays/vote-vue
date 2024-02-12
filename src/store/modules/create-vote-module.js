@@ -6,35 +6,52 @@ export const createVoteModule = {
 
         description: "",
 
-        question: {
-            questionTitle: "",
-            answers: []
-        },
-
-        answer: "",
-
         newVote: {
             votingTitle: "votingTitle",
             description: "description",
             questions: [
                 {
-                    questionTitle: "questionTitle 1",
+                    question: "question 1",
+                    typeQuestion: "one answer",
                     answers: [
-                        "questionTitle 1 answers 1",
-                        "questionTitle 1 answers 2",
-                        "questionTitle 1 answers 3",
-                        "questionTitle 1 answers 4",
-                        "questionTitle 1 answers 5",
+                        "question 1 answers 1",
+                        "question 1 answers 2",
+                        "question 1 answers 3",
+                        "question 1 answers 4",
+                        "question 1 answers 5",
                     ]
                 },
                 {
-                    questionTitle: "questionTitle 2",
+                    question: "question 2",
+                    typeQuestion: "one answer",
                     answers: [
-                        "questionTitle 2 answers 1",
-                        "questionTitle 2 answers 2",
-                        "questionTitle 2 answers 3",
-                        "questionTitle 2 answers 4",
-                        "questionTitle 2 answers 5",
+                        "question 2 answers 1",
+                        "question 2 answers 2",
+                        "question 2 answers 3",
+                        "question 2 answers 4",
+                        "question 2 answers 5",
+                    ]
+                },
+                {
+                    question: "question 2",
+                    typeQuestion: "several answers",
+                    answers: [
+                        "question 2 answers 1",
+                        "question 2 answers 2",
+                        "question 2 answers 3",
+                        "question 2 answers 4",
+                        "question 2 answers 5",
+                    ]
+                },
+                {
+                    question: "question 2",
+                    typeQuestion: "user response",
+                    answers: [
+                        "question 2 answers 1",
+                        "question 2 answers 2",
+                        "question 2 answers 3",
+                        "question 2 answers 4",
+                        "question 2 answers 5",
                     ]
                 }
             ]
@@ -68,22 +85,23 @@ export const createVoteModule = {
             }
         },
 
-        addQuestion(state) {
-            if (!state.newVote === {}) {
-                state.newVote.questions.push(state.question)
-            }
+        addQuestion(state, {answers, question}) {
+            state.newVote.questions.push({
+                question: question,
+                answers: answers
+            })
         },
 
-        addQuestionTitle(state, title) {
-            state.question.questionTitle = title
+        deleteQuestion(state, {index}) {
+            state.newVote.questions.splice(index, 1)
         },
 
         createAnswer(state, answer) {
             state.answer = answer
         },
 
-        addAnswer(state) {
-            state.question.answers.push(state.answer)
+        typeQuestion(state, {typeQuestion}) {
+            state.newVote.questions[state.newVote.questions.length - 1].typeQuestion = typeQuestion
         }
     },
 
