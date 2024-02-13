@@ -7,14 +7,14 @@
             :class="loginOrRegistration === 'login' ? 'button__active' : ''"
             @click="clickLogin"
         >
-          Авторизация
+          <span>{{ $t("authPage.login") }}</span>
         </button>
         <button
             class="button"
             :class="loginOrRegistration === 'registration' ? 'button__active' : ''"
             @click="clickRegistration"
         >
-          Регистрация
+          <span>{{ $t("authPage.registration") }}</span>
         </button>
       </div>
 
@@ -22,11 +22,11 @@
 <!--        login-->
         <div v-if="loginOrRegistration === 'login'" class="form-login">
           <div class="input">
-            <span>email</span>
+            <span>{{ $t("authPage.form.login.email") }}</span>
             <input type="email" @input="store.commit('authModule/loginEmail', {email: $event.target.value})">
           </div>
           <div class="input">
-            <span>пароль</span>
+            <span>{{ $t("authPage.form.login.password") }}</span>
             <input type="password" @input="store.commit('authModule/loginPassword', {password: $event.target.value})">
           </div>
         </div>
@@ -42,17 +42,25 @@
 <!--            <input type="text" @input="store.commit('authModule/loginEmail', $event.target.value)">-->
 <!--          </div>-->
           <div class="input">
-            <span>email</span>
+            <span>{{ $t("authPage.form.registration.email") }}</span>
             <input type="email" @input="store.commit('authModule/registrationEmail', {email: $event.target.value})">
           </div>
           <div class="input">
-            <span>пароль</span>
+            <span>{{ $t("authPage.form.registration.password") }}</span>
             <input type="password" @input="store.commit('authModule/registrationPassword', {password: $event.target.value})">
           </div>
         </div>
       </div>
     </div>
-    <button class="button-auth" @click="push">{{ loginOrRegistration === 'login' ? "Войти" : "Зарегистрироваться" }}</button>
+<!--    <button class="button-auth" @click="push">{{ -->
+<!--      loginOrRegistration === 'login' ? -->
+<!--        "Войти" : -->
+<!--        "Зарегистрироваться" -->
+<!--      }}-->
+<!--    </button>-->
+    <button class="button-auth" @click="push">
+      <span>{{ $t(`authPage.button.${loginOrRegistration === 'login' ? 'login' : 'registration'}`) }}</span>
+    </button>
   </div>
 </template>
 
@@ -107,6 +115,10 @@ async function push() {
         padding: 12px;
         border: 0;
         background: var(--secondary-dark-theme);
+
+        &:hover {
+          background: var(--secondary-light-theme) !important;
+        }
       }
 
       .button__active {
