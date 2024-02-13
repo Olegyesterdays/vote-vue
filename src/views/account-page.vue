@@ -13,6 +13,7 @@
         <button class="button">Настройки</button>
         <button class="button exit" @click="exit">Выход</button>
       </div>
+
       <div class="voting-list">
         <div class="voting-list-type">
           <button
@@ -40,11 +41,13 @@
             Пройденные
           </button>
         </div>
+
         <input class="input vote-search" type="text" placeholder="Название голосования" v-model="searchText"/>
 <!--        <img v-if="filteredVoting.length === 0" class="logo" :src="OCRVLogo" alt="Логотип компании ОЦРВ">-->
-        <div class="vote" v-for="({ titleVote }, index) in filteredVoting" :key="index">
+        <div class="vote" v-for="({ titleVote, date , voteID}, index) in filteredVoting" :key="index">
           <span>{{ titleVote }}</span>
-          <button v-if="typeVote === 'getMyVote'" @click="$router.push('/account/statisticsVotePage')">info</button>
+          <span class="date" v-if="typeVote !== 'getMyVote'">{{ date }}</span>
+          <button v-if="typeVote === 'getMyVote'" @click="statistics(voteID)">info</button>
         </div>
       </div>
     </div>
@@ -52,12 +55,12 @@
 </template>
 
 <script setup>
-import {computed, ref} from "vue";
+import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 
-import ava from "@/assets/ava.jpg"
-import OCRVLogo from "@/assets/OCRV-Logo.svg"
+import ava from "@/assets/ava.jpg";
+import OCRVLogo from "@/assets/OCRV-Logo.svg";
 
 const store = useStore();
 const router = useRouter();
@@ -74,6 +77,11 @@ const filteredVoting = computed(() => {
 
 function votingTypeSelection(type) {
   typeVote.value = type;
+}
+
+function statistics(voteID) {
+  store.commit("statisticsModule/voteID", { voteID: voteID})
+  router.push("/account/statisticsVotePage");
 }
 
 async function exit() {

@@ -4,7 +4,7 @@ import AuthPage from "@/views/auth-page.vue";
 import AccountPage from "@/views/account-page.vue";
 import VotePage from "@/views/vote-page.vue";
 import StatisticsVotePage from "@/views/statistics-vote-page.vue";
-import CreateVote from "@/views/create-vote.vue";
+import CreateVote from "@/views/create-vote-page.vue";
 import Settings from "@/views/settings-page.vue"
 
 const routes = [

@@ -11,6 +11,8 @@ export const statisticsModule = {
             numberOfParticipants: "11111"
         },
 
+        voteID: "",
+
         questions: [
             {
                 title: "title 1",
@@ -172,7 +174,9 @@ export const statisticsModule = {
     },
 
     mutations: {
-
+        voteID(state, { voteID }) {
+            state.voteID = voteID
+        }
     },
 
     actions: {
