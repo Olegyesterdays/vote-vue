@@ -93,27 +93,20 @@ function createQuestion() {
   border-radius: 8px;
   padding: 8px;
   justify-content: center !important;
-
-  &:hover {
-    background: var(--accent-light-theme) !important;
-    color: var(--white-light-theme);
-  }
-
-  &:active {
-    transform: scale(0.99);
-  }
 }
 
 .create-question-panel {
+  width: 1000px;
   display: flex;
   margin: 8px auto;
-  padding: 12px;
+  padding: 16px;
   border-radius: 12px;
   background: var(--neutral-light-theme);
+  // TODO: надо пофиксить
+  height: 388px;
 
   .create-question {
     margin-right: 8px;
-    padding: 12px;
     border-radius: 12px;
     background: var(--neutral-light-theme);
     display: flex;
@@ -151,20 +144,13 @@ function createQuestion() {
         padding: 16px;
         background: var(--neutral-light-theme);
         border: 0;
-
-        &:focus {
-          outline: none;
-        }
       }
     }
   }
 
   .list-questions {
-    border: 8px solid var(--neutral-light-theme);
-    width: 700px;
-    height: 512px;
-    padding: 8px;
-    border-radius: 12px;
+    padding-right: 4px;
+    width: 100%;
     background: var(--neutral-light-theme);
     overflow: hidden;
     overflow-y: auto;
@@ -193,7 +179,7 @@ function createQuestion() {
     }
 
     .question {
-      padding: 12px;
+      padding: 8px;
       border-radius: 12px;
       margin-bottom: 8px;
       background: var(--secondary-light-theme);
@@ -209,7 +195,7 @@ function createQuestion() {
       }
 
       .answers {
-        padding: 12px;
+        padding: 4px;
         border-radius: 12px;
         background: var(--neutral-light-theme);
         display: flex;

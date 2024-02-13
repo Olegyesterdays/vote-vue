@@ -22,7 +22,6 @@
         <button class="button" @click="sendAnswers">Отправить</button>
       </div>
     </div>
-    <button class="button-auth" @click="$router.push('/')">Войти</button>
   </div>
 </template>
 
@@ -90,36 +89,7 @@ function sendAnswers() {
         border-radius: 16px;
         background: var(--white-light-theme);
         border: 0;
-
-        &:hover {
-          background: var(--accent-light-theme);
-          color: var(--white-light-theme);
-        }
-
-        &:active {
-          transform: scale(0.99);
-        }
       }
-    }
-  }
-
-  .button-auth {
-    position: absolute;
-    border-radius: 16px;
-    background: var(--white-light-theme);
-    border: 4px solid var(--secondary-light-theme);
-    padding: 16px;
-    top: 49px;
-    right: 20px;
-
-    &:hover {
-      background: var(--accent-light-theme);
-      color: var(--white-light-theme);
-      border: 4px solid var(--accent-light-theme);
-    }
-
-    &:active {
-      transform: scale(0.99);
     }
   }
 }

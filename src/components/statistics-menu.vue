@@ -46,15 +46,6 @@ const numberOfParticipants = computed(() => store.getters["statisticsModule/getN
     border-radius: 8px;
     padding: 8px;
     justify-content: center !important;
-
-    &:hover {
-      background: var(--accent-light-theme);
-      color: var(--white-light-theme);
-    }
-
-    &:active {
-      transform: scale(0.99);
-    }
   }
 
   .end {

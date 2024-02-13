@@ -16,6 +16,7 @@ const props = defineProps({
     type: String,
     default: "title"
   },
+
   answersToQuestions: {
     type: Array,
     default: []
@@ -39,7 +40,7 @@ function handleSelection() {
     title: props.title,
     answer: toRaw(submittedAnswers.value)
   });
-};
+}
 </script>
 
 
@@ -66,10 +67,6 @@ function handleSelection() {
       padding: 16px;
       background: var(--neutral-light-theme);
       border: 0;
-
-      &:focus {
-        outline: none;
-      }
     }
   }
 }

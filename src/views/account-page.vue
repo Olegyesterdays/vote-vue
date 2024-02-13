@@ -44,10 +44,12 @@
 
         <input class="input vote-search" type="text" placeholder="Название голосования" v-model="searchText"/>
 <!--        <img v-if="filteredVoting.length === 0" class="logo" :src="OCRVLogo" alt="Логотип компании ОЦРВ">-->
-        <div class="vote" v-for="({ titleVote, date , voteID}, index) in filteredVoting" :key="index">
-          <span>{{ titleVote }}</span>
-          <span class="date" v-if="typeVote !== 'getMyVote'">{{ date }}</span>
-          <button v-if="typeVote === 'getMyVote'" @click="statistics(voteID)">info</button>
+        <div class="voting">
+          <div class="vote" v-for="({ titleVote, date , voteID}, index) in filteredVoting" :key="index">
+            <span>{{ titleVote }}</span>
+            <span class="date" v-if="typeVote !== 'getMyVote'">{{ date }}</span>
+            <button v-if="typeVote === 'getMyVote'" @click="statistics(voteID)">info</button>
+          </div>
         </div>
       </div>
     </div>
@@ -98,15 +100,12 @@ async function exit() {
   .account-panel {
     margin: 40px auto;
     display: flex;
-    padding: 20px;
+    padding: 8px;
     border-radius: 20px;
-    background: var(--secondary-light-theme);
+    background: var(--neutral-light-theme);
 
     .profile {
-      margin-right: 20px;
-      background: var(--neutral-light-theme);
-      padding: 12px;
-      border-radius: 12px;
+      padding: 8px;
       display: flex;
       flex-direction: column;
 
@@ -122,31 +121,22 @@ async function exit() {
         margin-top: 12px;
         padding: 20px;
         width: 100%;
-        border-radius: 16px;
+        border-radius: 8px;
         background: var(--secondary-light-theme);
         border: 0;
-
-        &:hover {
-          background: var(--accent-light-theme);
-          color: var(--white-light-theme);
-        }
-
-        &:active {
-          transform: scale(0.99);
-        }
       }
     }
 
     .voting-list {
       width: 1000px;
-      background: var(--neutral-light-theme);
-      padding: 12px;
+      padding: 8px;
       border-radius: 12px;
 
       &-type {
         display: flex;
         justify-content: space-between;
         align-items: center;
+
         .my-vote {
 
         }
@@ -162,9 +152,14 @@ async function exit() {
         .button {
           padding: 12px;
           border: 0;
-          background: var(--neutral-light-theme);
+          background: var(--neutral-light-theme) !important;
+          color: var(--black-light-theme);
           margin-bottom: 8px;
           width: 100%;
+
+          &:hover {
+            color: var(--black-light-theme);
+          }
         }
 
         .button__active {
@@ -172,14 +167,41 @@ async function exit() {
         }
       }
 
-      .vote {
-        align-items: center;
-        border-radius: 8px;
-        background: var(--secondary-light-theme);
+      .voting {
+        height: 304px;
         margin-top: 8px;
-        padding: 8px;
-        display: flex;
-        justify-content: space-between;
+        padding-right: 4px;
+        overflow: hidden;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+          width: 8px;
+        }
+
+        &::-webkit-scrollbar-track {
+          border-radius: 4px;
+          background-color: transparent;
+          border: 0;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          border-radius: 4px;
+          background: var(--secondary-light-theme);
+        }
+
+        .vote {
+          align-items: center;
+          border-radius: 8px;
+          background: var(--secondary-light-theme);
+          margin-top: 8px;
+          padding: 12px;
+          display: flex;
+          justify-content: space-between;
+
+          &:first-child {
+            margin: 0;
+          }
+        }
       }
 
       .logo {
@@ -190,15 +212,9 @@ async function exit() {
       }
 
       .input {
-        border-radius: 12px;
-        padding: 16px;
-        background: var(--secondary-light-theme);
+        background: var(--white-light-theme);
         border: 0;
         width: 968px;
-
-        &:focus {
-          outline: none;
-        }
       }
     }
   }

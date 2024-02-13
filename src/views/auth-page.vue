@@ -120,10 +120,6 @@ async function push() {
       padding: 16px;
       background: var(--neutral-light-theme);
       border: 0;
-
-      &:focus {
-        outline: none;
-      }
     }
 
     .form {
@@ -145,15 +141,6 @@ async function push() {
     margin: 12px auto;
     width: 524px;
     padding: 12px;
-
-    &:hover {
-      background: var(--accent-dark-theme);
-      color: var(--white-light-theme);
-    }
-
-    &:active {
-      transform: scale(0.99);
-    }
   }
 }
 </style>

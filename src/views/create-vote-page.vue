@@ -20,27 +20,16 @@ import CreateQuestions from "@/components/create-questions.vue";
   flex-direction: column;
 
   .buttons {
-    margin-top: 8px;
-    margin-bottom: 40px;
+    margin: 0 auto 40px;
     display: flex;
     flex-direction: column;
+    width: 1032px;
 
     .button {
       padding: 12px;
-      margin: auto;
-      width: 1026px;
       border: 0;
       border-radius: 12px;
       background: var(--neutral-light-theme);
-
-      &:hover {
-        background: var(--accent-light-theme) !important;
-        color: var(--white-light-theme);
-      }
-
-      &:active {
-        transform: scale(0.99);
-      }
     }
 
     .create {

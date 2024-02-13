@@ -1,6 +1,7 @@
 <template>
   <div class="create-vote-panel">
     <button class="button">Добавить картинку</button>
+
     <div class="input input-title">
       <span>Название голосования</span>
       <input type="text" />
@@ -23,39 +24,24 @@
 
 <style scoped lang="scss">
 .create-vote-panel {
-  padding: 20px;
+  padding: 16px;
   border-radius: 20px;
-  margin: 40px auto 8px ;
+  margin: 40px auto 0 ;
   background: var(--neutral-light-theme);
   display: flex;
   flex-direction: column;
-  width: 986px;
+  width: 1000px;
 
   .button {
     padding: 12px;
     border: 0;
     border-radius: 12px;
     background: var(--secondary-light-theme);
-
-    &:hover {
-      background: var(--accent-light-theme) !important;
-      color: var(--white-light-theme);
-    }
-
-    &:active {
-      transform: scale(0.99);
-    }
   }
 
   input {
     margin-top: 8px;
-    border-radius: 12px;
-    padding: 16px;
     border: 0;
-
-    &:focus {
-      outline: none;
-    }
   }
 
   .input {
