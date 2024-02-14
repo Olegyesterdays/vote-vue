@@ -1,19 +1,27 @@
 <template>
   <div class="create-vote-panel">
-    <button class="button">Добавить картинку</button>
+    <button class="button">
+      {{ $t("createVotePage.createVote.addImg")}}
+    </button>
 
     <div class="input input-title">
-      <span>Название голосования</span>
+      <span>
+        {{ $t("createVotePage.createVote.title")}}
+      </span>
       <input type="text" />
     </div>
 
     <div class="input input-description">
-      <span>Описание</span>
+      <span>
+        {{ $t("createVotePage.createVote.description")}}
+      </span>
       <input type="text" />
     </div>
 
     <div class="input search">
-      <span>Кто проходит</span>
+      <span>
+        {{ $t("createVotePage.createVote.search")}}
+      </span>
       <input type="text" />
     </div>
   </div>

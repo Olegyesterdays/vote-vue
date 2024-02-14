@@ -8,10 +8,14 @@
             class="button create-vote"
             @click="$router.push('/account/createVote')"
         >
-          Создать голосование
+          {{ $t("accountPage.profile.createVoting")}}
         </button>
-        <button class="button">Настройки</button>
-        <button class="button exit" @click="exit">Выход</button>
+        <button class="button">
+          {{ $t("accountPage.profile.settings")}}
+        </button>
+        <button class="button exit" @click="exit">
+          {{ $t("accountPage.profile.exit")}}
+        </button>
       </div>
 
       <div class="voting-list">
@@ -22,7 +26,7 @@
               class="button my-vote"
               :class="typeVote === 'getMyVote' ? 'button__active' : ''"
           >
-            Мои голосования
+            {{ $t("accountPage.votingList.myVote")}}
           </button>
 
           <button
@@ -30,7 +34,7 @@
               class="button new"
               :class="typeVote === 'getNew' ? 'button__active' : ''"
           >
-            Новые
+            {{ $t("accountPage.votingList.new")}}
           </button>
 
           <button
@@ -38,12 +42,12 @@
               class="button passed"
               :class="typeVote === 'getPassed' ? 'button__active' : ''"
           >
-            Пройденные
+            {{ $t("accountPage.votingList.passed")}}
           </button>
         </div>
 
-        <input class="input vote-search" type="text" placeholder="Название голосования" v-model="searchText"/>
-<!--        <img v-if="filteredVoting.length === 0" class="logo" :src="OCRVLogo" alt="Логотип компании ОЦРВ">-->
+        <input class="input vote-search" type="text" :placeholder="$t('accountPage.voteSearchPlaceholder')" v-model="searchText"/>
+        <!--        <img v-if="filteredVoting.length === 0" class="logo" :src="OCRVLogo" alt="Логотип компании ОЦРВ">-->
         <div class="voting">
           <div class="vote" v-for="({ titleVote, date , voteID}, index) in filteredVoting" :key="index">
             <span>{{ titleVote }}</span>

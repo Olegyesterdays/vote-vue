@@ -34,17 +34,20 @@
 <!--        registration-->
         <div v-if="loginOrRegistration === 'registration'" class="form-registration">
 <!--          <div class="input">-->
-<!--            <span>Имя</span>-->
+<!--            <span>{{ $t("authPage.form.registration.name") }}</span>-->
 <!--            <input type="text" @input="store.commit('authModule/loginEmail', $event.target.value)">-->
 <!--          </div>-->
+<!--          -->
 <!--          <div class="input">-->
-<!--            <span>Фамилия</span>-->
+<!--            <span>{{ $t("authPage.form.registration.surname") }}</span>-->
 <!--            <input type="text" @input="store.commit('authModule/loginEmail', $event.target.value)">-->
 <!--          </div>-->
+
           <div class="input">
             <span>{{ $t("authPage.form.registration.email") }}</span>
             <input type="email" @input="store.commit('authModule/registrationEmail', {email: $event.target.value})">
           </div>
+
           <div class="input">
             <span>{{ $t("authPage.form.registration.password") }}</span>
             <input type="password" @input="store.commit('authModule/registrationPassword', {password: $event.target.value})">
@@ -52,12 +55,6 @@
         </div>
       </div>
     </div>
-<!--    <button class="button-auth" @click="push">{{ -->
-<!--      loginOrRegistration === 'login' ? -->
-<!--        "Войти" : -->
-<!--        "Зарегистрироваться" -->
-<!--      }}-->
-<!--    </button>-->
     <button class="button-auth" @click="push">
       <span>{{ $t(`authPage.button.${loginOrRegistration === 'login' ? 'login' : 'registration'}`) }}</span>
     </button>

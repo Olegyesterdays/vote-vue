@@ -1,24 +1,36 @@
 <template>
   <div class="menu">
-    <button class="menu-item button" @click="$router.push('/account')">Назад</button>
+    <button class="menu-item button" @click="$router.push('/account')">
+      {{ $t("statisticsVotePage.statisticsMenu.back")}}
+    </button>
 
     <div class="menu-item item-number-of-questions">
-      <span>Количество вопросов</span>
+      <span>
+        {{ $t("statisticsVotePage.statisticsMenu.numberOfQuestions")}}
+      </span>
       <span>{{ numberOfQuestions }}</span>
     </div>
 
     <div class="menu-item item-creation-date">
-      <span>Дата создания</span>
+      <span>
+        {{ $t("statisticsVotePage.statisticsMenu.creationDate")}}
+      </span>
       <span>{{ creationDate }}</span>
     </div>
 
     <div class="menu-item item-number-of-participants">
-      <span>Количество участников</span>
+      <span>
+        {{ $t("statisticsVotePage.statisticsMenu.numberOfParticipants")}}
+      </span>
       <span>{{ numberOfParticipants }}</span>
     </div>
 
-    <button class="menu-item button">Завершить голосование</button>
-    <button class="menu-item button end">Удалить голосование</button>
+    <button class="menu-item button">
+      {{ $t("statisticsVotePage.statisticsMenu.closeTheVote")}}
+    </button>
+    <button class="menu-item button end">
+      {{ $t("statisticsVotePage.statisticsMenu.deleteVote")}}
+    </button>
   </div>
 </template>
 

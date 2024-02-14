@@ -19,7 +19,9 @@
         />
       </div>
       <div class="button-push">
-        <button class="button" @click="sendAnswers">Отправить</button>
+        <button class="button" @click="sendAnswers">
+          {{ $t("votePage.sendAnswers")}}
+        </button>
       </div>
     </div>
   </div>

@@ -3,8 +3,12 @@
     <create-vote />
     <create-questions />
     <div class="buttons">
-      <button class="button create">Создать</button>
-      <button class="button create-and-publish">Создать и опубликовать</button>
+      <button class="button create">
+        {{ $t("createVotePage.buttons.buttonCreate")}}
+      </button>
+      <button class="button create-and-publish">
+        {{ $t("createVotePage.buttons.buttonCreateAndPublish")}}
+      </button>
     </div>
   </div>
 </template>

@@ -7,6 +7,7 @@ import translationRU from "@/locales/ru/translation.js"
 import translationEN from "@/locales/en/translation.js"
 
 const i18n = createI18n({
+    legacy: false,
     locale: 'ru', // начальная локаль
     messages: {
         en: translationEN,

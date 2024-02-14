@@ -1,33 +1,45 @@
 <template>
   <div class="create-question-panel">
     <div class="create-question">
-      <button class="button" @click="$router.push('/account')">Назад</button>
+      <button class="button" @click="$router.push('/account')">
+        {{ $t("createVotePage.createQuestions.back") }}
+      </button>
 
       <div class="voting-template">
         <div class="input">
-          <span>Вопрос</span>
+          <span>
+            {{ $t("createVotePage.createQuestions.votingTemplate.question") }}
+          </span>
           <input type="text" v-model="question"/>
         </div>
 
         <div class="type-answers">
           <div v-for="({ label, value }, index) in types" :key="index">
             <input type="radio" :value="value" v-model="typeQuestion">
-            <span>{{ label }}</span>
+            <span>
+              {{ $t(`createVotePage.createQuestions.votingTemplate.typeAnswers.${ label }`) }}
+            </span>
           </div>
         </div>
 
         <div class="input" v-for="(_, index) in answers" :key="index">
-          <span>Ответ</span>
+          <span>
+            {{ $t("createVotePage.createQuestions.votingTemplate.answer") }}
+          </span>
           <div class="input-answer">
             <input type="text" v-model="answers[index]"/>
-            <button v-if="answers.length > 1" class="button" @click="deleteAnswer(index)"> -</button>
+            <button v-if="answers.length > 1" class="button" @click="deleteAnswer(index)"> - </button>
           </div>
         </div>
 
-        <button class="button" @click="addAnswer">Добавить ответ</button>
+        <button class="button" @click="addAnswer">
+          {{ $t("createVotePage.createQuestions.votingTemplate.addAnswer") }}
+        </button>
       </div>
 
-      <button class="button create-button" @click="createQuestion">Создать вопрос</button>
+      <button class="button create-button" @click="createQuestion">
+        {{ $t("createVotePage.createQuestions.createQuestion") }}
+      </button>
     </div>
 
     <div class="list-questions">
@@ -48,11 +60,9 @@
 </template>
 
 <script setup>
-import {computed, ref} from "vue";
-import {useStore} from "vuex";
-
+import { computed, ref } from "vue";
+import { useStore } from "vuex";
 import logo from "@/assets/OCRV-Logo.svg"
-
 const store = useStore();
 
 const questions = computed(() => store.getters["createVoteModule/getQuestions"]);
@@ -61,9 +71,9 @@ const question = ref("")
 const typeQuestion = ref("")
 
 const types = [
-  {label: "Один ответ", value: "one answer"},
-  {label: "Несколько ответов", value: "several answers"},
-  {label: "Ответ пользователя", value: "user response"}
+  { label: "oneAnswer", value: "one answer" },
+  { label: "severalAnswers", value: "several answers" },
+  { label: "userAnswer", value: "user response" }
 ];
 
 function addAnswer() {
@@ -75,11 +85,11 @@ function deleteAnswer(index) {
 }
 
 function deleteQuestion(index) {
-  store.commit("createVoteModule/deleteQuestion", {index});
+  store.commit("createVoteModule/deleteQuestion", { index });
 }
 
 function createQuestion() {
-  store.commit("createVoteModule/addQuestion", {answers: [...answers.value], question: question.value});
+  store.commit("createVoteModule/addQuestion", { answers: [...answers.value], question: question.value });
   answers.value = [""];
   question.value = "";
   typeQuestion.value = ""
