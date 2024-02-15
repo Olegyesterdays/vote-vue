@@ -56,7 +56,7 @@
       </div>
     </div>
     <button class="button-auth" @click="push">
-      <span>{{ $t(`authPage.button.${loginOrRegistration === 'login' ? 'login' : 'registration'}`) }}</span>
+      {{ $t(`authPage.button.${loginOrRegistration === 'login' ? 'login' : 'registration'}`) }}
     </button>
   </div>
 </template>
@@ -82,9 +82,11 @@ function clickRegistration() {
 }
 
 async function push() {
-  const action = loginOrRegistration.value === "login" ? "authModule/authLogin" : "authModule/authRegistration";
-
-  await store.dispatch(action)
+  // const action = loginOrRegistration.value === "login" ? "authModule/authLogin" : "authModule/authRegistration";
+  //
+  // await store.dispatch(action)
+  localStorage.setItem('authToken', "response.data.token");
+  localStorage.setItem('role', "admin");
   router.push("/account");
 }
 
@@ -99,7 +101,7 @@ async function push() {
   .login-window {
     width: 500px;
     margin: 40px auto 0 auto;
-    background: var(--secondary-dark-theme);
+    background: var(--neutral-light-theme);
     border-radius: 20px;
     padding: 12px;
     display: flex;
@@ -111,15 +113,16 @@ async function push() {
       .button {
         padding: 12px;
         border: 0;
-        background: var(--secondary-dark-theme);
+        background: var(--neutral-light-theme);
 
         &:hover {
-          background: var(--secondary-light-theme) !important;
+          //background: var(--white-light-theme) !important;
+          background: var(--neutral-light-theme) !important;
         }
       }
 
       .button__active {
-        border-bottom: 4px solid var(--neutral-light-theme);
+        border-bottom: 4px solid var(--accent-light-theme);
       }
     }
 
@@ -127,7 +130,7 @@ async function push() {
       margin-top: 8px;
       border-radius: 12px;
       padding: 16px;
-      background: var(--neutral-light-theme);
+      background: var(--white-light-theme);
       border: 0;
     }
 
@@ -146,10 +149,14 @@ async function push() {
   .button-auth {
     border: 0;
     border-radius: 12px;
-    background: var(--secondary-light-theme);
+    background: var(--neutral-light-theme);
     margin: 12px auto;
     width: 524px;
     padding: 12px;
+
+    &:hover {
+      color: var(--white-light-theme) !important;
+    }
   }
 }
 </style>

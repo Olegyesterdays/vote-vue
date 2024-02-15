@@ -5,50 +5,78 @@ export const accountModule = {
         voting: {
             myVote: [
                 {
-                    titleVote: "myVote"
+                    titleVote: "myVote",
+                    date: "дд.мм.гггг",
+                    voteID: "123"
                 },
                 {
-                    titleVote: "AmyVote"
+                    titleVote: "AmyVote",
+                    date: "дд.мм.гггг",
+                    voteID: "123"
                 },
                 {
-                    titleVote: "ABmyVote"
+                    titleVote: "ABmyVote",
+                    date: "дд.мм.гггг",
+                    voteID: "123"
                 },
                 {
-                    titleVote: "ABCmyVote"
+                    titleVote: "ABCmyVote",
+                    date: "дд.мм.гггг",
+                    voteID: "123"
                 },
                 {
-                    titleVote: "myVoteABC"
+                    titleVote: "myVoteABC",
+                    date: "дд.мм.гггг",
+                    voteID: "123"
                 },
                 {
-                    titleVote: "myVoteABCD"
+                    titleVote: "myVoteABCD",
+                    date: "дд.мм.гггг",
+                    voteID: "123"
                 },
             ],
             new: [
                 {
-                    titleVote: "new"
+                    titleVote: "new",
+                    date: "дд.мм.гггг",
+                    voteID: "123"
                 },
                 {
-                    titleVote: "Anew"
+                    titleVote: "Anew",
+                    date: "дд.мм.гггг",
+                    voteID: "123"
                 },
                 {
-                    titleVote: "nAew"
+                    titleVote: "nAew",
+                    date: "дд.мм.гггг",
+                    voteID: "123"
                 },
                 {
-                    titleVote: "nABew"
+                    titleVote: "nABew",
+                    date: "дд.мм.гггг",
+                    voteID: "123"
                 },
                 {
-                    titleVote: "ABnew"
+                    titleVote: "ABnew",
+                    date: "дд.мм.гггг",
+                    voteID: "123"
                 },
                 {
-                    titleVote: "newCD"
+                    titleVote: "newCD",
+                    date: "дд.мм.гггг",
+                    voteID: "123"
                 },
                 {
-                    titleVote: "CD  new"
+                    titleVote: "CD  new",
+                    date: "дд.мм.гггг",
+                    voteID: "123"
                 },
             ],
             passed: [
                 {
-                    titleVote: "passed"
+                    titleVote: "passed",
+                    date: "дд.мм.гггг",
+                    voteID: "123"
                 }
             ]
         }

@@ -19,9 +19,6 @@ import StatisticsVote from "@/components/statistics-vote.vue";
   .statistics-panel {
     margin: 40px auto;
     display: flex;
-    padding: 12px;
-    border-radius: 12px;
-    background: var(--secondary-light-theme);
   }
 }
 </style>

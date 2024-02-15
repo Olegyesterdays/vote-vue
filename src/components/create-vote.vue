@@ -44,7 +44,7 @@
     padding: 12px;
     border: 0;
     border-radius: 12px;
-    background: var(--secondary-light-theme);
+    background: var(--white-light-theme);
   }
 
   input {

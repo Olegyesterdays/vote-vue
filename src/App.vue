@@ -1,30 +1,17 @@
 <template>
   <div>
-    <button @click="toggleLanguage">
-      {{ $t("toggleLanguage") }}
-    </button>
-
-    <button @click="changeTheSubject">
-      {{ $t("changeTheSubject") }}
-    </button>
+    <Header />
 
     <router-view />
+
+    <Footer />
   </div>
 </template>
 
 <script setup>
 import "@/styles/index.css";
-import { useI18n } from 'vue-i18n';
-
-const { locale } = useI18n();
-
-function toggleLanguage() {
-  locale.value = locale.value === 'ru' ? 'en' : 'ru';
-}
-
-function changeTheSubject() {
-
-}
+import Header from "@/components/header.vue";
+import Footer from "@/components/footer.vue";
 </script>
 
 <style lang="scss" scoped>

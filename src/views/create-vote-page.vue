@@ -9,6 +9,9 @@
       <button class="button create-and-publish">
         {{ $t("createVotePage.buttons.buttonCreateAndPublish")}}
       </button>
+      <button class="button cancellation" @click="$router.push('/account')">
+        {{ $t("createVotePage.createQuestions.back") }}
+      </button>
     </div>
   </div>
 </template>
@@ -24,7 +27,7 @@ import CreateQuestions from "@/components/create-questions.vue";
   flex-direction: column;
 
   .buttons {
-    margin: 0 auto 40px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     width: 1032px;
@@ -41,7 +44,11 @@ import CreateQuestions from "@/components/create-questions.vue";
     }
 
     .create-and-publish {
-      margin-top: 8px;
+      margin: 8px 0;
+    }
+
+    .cancellation {
+
     }
   }
 }

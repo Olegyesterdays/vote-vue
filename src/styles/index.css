@@ -14,11 +14,15 @@
     --additional-dark-theme: #0065E2;
     --neutral-dark-theme: #B3D1F7;
     --white-dark-theme: #FFFFFF;
+
+    /* My color */
+    --shadow-color: #00000019;
 }
 
 * {
     font-family: 'Montserrat', sans-serif;
-    color: var(--black-light-theme););
+    color: var(--black-light-theme);
+
 }
 
 body {
@@ -36,7 +40,7 @@ body {
 
     &::-webkit-scrollbar-thumb {
         border-radius: 4px;
-        background: var(--secondary-light-theme);
+        background: var(--accent-light-theme);
     }
 }
 
