@@ -1,17 +1,21 @@
 <template>
   <div class="background">
-    <create-vote />
-    <create-questions />
-    <div class="buttons">
-      <button class="button create">
-        {{ $t("createVotePage.buttons.buttonCreate")}}
-      </button>
-      <button class="button create-and-publish">
-        {{ $t("createVotePage.buttons.buttonCreateAndPublish")}}
-      </button>
-      <button class="button cancellation" @click="$router.push('/account')">
-        {{ $t("createVotePage.createQuestions.back") }}
-      </button>
+    <div class="content">
+      <div class="buttons">
+        <button class="button cancellation" @click="$router.push('/account')">
+          {{ $t("createVotePage.createQuestions.back") }}
+        </button>
+      </div>
+      <create-vote />
+      <create-questions />
+      <div class="buttons">
+        <button class="button create">
+          {{ $t("createVotePage.buttons.buttonCreate")}}
+        </button>
+        <button class="button create-and-publish">
+          {{ $t("createVotePage.buttons.buttonCreateAndPublish")}}
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -26,29 +30,29 @@ import CreateQuestions from "@/components/create-questions.vue";
   display: flex;
   flex-direction: column;
 
-  .buttons {
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    width: 1032px;
+  .content {
+    margin: auto;
+    width: 100%;
 
-    .button {
-      padding: 12px;
-      border: 0;
-      border-radius: 12px;
-      background: var(--neutral-light-theme);
+    .buttons {
+      display: flex;
+      flex-direction: column;
+
+      .button {
+        padding: 12px;
+        border: 0;
+        border-radius: 12px;
+        background: var(--neutral-light-theme);
+        margin-bottom: 8px;
+        box-shadow: 0 4px 6px var(--shadow-color);
+      }
     }
+  }
 
-    .create {
-
-    }
-
-    .create-and-publish {
-      margin: 8px 0;
-    }
-
-    .cancellation {
-
+  @media screen and (min-width: 1032px) {
+    /* Если экран имеет ширину 1024px или больше, применяем следующие стили */
+    .content {
+      width: 1024px; /* Ширина контента будет 1024px на десктопах и больших экранах */
     }
   }
 }

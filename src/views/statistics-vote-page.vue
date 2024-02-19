@@ -20,5 +20,12 @@ import StatisticsVote from "@/components/statistics-vote.vue";
     margin: 40px auto;
     display: flex;
   }
+
+
+  @media screen and (max-width: 840px) {
+    .statistics-panel {
+      display: flex;flex-direction: column;
+    }
+  }
 }
 </style>

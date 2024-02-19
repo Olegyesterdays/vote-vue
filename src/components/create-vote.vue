@@ -34,11 +34,10 @@
 .create-vote-panel {
   padding: 16px;
   border-radius: 20px;
-  margin: 40px auto 0 ;
   background: var(--neutral-light-theme);
   display: flex;
   flex-direction: column;
-  width: 1000px;
+  box-shadow: 0 4px 6px var(--shadow-color);
 
   .button {
     padding: 12px;

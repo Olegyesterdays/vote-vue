@@ -24,8 +24,8 @@ export default {
                 password: "Пароль"
             },
             registration: {
-                // name: "Имя",
-                // surname: "Фамилия",
+                name: "Имя",
+                surname: "Фамилия",
                 email: "Электронная почта",
                 password: "Пароль"
             }

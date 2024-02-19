@@ -24,8 +24,8 @@ export default {
                 password: "Password"
             },
             registration: {
-                // name: "name",
-                // surname: "surname",
+                name: "name",
+                surname: "surname",
                 email: "Email",
                 password: "Password"
             },

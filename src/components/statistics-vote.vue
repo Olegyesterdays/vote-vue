@@ -85,27 +85,8 @@ const description = computed(() => store.getters["statisticsModule/getDescriptio
     box-shadow: 0 4px 6px var(--shadow-color);
     border: 8px solid var(--neutral-light-theme);
     margin-top: 8px;
-    padding-right: 8px;
     border-radius: 8px;
     background: var(--neutral-light-theme);
-    height: 600px ;
-    overflow: hidden;
-    overflow-y: auto;
-
-    &::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    &::-webkit-scrollbar-track {
-      border-radius: 4px;
-      background-color: transparent;
-      border: 0;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      border-radius: 4px;
-      background: var(--accent-light-theme);
-    }
 
     .item {
       box-shadow: 0 4px 6px var(--shadow-color);
@@ -171,6 +152,12 @@ const description = computed(() => store.getters["statisticsModule/getDescriptio
         }
       }
     }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .statistics {
+    width: auto;
   }
 }
 </style>

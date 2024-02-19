@@ -34,7 +34,9 @@ import { useStore } from "vuex";
 import oneAnswer from "@/components/one-answer.vue"
 import severalAnswers from "@/components/several-answers.vue"
 import userAnswers from "@/components/user-answers.vue"
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const store = useStore();
 const question = computed(() => store.getters["voteModule/getVote"]);
 
@@ -59,6 +61,7 @@ function handleUserItems(items) {
 
 function sendAnswers() {
   store.dispatch("voteModule/sendAnswer")
+  router.push('/account')
 }
 </script>
 

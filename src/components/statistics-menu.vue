@@ -55,6 +55,7 @@ const numberOfParticipants = computed(() => store.getters["statisticsModule/getN
   border-radius: 8px;
 
   .menu {
+    width: 100%;
     background: var(--neutral-light-theme);
     padding: 8px;
     border-radius: 8px;
