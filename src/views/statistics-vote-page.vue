@@ -1,8 +1,8 @@
 <template>
   <div class="background">
     <div class="statistics-panel">
-      <statistics-menu />
-      <statistics-vote />
+      <statistics-menu class="statistics-menu"/>
+      <statistics-vote class="statistics-vote"/>
     </div>
   </div>
 </template>
@@ -22,9 +22,14 @@ import StatisticsVote from "@/components/statistics-vote.vue";
   }
 
 
-  @media screen and (max-width: 840px) {
+  @media (max-width: 768px) {
     .statistics-panel {
-      display: flex;flex-direction: column;
+      display: flex;
+      flex-direction: column;
+
+      .statistics-menu {
+        margin: 0 0 8px 0;
+      }
     }
   }
 }

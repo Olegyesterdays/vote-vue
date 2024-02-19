@@ -1,65 +1,47 @@
 <template>
   <div class="background">
     <div class="auth-panel">
-      <div class="login-window">
-        <div class="login-or-registration">
-          <button
-              class="button"
-              :class="loginOrRegistration === 'login' ? 'button__active' : ''"
-              @click="clickLogin"
-          >
-            <span>{{ $t("authPage.login") }}</span>
-          </button>
-          <button
-              class="button"
-              :class="loginOrRegistration === 'registration' ? 'button__active' : ''"
-              @click="clickRegistration"
-          >
-            <span>{{ $t("authPage.registration") }}</span>
-          </button>
+      <div class="login-or-registration">
+        <button
+            class="button"
+            :class="loginOrRegistration === 'login' ? 'button__active' : ''"
+            @click="clickLogin"
+        >
+          <span>{{ $t("authPage.login") }}</span>
+        </button>
+        <button
+            class="button"
+            :class="loginOrRegistration === 'registration' ? 'button__active' : ''"
+            @click="clickRegistration"
+        >
+          <span>{{ $t("authPage.registration") }}</span>
+        </button>
+      </div>
+      <div class="form">
+        <div class="input" v-if="loginOrRegistration === 'registration'">
+          <span>{{ $t("authPage.form.registration.name") }}</span>
+          <input type="text" @input="store.commit('authModule/loginEmail', $event.target.value)">
         </div>
 
-        <div class="form">
-          <!--        login-->
-          <div v-if="loginOrRegistration === 'login'" class="form-login">
-            <div class="input">
-              <span>{{ $t("authPage.form.login.email") }}</span>
-              <input type="email" @input="store.commit('authModule/loginEmail', {email: $event.target.value})">
-            </div>
-            <div class="input">
-              <span>{{ $t("authPage.form.login.password") }}</span>
-              <input type="password" @input="store.commit('authModule/loginPassword', {password: $event.target.value})">
-            </div>
-          </div>
+        <div class="input" v-if="loginOrRegistration === 'registration'">
+          <span>{{ $t("authPage.form.registration.surname") }}</span>
+          <input type="text" @input="store.commit('authModule/loginEmail', $event.target.value)">
+        </div>
 
-          <!--        registration-->
-          <div v-if="loginOrRegistration === 'registration'" class="form-registration">
-            <div class="input">
-              <span>{{ $t("authPage.form.registration.name") }}</span>
-              <input type="text" @input="store.commit('authModule/loginEmail', $event.target.value)">
-            </div>
+        <div class="input">
+          <span>{{ $t("authPage.form.registration.email") }}</span>
+          <input type="email" @input="store.commit('authModule/registrationEmail', {email: $event.target.value})">
+        </div>
 
-            <div class="input">
-              <span>{{ $t("authPage.form.registration.surname") }}</span>
-              <input type="text" @input="store.commit('authModule/loginEmail', $event.target.value)">
-            </div>
-
-            <div class="input">
-              <span>{{ $t("authPage.form.registration.email") }}</span>
-              <input type="email" @input="store.commit('authModule/registrationEmail', {email: $event.target.value})">
-            </div>
-
-            <div class="input">
-              <span>{{ $t("authPage.form.registration.password") }}</span>
-              <input type="password" @input="store.commit('authModule/registrationPassword', {password: $event.target.value})">
-            </div>
-          </div>
+        <div class="input">
+          <span>{{ $t("authPage.form.registration.password") }}</span>
+          <input type="password" @input="store.commit('authModule/registrationPassword', {password: $event.target.value})">
         </div>
       </div>
-      <button class="button-auth" @click="push">
-        {{ $t(`authPage.button.${loginOrRegistration === 'login' ? 'login' : 'registration'}`) }}
-      </button>
     </div>
+    <button class="button-auth" @click="push">
+      {{ $t(`authPage.button.${loginOrRegistration === 'login' ? 'login' : 'registration'}`) }}
+    </button>
   </div>
 </template>
 
@@ -95,77 +77,66 @@ async function push() {
 
 </script>
 
-
 <style scoped lang="scss">
 .background {
   display: flex;
   flex-direction: column;
 
   .auth-panel {
-    margin: 40px auto 0 auto;
-    padding: 12px 12px 0 12px;
+    width: 480px;
+    border-radius: 16px;
+    margin: auto;
     background: var(--neutral-light-theme);
-    border-radius: 20px;
 
-    .login-window {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    .login-or-registration {
+      padding: 0 12px 0;
 
-      .login-or-registration {
-        .button {
-          padding: 12px;
-          border: 0;
-          background: var(--neutral-light-theme);
-
-          &:hover {
-            background: var(--neutral-light-theme) !important;
-          }
-        }
-
-        .button__active {
-          border-bottom: 4px solid var(--accent-light-theme);
-        }
-      }
-
-      input {
-        margin-top: 8px;
-        border-radius: 12px;
-        padding: 16px;
-        background: var(--white-light-theme);
+      .button {
+        padding: 12px;
         border: 0;
+        background: var(--neutral-light-theme);
+        width: 50%;
+
+        &:hover {
+          background: var(--neutral-light-theme) !important;
+        }
       }
 
-      .form {
-        width: 100%;
-        margin-top: 8px;
-
-        .input {
-          margin-top: 8px;
-          display: flex;
-          flex-direction: column;
-        }
+      .button__active {
+        border-bottom: 4px solid var(--accent-light-theme);
       }
     }
 
-    .button-auth {
-      border: 0;
-      border-radius: 12px;
-      background: var(--neutral-light-theme);
-      margin: 12px auto;
-      width: 100%;
-      padding: 12px;
+    .form {
+      padding: 0 12px 12px;
+      .input {
+        margin-top: 8px;
+        display: flex;
+        flex-direction: column;
 
-      &:hover {
-        color: var(--white-light-theme) !important;
+        input {
+          margin-top: 8px;
+        }
       }
     }
   }
 
-  @media screen and (min-width: 524px) {
-    .auth-panel {
-      width: 500px;
+  .button-auth {
+    width: 480px;
+    border: 0;
+    border-radius: 12px;
+    background: var(--neutral-light-theme);
+    margin: 12px auto;
+    padding: 12px;
+
+    &:hover {
+      color: var(--white-light-theme) !important;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .auth-panel, .button-auth {
+      width: 100%;
     }
   }
 }

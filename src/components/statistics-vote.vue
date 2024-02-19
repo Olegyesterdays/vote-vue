@@ -1,21 +1,25 @@
 <template>
   <div class="statistics">
-    <div class="item voting-title">
-      <img class="voting-title-img" :src="ava" alt="Картинка голосования"/>
-      <div class="voting-header">
-        <div class="voting-header-title">{{ votingTitle }}</div>
-        <div class="voting-header-description">{{ description }}</div>
+    <div class="voting-information">
+      <img class="voting-img" :src="ava" alt="Картинка голосования" />
+      <div class="voting">
+        <div class="voting-title">
+          {{ votingTitle }}
+        </div>
+        <div class="voting-description">
+          {{ description }}
+        </div>
       </div>
     </div>
 
-    <div class="questions">
-      <div class="item" v-for="({ title, answersToQuestions }, index) in questions" :key="index">
-        <span class="item-title">{{ title }}</span>
+    <div class="voting-statistics">
+      <div class="question" v-for="({ title, answersToQuestions }, index) in questions" :key="index">
+        <div class="question-title">{{ title }}</div>
         <div class="answers">
           <div class="answer" v-for="({ title, voteCount }, index) in answersToQuestions" :key="index">
             <div class="answer-title">
-              <span>{{ title }}</span>
-              <span>{{ voteCount }} %</span>
+              <span class="answer-text">{{ title }}</span>
+              <span class="percent">{{ voteCount }} %</span>
             </div>
             <progress class="progress" max="100" :value="voteCount"/>
           </div>
@@ -40,87 +44,90 @@ const description = computed(() => store.getters["statisticsModule/getDescriptio
 
 <style scoped lang="scss">
 .statistics {
-  width: 800px;
-  padding: 8px;
-  border-radius: 8px;
+  max-width: 800px;
   background: var(--white-light-theme);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
 
-  .voting-title {
-    padding: 8px;
-    border-radius: 8px;
+  .voting-information {
+    padding: 12px;
     background: var(--neutral-light-theme);
+    box-shadow: 0 4px 6px var(--shadow-color);
+    border-radius: 16px;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 4px 6px var(--shadow-color);
 
-    .voting-title-img {
-      width: 500px;
+    .voting-img {
       margin: auto;
-      padding: 12px;
-      background: var(--white-light-theme);
+      width: 100%;
+      max-width: 500px;
       border-radius: 12px;
-      box-shadow: 0 4px 6px var(--shadow-color);
+      background: var(--white-light-theme);
     }
 
-    .voting-header {
+    .voting {
       margin-top: 8px;
       padding: 12px;
       border-radius: 12px;
       background: var(--white-light-theme);
+      box-shadow: 0 4px 6px var(--shadow-color);
       display: flex;
       flex-direction: column;
-      box-shadow: 0 4px 6px var(--shadow-color);
 
       &-title {
         margin: auto;
       }
 
       &-description {
-        margin: auto;
+        margin: 8px auto 0;
       }
     }
   }
 
-  .questions {
-    box-shadow: 0 4px 6px var(--shadow-color);
-    border: 8px solid var(--neutral-light-theme);
-    margin-top: 8px;
-    border-radius: 8px;
+  .voting-statistics {
+    margin-top: 12px;
+    padding: 12px;
     background: var(--neutral-light-theme);
+    box-shadow: 0 4px 6px var(--shadow-color);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
 
-    .item {
-      box-shadow: 0 4px 6px var(--shadow-color);
-      margin-bottom: 16px;
+    .question {
       padding: 12px;
-      border-radius: 8px;
+      border-radius: 12px;
       background: var(--white-light-theme);
+      box-shadow: 0 4px 6px var(--shadow-color);
+      margin-top: 8px;
       display: flex;
       flex-direction: column;
 
-      &-title {
-        margin: 0 auto;
-      }
-
-      &:last-child {
+      &:first-child {
         margin: 0;
       }
 
+      &-title {
+        margin: auto;
+      }
+
       .answers {
-        margin-top: 8px;
 
         .answer {
-          display: flex;
-          flex-direction: column;
-          padding-bottom: 8px;
+          margin: 8px;
 
           &-title {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-          }
 
-          &:last-child {
-            padding: 0;
+            //.answer-text {
+            //  width: 95%;
+            //}
+            //
+            //.percent {
+            //  text-align: center;
+            //  width: 5%;
+            //}
           }
 
           .progress {
@@ -152,12 +159,6 @@ const description = computed(() => store.getters["statisticsModule/getDescriptio
         }
       }
     }
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .statistics {
-    width: auto;
   }
 }
 </style>

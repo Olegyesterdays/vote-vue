@@ -1,8 +1,8 @@
 <template>
   <div class="background">
     <div class="account-panel">
-      <profile-user />
-      <account-voting-list />
+      <profile-user class="profile-user" />
+      <account-voting-list class="account-voting-list" />
     </div>
   </div>
 </template>
@@ -26,14 +26,12 @@ import AccountVotingList from '@/components/account-voting-list.vue'
     width: 100%;
   }
   @media screen and (min-width: 1032px) {
-    /* Если экран имеет ширину 1024px или больше, применяем следующие стили */
     .account-panel {
-      width: 1024px; /* Ширина контента будет 1024px на десктопах и больших экранах */
+      width: 1024px;
     }
   }
 
   @media screen and (max-width: 700px) {
-    /* Если экран имеет ширину 1024px или больше, применяем следующие стили */
     .account-panel {
       display: flex;
       flex-direction: column;
