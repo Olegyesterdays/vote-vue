@@ -28,16 +28,16 @@
 </template>
 
 <script setup>
-import { computed, ref, toRaw } from "vue";
-import { useStore } from "vuex";
+import { computed, ref, toRaw } from "vue"
+import { useStore } from "vuex"
+import { useRouter } from 'vue-router'
 
 import oneAnswer from "@/components/one-answer.vue"
 import severalAnswers from "@/components/several-answers.vue"
 import userAnswers from "@/components/user-answers.vue"
-import { useRouter } from 'vue-router'
 
 const router = useRouter()
-const store = useStore();
+const store = useStore()
 const question = computed(() => store.getters["voteModule/getVote"]);
 
 const oneItems = ref([]);

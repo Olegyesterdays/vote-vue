@@ -1,111 +1,124 @@
+import axios from "axios";
+import {toRaw} from "vue";
+
 export const createVoteModule = {
     state: {
         userID: "",
 
-        votingTitle: "",
+        title: "",
 
         description: "",
 
-        newVote: {
-            votingTitle: "votingTitle",
-            description: "description",
-            questions: [
+        questions: [
+            {
+                titleQuestion: "",
+                typeQuestion: "",
+                options: [
+                    {
+                        text: ""
+                    }
+                ]
+            }
+        ]
+    },
+
+    getters: {
+        getQuestions(state) {
+            return state.questions
+        }
+    },
+
+    mutations: {
+        addTitle(state, {title}) {
+            state.title = title
+        },
+
+        addDescription(state, {description}) {
+            state.description = description
+        },
+
+        // ================================================
+
+        recordTitleQuestion(state, {titleQuestion, indexQuestion}) {
+            state.questions[indexQuestion].titleQuestion = titleQuestion
+        },
+
+        recordTheAnswer(state, {answer, indexQuestion, indexAnswer}) {
+            state.questions[indexQuestion].options[indexAnswer].text = answer
+        },
+
+        newQuestion(state) {
+            state.questions.push({
+                titleQuestion: "",
+                typeQuestion: "",
+                options: [
+                    {
+                        text: ""
+                    }
+                ]
+            })
+        },
+
+        newAnswer(state, {indexQuestion}) {
+            state.questions[indexQuestion].options.push({
+                text: ""
+            })
+        },
+
+        deleteQuestion(state, {indexQuestion}) {
+            state.questions.splice(indexQuestion, 1)
+        },
+
+        deleteAnswer(state, {indexQuestion, indexAnswer}) {
+            state.questions[indexQuestion].options.splice(indexAnswer, 1)
+        },
+
+        clear(state) {
+            state.title = ""
+            state.description = ""
+            state.questions = [
                 {
-                    question: "question 1",
-                    typeQuestion: "one answer",
-                    answers: [
-                        "question 1 answers 1",
-                        "question 1 answers 2",
-                        "question 1 answers 3",
-                        "question 1 answers 4",
-                        "question 1 answers 5",
-                    ]
-                },
-                {
-                    question: "question 2",
-                    typeQuestion: "one answer",
-                    answers: [
-                        "question 2 answers 1",
-                        "question 2 answers 2",
-                        "question 2 answers 3",
-                        "question 2 answers 4",
-                        "question 2 answers 5",
-                    ]
-                },
-                {
-                    question: "question 2",
-                    typeQuestion: "several answers",
-                    answers: [
-                        "question 2 answers 1",
-                        "question 2 answers 2",
-                        "question 2 answers 3",
-                        "question 2 answers 4",
-                        "question 2 answers 5",
-                    ]
-                },
-                {
-                    question: "question 2",
-                    typeQuestion: "user response",
-                    answers: [
-                        "question 2 answers 1",
-                        "question 2 answers 2",
-                        "question 2 answers 3",
-                        "question 2 answers 4",
-                        "question 2 answers 5",
+                    titleQuestion: "",
+                    typeQuestion: "",
+                    options: [
+                        {
+                            text: ""
+                        }
                     ]
                 }
             ]
         }
     },
 
-    getters: {
-        getUserID(state) {
-            return state.userID
-        },
-
-        getVotingTitle(state) {
-            return state.votingTitle
-        },
-
-        getDescription(state) {
-            return state.description
-        },
-
-        getQuestions(state) {
-            return state.newVote.questions
-        }
-    },
-
-    mutations: {
-        createVote(state, votingTitle, description) {
-            state.newVote = {
-                votingTitle: votingTitle,
-                description: description,
-                questions: []
+    actions: {
+        async createVote({ commit, state }) {
+            try {
+                await axios.post("http://localhost:5000", {
+                    userID: state.userID,
+                    title: state.title,
+                    description: state.description,
+                    questions: state.questions
+                });
+                commit("clear")
+            } catch (error) {
+                console.error('Ошибка при отправке запроса: ', error);
             }
         },
 
-        addQuestion(state, {answers, question}) {
-            state.newVote.questions.push({
-                question: question,
-                answers: answers
-            })
-        },
-
-        deleteQuestion(state, {index}) {
-            state.newVote.questions.splice(index, 1)
-        },
-
-        createAnswer(state, answer) {
-            state.answer = answer
-        },
-
-        typeQuestion(state, {typeQuestion}) {
-            state.newVote.questions[state.newVote.questions.length - 1].typeQuestion = typeQuestion
+        async createAndPublishVote({ commit, state }) {
+            try {
+                await axios.post("http://localhost:5000", {
+                    userID: state.userID,
+                    title: state.title,
+                    description: state.description,
+                    questions: state.questions
+                });
+                commit("clear")
+            } catch (error) {
+                console.error('Ошибка при отправке запроса: ', error);
+            }
         }
     },
-
-    actions: {},
 
     namespaced: true
 }

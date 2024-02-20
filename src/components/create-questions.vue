@@ -1,32 +1,48 @@
 <template>
   <div class="create-question-panel">
-
-    <div class="question" v-for="({ question, answers }, indexQuestion) in voteList" :key="indexQuestion">
+    <div class="question" v-for="({ options }, indexQuestion ) in questions" :key="indexQuestion">
       <div class="title-question">
         <div class="title">
-          <span>Вопрос</span>
-          <button v-if="voteList.length > 1" class="delete" @click="deleteQuestion(indexQuestion)">
+          <span>
+            Вопрос
+          </span>
+          <button
+              v-if="questions.length > 1"
+              class="delete"
+              @click="deleteQuestion( indexQuestion )"
+          >
             <svg-icon class="mdi" type="mdi" :path="mdiDelete" />
           </button>
         </div>
-<!--        TODO: починить -->
-        <input type="text" v-model="question[indexQuestion]" />
+        <input
+            type="text"
+            v-model="questions[indexQuestion].titleQuestion"
+            @input="recordTitleQuestion( $event.target.value, indexQuestion )"
+        />
       </div>
 
       <div class="content-question">
         <div class="answers">
-          <div class="answer" v-for="(_, indexAnswer) in answers" :key="indexAnswer">
-            <span>Ответ</span>
+          <div class="answer" v-for="( _, indexAnswer ) in options" :key="indexAnswer">
+            <span>
+              Ответ
+            </span>
             <div class="input">
-<!--              TODO: починить-->
-              <input type="text" v-model="answers[indexAnswer]" />
-              <button v-if="answers.length > 1" class="delete" @click="deleteAnswer(indexQuestion, indexAnswer)">
-                <svg-icon class="mdi" type="mdi" :path="mdiDelete" />
+              <input
+                  type="text"
+                  v-model="options[indexAnswer].text"
+                  @input="recordTheAnswer( $event.target.value, indexQuestion, indexAnswer )"
+              />
+              <button v-if="options.length > 1" class="delete"
+                      @click="deleteAnswer( indexQuestion, indexAnswer )"
+              >
+                <svg-icon class="mdi" type="mdi" :path="mdiDelete"/>
               </button>
             </div>
           </div>
-          <button class="button add-answer" @click="addAnswer(indexQuestion)">Добавить ответ</button>
-          <button class="button add-question" @click="addQuestion">Добавить вопрос</button>
+          <button class="button add-answer" @click="newAnswer( indexQuestion )">
+            Добавить ответ
+          </button>
         </div>
 
         <div class="type-answers">
@@ -40,18 +56,14 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useStore } from 'vuex'
-import logo from '@/assets/OCRV-Logo.svg'
-import SvgIcon from '@jamescoyle/vue-icon'
+import { computed } from 'vue'
+import { useStore } from "vuex"
 import { mdiDelete } from '@mdi/js'
+import SvgIcon from '@jamescoyle/vue-icon'
 
-const voteList = ref([
-  {
-    question: "",
-    answers: [""]
-  }
-])
+const store = useStore()
+
+const questions = computed(() => store.getters["createVoteModule/getQuestions"])
 
 const types = [
   { label: 'oneAnswer', value: 'one answer' },
@@ -59,25 +71,36 @@ const types = [
   { label: 'userAnswer', value: 'user response' }
 ]
 
-function addQuestion() {
-  voteList.value.push(
-    {
-      question: "",
-      answers: [""]
-    }
-  )
+function recordTitleQuestion( titleQuestion, indexQuestion ) {
+  store.commit('createVoteModule/recordTitleQuestion', {
+    titleQuestion: titleQuestion,
+    indexQuestion: indexQuestion
+  })
 }
 
-function addAnswer(indexQuestion) {
-  voteList.value[indexQuestion].answers.push("")
+function newAnswer( indexQuestion ) {
+  store.commit('createVoteModule/newAnswer', { indexQuestion })
 }
 
-function deleteAnswer(indexQuestion, indexAnswer) {
-  voteList.value[indexQuestion].answers.splice(indexAnswer, 1)
+function recordTheAnswer( answer, indexQuestion, indexAnswer ) {
+  store.commit('createVoteModule/recordTheAnswer', {
+    answer: answer,
+    indexQuestion: indexQuestion,
+    indexAnswer: indexAnswer
+  })
 }
 
-function deleteQuestion(indexQuestion) {
-  voteList.value.splice(indexQuestion, 1)
+function deleteAnswer( indexQuestion, indexAnswer ) {
+  store.commit('createVoteModule/deleteAnswer', {
+    indexQuestion: indexQuestion,
+    indexAnswer: indexAnswer
+  })
+}
+
+function deleteQuestion( indexQuestion ) {
+  store.commit('createVoteModule/deleteQuestion', {
+    indexQuestion: indexQuestion
+  })
 }
 </script>
 

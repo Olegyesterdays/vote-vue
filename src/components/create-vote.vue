@@ -8,14 +8,14 @@
       <span>
         {{ $t("createVotePage.createVote.title")}}
       </span>
-      <input type="text" />
+      <input type="text" @input="store.commit('createVoteModule/addTitle', { title: $event.target.value})" />
     </div>
 
     <div class="input input-description">
       <span>
         {{ $t("createVotePage.createVote.description")}}
       </span>
-      <input type="text" />
+      <input type="text" @input="store.commit('createVoteModule/addDescription', { description: $event.target.value})" />
     </div>
 
     <div class="input search">
@@ -28,6 +28,7 @@
 </template>
 
 <script setup>
+import store from "@/store/index.js";
 </script>
 
 <style scoped lang="scss">

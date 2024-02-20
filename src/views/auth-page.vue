@@ -18,24 +18,24 @@
         </button>
       </div>
       <div class="form">
-        <div class="input" v-if="loginOrRegistration === 'registration'">
-          <span>{{ $t("authPage.form.registration.name") }}</span>
-          <input type="text" @input="store.commit('authModule/loginEmail', $event.target.value)">
-        </div>
+        <!--        <div class="input" v-if="loginOrRegistration === 'registration'">-->
+        <!--          <span>{{ $t("authPage.form.registration.name") }}</span>-->
+        <!--          <input type="text" @input="store.commit('authModule/loginEmail', $event.target.value)">-->
+        <!--        </div>-->
 
-        <div class="input" v-if="loginOrRegistration === 'registration'">
-          <span>{{ $t("authPage.form.registration.surname") }}</span>
-          <input type="text" @input="store.commit('authModule/loginEmail', $event.target.value)">
-        </div>
+        <!--        <div class="input" v-if="loginOrRegistration === 'registration'">-->
+        <!--          <span>{{ $t("authPage.form.registration.surname") }}</span>-->
+        <!--          <input type="text" @input="store.commit('authModule/loginEmail', $event.target.value)">-->
+        <!--        </div>-->
 
         <div class="input">
           <span>{{ $t("authPage.form.registration.email") }}</span>
-          <input type="email" @input="store.commit('authModule/registrationEmail', {email: $event.target.value})">
+          <input type="email" @input="store.commit(`authModule/${ loginOrRegistration === 'login' ? 'loginEmail' : 'registrationEmail' }`, { email: $event.target.value })">
         </div>
 
         <div class="input">
           <span>{{ $t("authPage.form.registration.password") }}</span>
-          <input type="password" @input="store.commit('authModule/registrationPassword', {password: $event.target.value})">
+          <input type="password" @input="store.commit(`authModule/${ loginOrRegistration === 'login' ? 'loginPassword' : 'registrationPassword' }`, { password: $event.target.value })">
         </div>
       </div>
     </div>
@@ -66,12 +66,12 @@ function clickRegistration() {
 }
 
 async function push() {
-  // const action = loginOrRegistration.value === "login" ? "authModule/authLogin" : "authModule/authRegistration";
-  //
-  // await store.dispatch(action)
-  localStorage.setItem('authToken', "response.data.token");
-  localStorage.setItem('theme', "light-theme");
-  localStorage.setItem('role', "admin");
+  const action = loginOrRegistration.value === "login" ? "authModule/authLogin" : "authModule/authRegistration";
+
+  await store.dispatch(action)
+  // localStorage.setItem('authToken', "response.data.token");
+  // localStorage.setItem('theme', "light-theme");
+  // localStorage.setItem('role', "admin");
   router.push("/account");
 }
 
