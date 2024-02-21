@@ -7,10 +7,10 @@
 </template>
 
 <script setup>
-import { useI18n } from "vue-i18n";
-import { ref } from "vue";
+import {useI18n} from "vue-i18n";
+import {ref} from "vue";
 
-const { locale } = useI18n();
+const {locale} = useI18n();
 const theme = ref(localStorage.getItem('theme') || 'light-theme');
 
 function toggleLanguage() {
@@ -20,18 +20,28 @@ function toggleLanguage() {
 
 <style scoped lang="scss">
 .background {
-  background: var(--white-light-theme);
+  width: 100%;
   position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
   display: flex;
-  right: 8px;
-  padding: 8px;
-  border-radius: 12px;
-  z-index: 1;
+  background: var(--neutral-light-theme);
+  box-shadow: 0 4px 6px var(--shadow-color);
 
   .button {
     padding: 12px;
     border-radius: 12px;
-    background: var(--neutral-light-theme);
+    background: var(--white-light-theme);
+    margin: 12px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .background {
+    border-radius: 12px;
+    width: 900px;
   }
 }
 </style>

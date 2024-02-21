@@ -74,6 +74,7 @@ export const authModule = {
         async authRegistration({ commit, state }){
             try {
                 const response = await axios.post("http://localhost:8000/api/v1/user",  toRaw(state.formRegistration));
+                console.log(response)
                 localStorage.setItem('authToken', response.data.token);
                 // localStorage.setItem('role', response.data.role);
                 localStorage.setItem('role', "admin");

@@ -15,12 +15,14 @@ import StatisticsVote from "@/components/statistics-vote.vue";
 <style lang="scss" scoped>
 .background {
   display: flex;
+  width: 100%;
 
   .statistics-panel {
-    margin: 40px auto;
+    width: 900px;
+    margin: auto;
     display: flex;
+    flex-direction: column;
   }
-
 
   @media (max-width: 768px) {
     .statistics-panel {
@@ -28,7 +30,7 @@ import StatisticsVote from "@/components/statistics-vote.vue";
       flex-direction: column;
 
       .statistics-menu {
-        margin: 0 0 8px 0;
+        margin: 8px 0;
       }
     }
   }

@@ -70,8 +70,8 @@ function sendAnswers() {
   display: flex;
 
   .vote {
-    margin: 40px auto;
-    width: 1000px;
+    margin: auto;
+    width: 900px;
     box-shadow: 0 4px 6px var(--box-shadow-color);
     border-radius: 20px;
     background: var(--neutral-light-theme);

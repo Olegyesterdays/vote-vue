@@ -4,26 +4,32 @@
       {{ $t("statisticsVotePage.statisticsMenu.back") }}
     </button>
 
-    <div class="data">
-      <div class="menu-item item-number-of-questions">
-      <span>
-        {{ $t("statisticsVotePage.statisticsMenu.numberOfQuestions") }}
-      </span>
-        <span>{{ numberOfQuestions }}</span>
+    <div class="data menu-item">
+      <div class="item-number-of-questions">
+        <span>
+          {{ $t("statisticsVotePage.statisticsMenu.numberOfQuestions") }}
+        </span>
+        <span>
+          {{ numberOfQuestions }}
+        </span>
       </div>
 
-      <div class="menu-item item-creation-date">
-      <span>
-        {{ $t("statisticsVotePage.statisticsMenu.creationDate") }}
-      </span>
-        <span>{{ creationDate }}</span>
+      <div class="item-creation-date">
+        <span>
+          {{ $t("statisticsVotePage.statisticsMenu.creationDate") }}
+        </span>
+        <span>
+          {{ creationDate }}
+        </span>
       </div>
 
-      <div class="menu-item item-number-of-participants">
-      <span>
-        {{ $t("statisticsVotePage.statisticsMenu.numberOfParticipants") }}
-      </span>
-        <span>{{ numberOfParticipants }}</span>
+      <div class="item-number-of-participants">
+        <span>
+          {{ $t("statisticsVotePage.statisticsMenu.numberOfParticipants") }}
+        </span>
+        <span>
+          {{ numberOfParticipants }}
+        </span>
       </div>
     </div>
 
@@ -49,40 +55,27 @@ const numberOfParticipants = computed(() => store.getters["statisticsModule/getN
 
 <style scoped lang="scss">
 .menu {
-  margin-right: 8px;
-  width: auto;
+  display: flex;
+  flex-direction: column;
   background: var(--neutral-light-theme);
-  padding: 8px;
-  border-radius: 8px;
-  margin-bottom: auto;
-  box-shadow: 0 4px 6px var(--shadow-color);
+  border-radius: 12px;
 
-  .data {
-    padding: 8px;
-    box-shadow: 0 4px 6px var(--shadow-color);
+  .menu-item {
+    margin: 12px 12px 0;
+    padding: 12px;
     background: var(--white-light-theme);
-    margin: 8px 0;
-    border-radius: 8px;
-  }
-
-  .button {
-    background: var(--white-light-theme);
-    border: 0;
-    border-radius: 8px;
-    padding: 8px;
-    justify-content: center !important;
-    box-shadow: 0 4px 6px var(--shadow-color);
+    border-radius: 12px;
   }
 
   .end {
-    margin: 0 !important;
+    margin-bottom: 12px;
   }
 
-  &-item {
-    margin-bottom: 8px;
-    width: 100%;
+  .item-number-of-questions, .item-creation-date, .item-number-of-participants {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin: 8px;
   }
 }
 

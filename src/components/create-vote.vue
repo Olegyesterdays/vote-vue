@@ -1,6 +1,9 @@
 <template>
   <div class="create-vote-panel">
-    <button class="button">
+    <button
+        class="button"
+        @click="addImg"
+    >
       {{ $t("createVotePage.createVote.addImg")}}
     </button>
 
@@ -8,32 +11,50 @@
       <span>
         {{ $t("createVotePage.createVote.title")}}
       </span>
-      <input type="text" @input="store.commit('createVoteModule/addTitle', { title: $event.target.value})" />
+      <input type="text" @input="addTitle($event.target.value)" />
     </div>
 
     <div class="input input-description">
       <span>
         {{ $t("createVotePage.createVote.description")}}
       </span>
-      <input type="text" @input="store.commit('createVoteModule/addDescription', { description: $event.target.value})" />
+      <input type="text" @input="addDescription($event.target.value)" />
     </div>
 
-    <div class="input search">
-      <span>
-        {{ $t("createVotePage.createVote.search")}}
-      </span>
-      <input type="text" />
-    </div>
+    <button
+        class="button button-search"
+        @click="addSearch"
+    >
+      {{ $t("createVotePage.createVote.search")}}
+    </button>
   </div>
 </template>
 
 <script setup>
-import store from "@/store/index.js";
+import { useStore } from "vuex";
+
+const store = useStore();
+
+function addImg() {
+
+}
+
+function addTitle( title ) {
+  store.commit('createVoteModule/addTitle', { title: title })
+}
+
+function addDescription( description ) {
+  store.commit('createVoteModule/addDescription', { description: description })
+}
+
+function addSearch() {
+
+}
 </script>
 
 <style scoped lang="scss">
 .create-vote-panel {
-  padding: 16px;
+  padding: 12px;
   border-radius: 20px;
   background: var(--neutral-light-theme);
   display: flex;
@@ -41,32 +62,24 @@ import store from "@/store/index.js";
   box-shadow: 0 4px 6px var(--shadow-color);
 
   .button {
-    padding: 12px;
-    border: 0;
-    border-radius: 12px;
     background: var(--white-light-theme);
-  }
 
-  input {
-    margin-top: 8px;
-    border: 0;
+    &-search {
+      margin-top: 8px;
+    }
   }
 
   .input {
     display: flex;
     flex-direction: column;
 
-    &-title {
+    input {
       margin-top: 8px;
     }
 
-    &-description {
+    &-title, &-description {
       margin-top: 8px;
     }
-  }
-
-  .search {
-    margin-top: 8px;
   }
 }
 </style>

@@ -3,7 +3,7 @@ import {toRaw} from "vue";
 
 export const createVoteModule = {
     state: {
-        userID: "",
+        userID: "14",
 
         title: "",
 
@@ -93,7 +93,7 @@ export const createVoteModule = {
     actions: {
         async createVote({ commit, state }) {
             try {
-                await axios.post("http://localhost:5000", {
+                await axios.post("http://localhost:8000/api/v1/quiz", {
                     userID: state.userID,
                     title: state.title,
                     description: state.description,
@@ -107,11 +107,12 @@ export const createVoteModule = {
 
         async createAndPublishVote({ commit, state }) {
             try {
-                await axios.post("http://localhost:5000", {
-                    userID: state.userID,
-                    title: state.title,
-                    description: state.description,
-                    questions: state.questions
+                await axios.post("http://localhost:8000/api/v1/quiz", {
+                    quiz: {
+                        title: state.title,
+                        description: state.description,
+                        questions: state.questions
+                    }
                 });
                 commit("clear")
             } catch (error) {

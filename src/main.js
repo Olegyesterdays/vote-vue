@@ -1,5 +1,6 @@
 import { createApp } from 'vue';
 import App from './App.vue';
+import "@/styles/index.css";
 import index from '@/router';
 import store from '@/store';
 import { createI18n } from 'vue-i18n';
@@ -17,4 +18,8 @@ const i18n = createI18n({
 
 const app = createApp(App);
 
-app.use(index).use(store).use(i18n).mount('#app');
+app
+    .use(index)
+    .use(store)
+    .use(i18n)
+    .mount('#app');

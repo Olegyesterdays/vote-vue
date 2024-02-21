@@ -17,24 +17,29 @@ import AccountVotingList from '@/components/account-voting-list.vue'
   display: flex;
 
   .account-panel {
-    margin: 40px auto;
+    margin: auto;
     display: flex;
-    padding: 8px;
     border-radius: 20px;
     background: var(--neutral-light-theme);
     box-shadow: 0 4px 6px var(--shadow-color);
     width: 100%;
   }
-  @media screen and (min-width: 1032px) {
+
+  @media screen and (min-width: 900px) {
     .account-panel {
-      width: 1024px;
+      width: 900px;
     }
   }
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 768px) {
     .account-panel {
       display: flex;
       flex-direction: column;
+
+      .profile-user, .account-voting-list {
+        width: auto;
+        margin: 12px;
+      }
     }
   }
 }

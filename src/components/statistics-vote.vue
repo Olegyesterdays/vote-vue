@@ -30,8 +30,8 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
-import { useStore } from "vuex";
+import {computed} from "vue";
+import {useStore} from "vuex";
 
 import ava from "@/assets/ava.jpg"
 
@@ -44,7 +44,8 @@ const description = computed(() => store.getters["statisticsModule/getDescriptio
 
 <style scoped lang="scss">
 .statistics {
-  max-width: 800px;
+  width: 100%;
+  margin-top: 8px;
   background: var(--white-light-theme);
   border-radius: 20px;
   display: flex;

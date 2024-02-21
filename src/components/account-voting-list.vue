@@ -52,15 +52,14 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
-import { useStore } from 'vuex'
+import OCRVLogo from '@/assets/OCRV-Logo.svg'
 import SvgIcon from '@jamescoyle/vue-icon'
 import { mdiDotsVertical } from '@mdi/js'
+import { computed, ref } from 'vue'
+import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
-import OCRVLogo from '@/assets/OCRV-Logo.svg'
-
 const store = useStore()
 
 const role = ref(localStorage.getItem('role'))
@@ -89,9 +88,10 @@ function goToVote(voteID) {
 
 <style scoped lang="scss">
 .voting-list {
+  margin: 12px 12px 12px 0;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 75%;
 
   &-type {
     display: flex;
@@ -102,7 +102,7 @@ function goToVote(voteID) {
       width: 100%;
       background: var(--neutral-light-theme);
       border-bottom: 4px solid var(--neutral-light-theme);
-      padding: 12px;
+      border-radius: 0;
 
       &:hover {
         background: var(--neutral-light-theme) !important;
@@ -117,11 +117,9 @@ function goToVote(voteID) {
 
   .input {
     box-shadow: 0 4px 6px var(--shadow-color);
-    margin-right: 8px;
   }
 
   .voting {
-    margin-right: 8px;
     height: 312px;
     margin-top: 8px;
     overflow: hidden;
@@ -176,6 +174,13 @@ function goToVote(voteID) {
         }
       }
     }
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .voting-list-type {
+    display: flex;
+    flex-direction: column;
   }
 }
 </style>

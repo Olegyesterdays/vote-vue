@@ -47,11 +47,11 @@
 
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 import { useStore } from "vuex";
-import { useRouter } from "vue-router"; // Импортируем роутер из Vue Router
 
 const store = useStore();
-const router = useRouter(); // Инициализируем роутер
+const router = useRouter();
 
 const loginOrRegistration = ref("login");
 
@@ -66,12 +66,12 @@ function clickRegistration() {
 }
 
 async function push() {
-  const action = loginOrRegistration.value === "login" ? "authModule/authLogin" : "authModule/authRegistration";
-
-  await store.dispatch(action)
-  // localStorage.setItem('authToken', "response.data.token");
-  // localStorage.setItem('theme', "light-theme");
-  // localStorage.setItem('role', "admin");
+  // const action = loginOrRegistration.value === "login" ? "authModule/authLogin" : "authModule/authRegistration";
+  //
+  // await store.dispatch(action)
+  localStorage.setItem('authToken', "response.data.token");
+  localStorage.setItem('theme', "light-theme");
+  localStorage.setItem('role', "admin");
   router.push("/account");
 }
 
@@ -83,7 +83,7 @@ async function push() {
   flex-direction: column;
 
   .auth-panel {
-    width: 480px;
+    width: 900px;
     border-radius: 16px;
     margin: auto;
     background: var(--neutral-light-theme);
@@ -94,6 +94,7 @@ async function push() {
       .button {
         padding: 12px;
         border: 0;
+        border-radius: 0;
         background: var(--neutral-light-theme);
         width: 50%;
 
@@ -122,7 +123,7 @@ async function push() {
   }
 
   .button-auth {
-    width: 480px;
+    width: 900px;
     border: 0;
     border-radius: 12px;
     background: var(--neutral-light-theme);
@@ -134,7 +135,7 @@ async function push() {
     }
   }
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 1024px) {
     .auth-panel, .button-auth {
       width: 100%;
     }

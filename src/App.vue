@@ -1,18 +1,17 @@
 <template>
   <div>
-    <Header />
+    <Header class="header" />
 
-    <router-view />
-
-    <Footer />
+    <router-view class="content" />
   </div>
 </template>
 
 <script setup>
-import "@/styles/index.css";
 import Header from "@/components/header.vue";
-import Footer from "@/components/footer.vue";
 </script>
 
 <style lang="scss" scoped>
+.content {
+  margin-top: 72px;
+}
 </style>

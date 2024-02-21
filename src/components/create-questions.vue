@@ -36,7 +36,7 @@
               <button v-if="options.length > 1" class="delete"
                       @click="deleteAnswer( indexQuestion, indexAnswer )"
               >
-                <svg-icon class="mdi" type="mdi" :path="mdiDelete"/>
+                <svg-icon class="mdi" type="mdi" :path="mdiDelete" />
               </button>
             </div>
           </div>
@@ -108,7 +108,7 @@ function deleteQuestion( indexQuestion ) {
 .create-question-panel {
 
   .question {
-    padding: 16px;
+    padding: 12px;
     border-radius: 20px;
     margin: 8px 0;
     box-shadow: 0 4px 6px var(--shadow-color);
@@ -139,7 +139,6 @@ function deleteQuestion( indexQuestion ) {
 
     .content-question {
       .answers {
-        margin-top: 8px;
         display: flex;
         flex-direction: column;
 
@@ -151,6 +150,7 @@ function deleteQuestion( indexQuestion ) {
         }
 
         .answer {
+          margin-top: 8px;
           display: flex;
           flex-direction: column;
 
