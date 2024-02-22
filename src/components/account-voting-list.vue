@@ -33,7 +33,7 @@
         v-model="searchText"
     />
     <div class="voting">
-                    <div class="vote"
+      <div class="vote"
            v-for="({ titleVote, date , voteID}, index) in filteredVoting"
            :key="index"
       >

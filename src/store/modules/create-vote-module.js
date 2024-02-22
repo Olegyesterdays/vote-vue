@@ -91,34 +91,40 @@ export const createVoteModule = {
     },
 
     actions: {
-        async createVote({ commit, state }) {
-            try {
-                await axios.post("http://localhost:8000/api/v1/quiz", {
-                    quiz: {
-                        title: state.title,
-                        description: state.description,
-                        questions: state.questions
-                    }
-                });
+        createVote({commit, state}) {
+            axios.post("http://localhost:8000/api/v1/quiz", {
+                quiz: {
+                    title: state.title,
+                    description: state.description,
+                    questions: state.questions
+                }
+            }, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('authToken')}`
+                }
+            }).then((resp) => {
                 commit("clear")
-            } catch (error) {
-                console.error('Ошибка при отправке запроса: ', error);
-            }
+            }).catch((e) => {
+                console.log(e)
+            })
         },
 
-        async createAndPublishVote({ commit, state }) {
-            try {
-                await axios.post("http://localhost:8000/api/v1/quiz", {
-                    quiz: {
-                        title: state.title,
-                        description: state.description,
-                        questions: state.questions
-                    }
-                });
+        createAndPublishVote({commit, state}) {
+            axios.post("http://localhost:8000/api/v1/quiz", {
+                quiz: {
+                    title: state.title,
+                    description: state.description,
+                    questions: state.questions
+                }
+            }, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('authToken')}`
+                }
+            }).then((resp) => {
                 commit("clear")
-            } catch (error) {
-                console.error('Ошибка при отправке запроса: ', error);
-            }
+            }).catch((e) => {
+                console.log(e)
+            })
         }
     },
 

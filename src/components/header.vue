@@ -4,23 +4,15 @@
         class="button back"
         @click="back"
     >
-      <svg-icon type="mdi" :path="mdiArrowLeft" />
+      <svg-icon type="mdi" :path="mdiArrowLeft"/>
     </button>
 
-    <div class="language-and-theme">
-      <button
-          class="button language"
-          @click="toggleLanguage"
-      >
-        {{ $t("toggleLanguage") }}
-      </button>
-
-      <button
-          class="button theme"
-      >
-        <svg-icon type="mdi" :path="mdiBrightness6" />
-      </button>
-    </div>
+    <button
+        class="button language"
+        @click="toggleLanguage"
+    >
+      {{ $t("toggleLanguage") }}
+    </button>
   </div>
 </template>
 
@@ -28,11 +20,11 @@
 import {useI18n} from "vue-i18n";
 import {ref} from "vue";
 import SvgIcon from '@jamescoyle/vue-icon';
-import { mdiArrowLeft, mdiBrightness6 } from '@mdi/js';
-import { useRouter } from 'vue-router'
+import {mdiArrowLeft} from '@mdi/js';
+import {useRouter} from 'vue-router'
 
 const router = useRouter()
-const { locale } = useI18n();
+const {locale} = useI18n();
 const theme = ref(localStorage.getItem('theme') || 'light-theme');
 
 function back() {
@@ -68,13 +60,13 @@ function toggleLanguage() {
     justify-content: center;
   }
 
-  .back, .theme {
+  .back {
     padding: 0;
     width: 36px;
   }
 
   .language {
-    margin: 12px 0;
+    margin: 12px;
   }
 
   .language-and-theme {
