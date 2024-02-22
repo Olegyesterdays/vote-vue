@@ -129,6 +129,10 @@ function deleteQuestion( indexQuestion ) {
           height: 36px;
           border-radius: 8px;
           background: var(--white-light-theme);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0;
         }
       }
 
@@ -169,6 +173,9 @@ function deleteQuestion( indexQuestion ) {
               height: 36px;
               border-radius: 8px;
               background: var(--white-light-theme);
+              align-items: center;
+              justify-content: center;
+              padding: 0;
             }
           }
         }

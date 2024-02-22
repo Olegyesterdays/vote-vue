@@ -8,6 +8,66 @@ export const accountModule = {
                     titleVote: "myVote",
                     date: "дд.мм.гггг",
                     voteID: "123"
+                },                {
+                    titleVote: "myVote",
+                    date: "дд.мм.гггг",
+                    voteID: "123"
+                },                {
+                    titleVote: "myVote",
+                    date: "дд.мм.гггг",
+                    voteID: "123"
+                },                {
+                    titleVote: "myVote",
+                    date: "дд.мм.гггг",
+                    voteID: "123"
+                },                {
+                    titleVote: "myVote",
+                    date: "дд.мм.гггг",
+                    voteID: "123"
+                },                {
+                    titleVote: "myVote",
+                    date: "дд.мм.гггг",
+                    voteID: "123"
+                },                {
+                    titleVote: "myVote",
+                    date: "дд.мм.гггг",
+                    voteID: "123"
+                },                {
+                    titleVote: "myVote",
+                    date: "дд.мм.гггг",
+                    voteID: "123"
+                },                {
+                    titleVote: "myVote",
+                    date: "дд.мм.гггг",
+                    voteID: "123"
+                },                {
+                    titleVote: "myVote",
+                    date: "дд.мм.гггг",
+                    voteID: "123"
+                },                {
+                    titleVote: "myVote",
+                    date: "дд.мм.гггг",
+                    voteID: "123"
+                },                {
+                    titleVote: "myVote",
+                    date: "дд.мм.гггг",
+                    voteID: "123"
+                },                {
+                    titleVote: "myVote",
+                    date: "дд.мм.гггг",
+                    voteID: "123"
+                },                {
+                    titleVote: "myVote",
+                    date: "дд.мм.гггг",
+                    voteID: "123"
+                },                {
+                    titleVote: "myVote",
+                    date: "дд.мм.гггг",
+                    voteID: "123"
+                },                {
+                    titleVote: "myVote",
+                    date: "дд.мм.гггг",
+                    voteID: "123"
                 },
                 {
                     titleVote: "AmyVote",

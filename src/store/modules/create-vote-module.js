@@ -94,10 +94,11 @@ export const createVoteModule = {
         async createVote({ commit, state }) {
             try {
                 await axios.post("http://localhost:8000/api/v1/quiz", {
-                    userID: state.userID,
-                    title: state.title,
-                    description: state.description,
-                    questions: state.questions
+                    quiz: {
+                        title: state.title,
+                        description: state.description,
+                        questions: state.questions
+                    }
                 });
                 commit("clear")
             } catch (error) {

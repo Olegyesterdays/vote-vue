@@ -64,6 +64,7 @@ export const authModule = {
                 // localStorage.setItem('role', response.data.role);
                 localStorage.setItem('role', "admin");
                 // localStorage.setItem('role', "user");
+                localStorage.setItem('theme', "light-theme");
                 commit('formLoginClear');
 
             } catch (error) {
@@ -79,6 +80,7 @@ export const authModule = {
                 // localStorage.setItem('role', response.data.role);
                 localStorage.setItem('role', "admin");
                 // localStorage.setItem('role', "user");
+                localStorage.setItem('theme', "light-theme");
                 commit('formRegistrationClear');
             } catch (error) {
                 console.error('Ошибка при отправке запроса: ', error);

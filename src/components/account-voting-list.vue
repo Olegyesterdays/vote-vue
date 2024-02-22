@@ -2,50 +2,55 @@
   <div class="voting-list">
     <div class="voting-list-type">
       <button
-        v-if="role === 'admin'"
-        @click="votingTypeSelection('getMyVote')"
-        class="button my-vote"
-        :class="typeVote === 'getMyVote' ? 'button__active' : ''"
+          v-if="role === 'admin'"
+          @click="votingTypeSelection('getMyVote')"
+          class="button my-vote"
+          :class="typeVote === 'getMyVote' ? 'button__active' : ''"
       >
         {{ $t('accountPage.votingList.myVote') }}
       </button>
 
       <button
-        @click="votingTypeSelection('getNew')"
-        class="button new"
-        :class="typeVote === 'getNew' ? 'button__active' : ''"
+          @click="votingTypeSelection('getNew')"
+          class="button new"
+          :class="typeVote === 'getNew' ? 'button__active' : ''"
       >
         {{ $t('accountPage.votingList.new') }}
       </button>
 
       <button
-        @click="votingTypeSelection('getPassed')"
-        class="button passed"
-        :class="typeVote === 'getPassed' ? 'button__active' : ''"
+          @click="votingTypeSelection('getPassed')"
+          class="button passed"
+          :class="typeVote === 'getPassed' ? 'button__active' : ''"
       >
         {{ $t('accountPage.votingList.passed') }}
       </button>
     </div>
     <input
-      class="input"
-      type="text"
-      :placeholder="$t('accountPage.voteSearchPlaceholder')"
-      v-model="searchText"
+        class="input"
+        type="text"
+        :placeholder="$t('accountPage.voteSearchPlaceholder')"
+        v-model="searchText"
     />
     <div class="voting">
-      <div class="vote"
+                    <div class="vote"
            v-for="({ titleVote, date , voteID}, index) in filteredVoting"
            :key="index"
       >
-        <span class="titleVote" @click="goToVote(voteID)">{{ titleVote }}</span>
+        <span class="titleVote" @click="goToVote( voteID, typeVote )">{{ titleVote }}</span>
         <span class="date" v-if="typeVote !== 'getMyVote'">{{ date }}</span>
-        <svg-icon
-          class="button-info"
-          v-if="typeVote === 'getMyVote'"
-          @click="statistics(voteID)"
-          type="mdi"
-          :path="mdiDotsVertical"
-        />
+        <button
+            class="button-info"
+            v-if="typeVote === 'getMyVote'"
+            @click="statistics(voteID)"
+        >
+          <svg-icon
+
+              type="mdi"
+              :path="mdiDotsVertical"
+          />
+        </button>
+
       </div>
     </div>
   </div>
@@ -54,10 +59,10 @@
 <script setup>
 import OCRVLogo from '@/assets/OCRV-Logo.svg'
 import SvgIcon from '@jamescoyle/vue-icon'
-import { mdiDotsVertical } from '@mdi/js'
-import { computed, ref } from 'vue'
-import { useStore } from 'vuex'
-import { useRouter } from 'vue-router'
+import {mdiDotsVertical} from '@mdi/js'
+import {computed, ref} from 'vue'
+import {useStore} from 'vuex'
+import {useRouter} from 'vue-router'
 
 const router = useRouter()
 const store = useStore()
@@ -77,26 +82,29 @@ function votingTypeSelection(type) {
 }
 
 function statistics(voteID) {
-  store.commit('statisticsModule/voteID', { voteID: voteID })
+  store.commit('statisticsModule/voteID', {voteID: voteID})
   router.push('/account/statisticsVotePage')
 }
 
-function goToVote(voteID) {
-  router.push('/vote')
+function goToVote(voteID, typeVote) {
+  if (typeVote !== 'getPassed') {
+    router.push('/vote')
+  }
 }
 </script>
 
 <style scoped lang="scss">
 .voting-list {
-  margin: 12px 12px 12px 0;
+  margin: 0 0 12px;
   display: flex;
   flex-direction: column;
-  width: 75%;
+  width: 100%;
 
   &-type {
+    margin: 0 12px 8px;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 8px;
+    //margin-bottom: 8px;
 
     .button {
       width: 100%;
@@ -116,12 +124,13 @@ function goToVote(voteID) {
   }
 
   .input {
+    margin: 0 12px;
     box-shadow: 0 4px 6px var(--shadow-color);
   }
 
   .voting {
-    height: 312px;
-    margin-top: 8px;
+    margin: 8px 12px 0;
+    height: 55vh;
     overflow: hidden;
     overflow-y: auto;
     padding-right: 8px;
@@ -168,9 +177,12 @@ function goToVote(voteID) {
       .button-info {
         padding: 4px;
         border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        background: var(--white-light-theme);
 
         &:hover {
-          background: var(--neutral-light-theme);
+          background: var(--neutral-light-theme) !important;
         }
       }
     }

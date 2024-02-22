@@ -1,17 +1,43 @@
 <template>
   <div class="background">
-    <button class="button" @click="toggleLanguage">
-      {{ $t("toggleLanguage") }}
+    <button
+        class="button back"
+        @click="back"
+    >
+      <svg-icon type="mdi" :path="mdiArrowLeft" />
     </button>
+
+    <div class="language-and-theme">
+      <button
+          class="button language"
+          @click="toggleLanguage"
+      >
+        {{ $t("toggleLanguage") }}
+      </button>
+
+      <button
+          class="button theme"
+      >
+        <svg-icon type="mdi" :path="mdiBrightness6" />
+      </button>
+    </div>
   </div>
 </template>
 
 <script setup>
 import {useI18n} from "vue-i18n";
 import {ref} from "vue";
+import SvgIcon from '@jamescoyle/vue-icon';
+import { mdiArrowLeft, mdiBrightness6 } from '@mdi/js';
+import { useRouter } from 'vue-router'
 
-const {locale} = useI18n();
+const router = useRouter()
+const { locale } = useI18n();
 const theme = ref(localStorage.getItem('theme') || 'light-theme');
+
+function back() {
+  router.push('/account')
+}
 
 function toggleLanguage() {
   locale.value = locale.value === 'ru' ? 'en' : 'ru';
@@ -26,6 +52,7 @@ function toggleLanguage() {
   left: 50%;
   transform: translate(-50%, 0);
   display: flex;
+  justify-content: space-between;
   background: var(--neutral-light-theme);
   box-shadow: 0 4px 6px var(--shadow-color);
 
@@ -35,6 +62,24 @@ function toggleLanguage() {
     background: var(--white-light-theme);
     margin: 12px;
     box-shadow: 0 4px 6px var(--shadow-color);
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .back, .theme {
+    padding: 0;
+    width: 36px;
+  }
+
+  .language {
+    margin: 12px 0;
+  }
+
+  .language-and-theme {
+    display: flex;
+    align-items: center;
   }
 }
 

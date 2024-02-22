@@ -1,9 +1,5 @@
 <template>
   <div class="menu">
-    <button class="menu-item button" @click="$router.push('/account')">
-      {{ $t("statisticsVotePage.statisticsMenu.back") }}
-    </button>
-
     <div class="data menu-item">
       <div class="item-number-of-questions">
         <span>
@@ -36,6 +32,7 @@
     <button class="menu-item button">
       {{ $t("statisticsVotePage.statisticsMenu.closeTheVote") }}
     </button>
+
     <button class="menu-item button end">
       {{ $t("statisticsVotePage.statisticsMenu.deleteVote") }}
     </button>

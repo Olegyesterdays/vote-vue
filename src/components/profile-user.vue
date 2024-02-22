@@ -1,6 +1,6 @@
 <template>
   <div class="profile">
-    <img class="ava" :src="ava" alt="аватарка">
+<!--    <img class="ava" :src="ava" alt="аватарка">-->
     <button
       v-if="role === 'admin'"
       class="button create-vote"
@@ -51,7 +51,7 @@ function exit() {
 
 <style scoped lang="scss">
 .profile {
-  width: 25%;
+  width: auto;
   margin: 12px;
   display: flex;
   flex-direction: column;

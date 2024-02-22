@@ -1,11 +1,6 @@
 <template>
   <div class="background">
     <div class="content">
-      <div class="buttons">
-        <button class="button cancellation" @click="$router.push('/account')">
-          {{ $t("createVotePage.createQuestions.back") }}
-        </button>
-      </div>
       <create-vote />
       <create-questions />
       <div class="buttons">

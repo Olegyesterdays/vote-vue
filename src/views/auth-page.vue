@@ -66,12 +66,12 @@ function clickRegistration() {
 }
 
 async function push() {
-  // const action = loginOrRegistration.value === "login" ? "authModule/authLogin" : "authModule/authRegistration";
-  //
-  // await store.dispatch(action)
-  localStorage.setItem('authToken', "response.data.token");
-  localStorage.setItem('theme', "light-theme");
-  localStorage.setItem('role', "admin");
+  const action = loginOrRegistration.value === "login" ? "authModule/authLogin" : "authModule/authRegistration";
+
+  await store.dispatch(action)
+  // localStorage.setItem('authToken', "response.data.token");
+  // localStorage.setItem('theme', "light-theme");
+  // localStorage.setItem('role', "admin");
   router.push("/account");
 }
 
@@ -110,6 +110,7 @@ async function push() {
 
     .form {
       padding: 0 12px 12px;
+
       .input {
         margin-top: 8px;
         display: flex;
