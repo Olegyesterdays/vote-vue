@@ -21,6 +21,13 @@
         />
       </div>
 
+      <div class="type-answers">
+        <TypeAnswer
+            @update:oneAnswer="typeQuestion('one answer', indexQuestion)"
+            @update:severalAnswers="typeQuestion('several answers', indexQuestion)"
+        />
+      </div>
+
       <div class="content-question">
         <div class="answers">
           <div class="answer" v-for="( _, indexAnswer ) in options" :key="indexAnswer">
@@ -40,15 +47,10 @@
               </button>
             </div>
           </div>
+
           <button class="button add-answer" @click="newAnswer( indexQuestion )">
             Добавить ответ
           </button>
-        </div>
-
-        <div class="type-answers">
-          <div class="type-answer">
-
-          </div>
         </div>
       </div>
     </div>
@@ -59,17 +61,16 @@
 import { computed } from 'vue'
 import { useStore } from "vuex"
 import { mdiDelete } from '@mdi/js'
+import TypeAnswer from "@/components/type-answer.vue"
 import SvgIcon from '@jamescoyle/vue-icon'
 
 const store = useStore()
 
 const questions = computed(() => store.getters["createVoteModule/getQuestions"])
 
-const types = [
-  { label: 'oneAnswer', value: 'one answer' },
-  { label: 'severalAnswers', value: 'several answers' },
-  { label: 'userAnswer', value: 'user response' }
-]
+function typeQuestion(type, indexQuestion) {
+  store.commit('createVoteModule/typeQuestion', { type, indexQuestion })
+}
 
 function recordTitleQuestion( titleQuestion, indexQuestion ) {
   store.commit('createVoteModule/recordTitleQuestion', {

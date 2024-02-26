@@ -47,6 +47,10 @@ export const createVoteModule = {
             state.questions[indexQuestion].options[indexAnswer].text = answer
         },
 
+        typeQuestion(state, { type, indexQuestion }) {
+            state.questions[indexQuestion].typeQuestion = type
+        },
+
         newQuestion(state) {
             state.questions.push({
                 titleQuestion: "",

@@ -1,0 +1,32 @@
+{
+  "quiz": {
+    "title": "Название голосования",
+    "description": "Описание",
+    "questions": [
+      {
+        "titleQuestion": "Вопрос 1",
+        "typeQuestion": "several answers",
+        "options": [
+          {
+            "text": "Вопрос 1 Ответ 1"
+          },
+          {
+            "text": "Вопрос 1 Ответ 1"
+          }
+        ]
+      },
+      {
+        "titleQuestion": "Вопрос 2",
+        "typeQuestion": "several answers",
+        "options": [
+          {
+            "text": "Вопрос 2 Ответ 1"
+          },
+          {
+            "text": "Вопрос 2 Ответ 2"
+          }
+        ]
+      }
+    ]
+  }
+}

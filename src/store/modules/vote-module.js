@@ -10,20 +10,20 @@ export const voteModule = {
             {
                 titleQuestion: "title 1",
                 typeQuestion: "one answer",
-                options: [
-                    { text: "1" },
-                    { text: "2" },
-                    { text: "3" },
-                    { text: "4" },
-                    { text: "5" },
-                ],
-                // answersToQuestions: [
-                //     "title 1 answer 1",
-                //     "title 1 answer 2",
-                //     "title 1 answer 3",
-                //     "title 1 answer 4",
-                //     "title 1 answer 5",
+                // options: [
+                //     { text: "1" },
+                //     { text: "2" },
+                //     { text: "3" },
+                //     { text: "4" },
+                //     { text: "5" },
                 // ],
+                answersToQuestions: [
+                    "title 1 answer 1",
+                    "title 1 answer 2",
+                    "title 1 answer 3",
+                    "title 1 answer 4",
+                    "title 1 answer 5",
+                ],
             },
             {
                 title: "title 2",

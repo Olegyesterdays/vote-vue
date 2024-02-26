@@ -7,15 +7,11 @@
           :answersToQuestions="answersToQuestions"
           @update:oneItems="handleOneItems($event, index)"
         />
+
         <several-answers v-if="typeQuestion === 'several answers'"
           :title="title"
           :answersToQuestions="answersToQuestions"
           @update:severalItems="handleSeveralItems($event, index)"
-        />
-        <user-answers v-if="typeQuestion === 'user response'"
-          :title="title"
-          :answersToQuestions="answersToQuestions"
-          @update:userItems="handleUserItems($event, index)"
         />
       </div>
       <div class="button-push">
@@ -34,7 +30,6 @@ import { useRouter } from 'vue-router'
 
 import oneAnswer from "@/components/one-answer.vue"
 import severalAnswers from "@/components/several-answers.vue"
-import userAnswers from "@/components/user-answers.vue"
 
 const router = useRouter()
 const store = useStore()
@@ -42,7 +37,6 @@ const question = computed(() => store.getters["voteModule/getVote"]);
 
 const oneItems = ref([]);
 const severalItems = ref([]);
-const userItems = ref([]);
 
 function handleSeveralItems(items) {
   severalItems.value = items
@@ -52,11 +46,6 @@ function handleSeveralItems(items) {
 function handleOneItems(items) {
   oneItems.value = items;
   store.commit("voteModule/addAnswer", items)
-}
-
-function handleUserItems(items) {
-  userItems.value = items;
-  store.commit("voteModule/addAnswer", toRaw(userItems.value))
 }
 
 function sendAnswers() {

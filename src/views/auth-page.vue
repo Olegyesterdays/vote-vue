@@ -72,7 +72,7 @@ async function push() {
   // localStorage.setItem('authToken', "response.data.token");
   // localStorage.setItem('theme', "light-theme");
   // localStorage.setItem('role', "admin");
-  router.push("/account");
+  await router.push("/account");
 }
 
 </script>
