@@ -1,14 +1,21 @@
 <template>
   <div class="severalAnswers">
-    <div class="title">{{ title }}</div>
-    <label class="answer" v-for="(item, index) in answersToQuestions" :key="index">
-      {{ item }}
+    <h3 class="title">
+      {{ titleQuestion }}
+    </h3>
+
+    <label
+        class="answer"
+        v-for="({ text }, index) in options"
+        :key="index"
+    >
+      {{ text }}
       <input
           class="check-box"
           type="checkbox"
-          :value="item"
-          v-model="severalItems"
-          @change="handleSelection(title, index)"
+          :value="text"
+          v-model="severalAnswers"
+          @change="handleSelection(titleQuestion)"
       >
       <span class="check-style" />
     </label>
@@ -16,33 +23,39 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, ref, toRaw } from 'vue'
+import { defineProps, defineEmits, ref, toRaw } from "vue";
 
 defineProps({
-  title: {
-    type: String,
-    default: "title"
+  titleQuestion: {
+    type: String
   },
-  answersToQuestions: {
-    type: Array,
-    default: []
+
+  options: {
+    type: Array
   }
 })
 
 const emit = defineEmits();
 
-const severalItems = ref([]);
+const severalAnswers = ref([]);
 
-const handleSelection = (title, index) => {
-  emit('update:severalItems', {
+const handleSelection = (title) => {
+  emit('update:severalAnswers', {
     title: title,
-    answer: toRaw(severalItems.value)
+    answer: toRaw(severalAnswers.value)
   });
 };
 </script>
 
 <style scoped lang="scss">
 .severalAnswers {
+  box-sizing: border-box;
+  border: 4px solid var(--neutral-light-theme);
+  box-shadow: 0 4px 6px var(--shadow-color);
+  border-radius: 12px;
+  padding: 8px;
+  margin: auto;
+  width: 900px;
   display: flex;
   flex-direction: column;
 
@@ -87,6 +100,12 @@ const handleSelection = (title, index) => {
       border: 2px solid var(--secondary-light-theme);
       right: 16px;
     }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .severalAnswers {
+    width: 100%;
   }
 }
 </style>

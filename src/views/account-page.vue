@@ -1,35 +1,36 @@
 <template>
-  <div class="background">
-    <div class="account-panel">
-      <profile-user class="profile-user" />
-      <account-voting-list class="account-voting-list" />
-    </div>
+  <div class="container">
+    <Menu class="menu" />
+    <VoteList class="vote-list" />
   </div>
 </template>
 
 <script setup>
-import ProfileUser from '@/components/profile-user.vue'
-import AccountVotingList from '@/components/account-voting-list.vue'
+import Menu from "@/components/account-page/menu.vue";
+import VoteList from "@/components/account-page/vote-list.vue";
 </script>
 
 <style scoped lang="scss">
-.background {
+.container {
+  margin: auto;
+  width: 900px;
+  border-radius: 12px;
   display: flex;
+  flex-direction: column;
+  background: var(--neutral-light-theme);
 
-  .account-panel {
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    border-radius: 20px;
-    background: var(--neutral-light-theme);
-    box-shadow: 0 4px 6px var(--shadow-color);
-    width: 100%;
+  .menu {
+    width: auto;
   }
 
-  @media screen and (min-width: 900px) {
-    .account-panel {
-      width: 900px;
-    }
+  .vote-list {
+    width: auto;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .container {
+    width: 100%;
   }
 }
 </style>

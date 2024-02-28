@@ -1,11 +1,14 @@
-import { createRouter, createWebHistory } from "vue-router"
+import {
+    createRouter,
+    createWebHistory
+} from "vue-router"
 
 import AuthPage from "@/views/auth-page.vue";
 import AccountPage from "@/views/account-page.vue";
 import VotePage from "@/views/vote-page.vue";
-import StatisticsVotePage from "@/views/statistics-vote-page.vue";
+import StatisticsPage from "@/views/statistics-page.vue";
 import CreateVote from "@/views/create-vote-page.vue";
-import Settings from "@/views/settings-page.vue"
+import Settings from "@/views/settings-page.vue";
 
 const routes = [
     {
@@ -13,7 +16,7 @@ const routes = [
         component: AuthPage
     },
     {
-        path: '/vote',
+        path: '/account/vote',
         component: VotePage
     },
     {
@@ -22,8 +25,8 @@ const routes = [
         meta: { requiresAccount: true }
     },
     {
-        path: '/account/statisticsVotePage',
-        component: StatisticsVotePage,
+        path: '/account/statistics',
+        component: StatisticsPage,
         meta: { requiresAccount: true }
     },
     {

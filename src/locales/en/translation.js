@@ -1,82 +1,43 @@
 export default {
-    toggleLanguage: "English",
-    changeTheSubject: "Change the subject",
-    accountPage: {
-        profile: {
-            createVoting: "Create voting",
-            settings: "Settings",
-            exit: "Exit"
-        },
-        votingList: {
-            myVote: "My vote",
-            new: "New",
-            passed: "Passed"
-        },
-        voteSearchPlaceholder: "Voting title"
+    header: {
+        toggleLanguage: "Русский"
     },
-
     authPage: {
-        login: "Login",
-        registration: "Registration",
-        form: {
-            login: {
+        authPanel: {
+            loginOrRegistration: {
+                login: "Log in",
+                registration: "Register"
+            },
+            form: {
                 email: "Email",
                 password: "Password"
-            },
-            registration: {
-                name: "name",
-                surname: "surname",
-                email: "Email",
-                password: "Password"
-            },
+            }
         },
-        button: {
-            login: "Log in",
-            registration: "Sign up",
+        buttonAuth: {
+            login: "Login",
+            registration: "Register"
         }
     },
-
-    createVotePage: {
-        createVote: {
-            addImg: "Add image",
-            title: "Voting title",
-            description: "Description",
-            search: "Who participates"
-        },
-        createQuestions: {
-            back: "Back",
-            votingTemplate: {
-                question: "Question",
-                typeAnswers: {
-                    oneAnswer: "One answer",
-                    severalAnswers: "Some answers",
-                    userAnswer: "User response"
-                },
-                answer: "answer",
-                addAnswer: "Add answer"
-            },
-            createQuestion: "Create question"
-        },
-        buttons: {
-            buttonCreate: "Create",
-            buttonCreateAndPublish: "Create and publish"
-        }
+    accountPage: {
+        createVote: "Create vote",
+        settings: "Settings",
+        listOfUsers: "List of users",
+        exit: "Exit",
+        nameVote: "The name of the vote",
+        myVotes: "My votes",
+        new: "New",
+        passed: "Passed"
     },
-
-    settingsPage: {},
-
-    statisticsVotePage: {
-        statisticsMenu: {
-            back: "Back",
+    statisticsPage: {
+        additionalInformation: {
             numberOfQuestions: "Number of questions",
-            creationDate: "Creation date",
+            dateOfCreation: "Date of creation",
             numberOfParticipants: "Number of participants",
-            closeTheVote: "Finalize the vote",
-            deleteVote: "Delete the vote"
+            endVoting: "End the voting",
+            deleteVoting: "Delete a vote"
         }
     },
-
-    votePage: {
-        sendAnswers: "Send"
-    }
-};
+    createVotePage: {},
+    settingsPage: {},
+    votePage: {}
+}

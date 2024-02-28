@@ -1,14 +1,21 @@
 <template>
   <div class="oneAnswers">
-    <div class="title">{{ title }}</div>
-    <label class="answer" v-for="(item, index) in answersToQuestions" :key="index">
-      {{ item }}
+    <h3 class="title">
+      {{ titleQuestion }}
+    </h3>
+
+    <label
+        class="answer"
+        v-for="({ text }, index) in options"
+        :key="index"
+    >
+      {{ text }}
       <input
           class="radio-button"
           type="radio"
-          :value="item"
-          v-model="oneItems"
-          @change="handleSelection(title)"
+          :value="text"
+          v-model="oneAnswer"
+          @change="handleSelection(titleQuestion)"
       >
       <span class="radio-style" />
     </label>
@@ -16,33 +23,39 @@
 </template>
 
 <script setup>
-import {defineProps, defineEmits, ref} from 'vue'
+import { defineProps, defineEmits, ref } from "vue";
 
 defineProps({
-  title: {
-    type: String,
-    default: "title"
+  titleQuestion: {
+    type: String
   },
-  answersToQuestions: {
-    type: Array,
-    default: []
+
+  options: {
+    type: Array
   }
 })
 
 const emit = defineEmits();
 
-const oneItems = ref([]);
+const oneAnswer = ref([]);
 
 const handleSelection = (title) => {
-  emit('update:oneItems', {
+  emit('update:oneAnswer', {
     title: title,
-    answer: oneItems.value
+    answer: oneAnswer.value
   });
 };
 </script>
 
 <style scoped lang="scss">
 .oneAnswers {
+  box-sizing: border-box;
+  border: 4px solid var(--neutral-light-theme);
+  box-shadow: 0 4px 6px var(--shadow-color);
+  border-radius: 12px;
+  padding: 8px;
+  margin: auto;
+  width: 900px;
   display: flex;
   flex-direction: column;
 
@@ -87,6 +100,12 @@ const handleSelection = (title) => {
       border: 2px solid var(--secondary-light-theme);
       right: 16px;
     }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .oneAnswers {
+    width: 100%;
   }
 }
 </style>

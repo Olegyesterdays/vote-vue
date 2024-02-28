@@ -2,109 +2,85 @@ import axios from "axios";
 
 export const voteModule = {
     state: {
-        userID: 123,
-
-        votingTitle: "",
-
-        vote: [
+        questions: [
             {
-                titleQuestion: "title 1",
+                titleQuestion: "question 1",
                 typeQuestion: "one answer",
-                // options: [
-                //     { text: "1" },
-                //     { text: "2" },
-                //     { text: "3" },
-                //     { text: "4" },
-                //     { text: "5" },
-                // ],
-                answersToQuestions: [
-                    "title 1 answer 1",
-                    "title 1 answer 2",
-                    "title 1 answer 3",
-                    "title 1 answer 4",
-                    "title 1 answer 5",
+                options: [
+                    { text: "question 1 answer 1" },
+                    { text: "question 1 answer 2" },
+                    { text: "question 1 answer 3" },
+                    { text: "question 1 answer 4" },
+                    { text: "question 1 answer 5" },
                 ],
             },
             {
-                title: "title 2",
+                titleQuestion: "question 2",
                 typeQuestion: "several answers",
-                answersToQuestions: [
-                    "title 2 answer 1",
-                    "title 2 answer 2",
-                    "title 2 answer 3",
-                    "title 2 answer 4",
-                    "title 2 answer 5",
-                ]
+                options: [
+                    { text: "question 2 answer 1" },
+                    { text: "question 2 answer 2" },
+                    { text: "question 2 answer 3" },
+                    { text: "question 2 answer 4" },
+                    { text: "question 2 answer 5" },
+                ],
             },
             {
-                title: "title 3",
-                typeQuestion: "user response",
-                answersToQuestions: [
-                    "name",
-                    "surname"
-                ]
-            }
+                titleQuestion: "question 3",
+                typeQuestion: "one answer",
+                options: [
+                    { text: "question 3 answer 1" },
+                    { text: "question 3 answer 2" },
+                    { text: "question 3 answer 3" },
+                    { text: "question 3 answer 4" },
+                    { text: "question 3 answer 5" },
+                ],
+            },
         ],
 
-        answers: [],
+        formAnswers: [
+
+        ]
     },
 
     getters: {
-        getVote(state) {
-            return state.vote;
-        },
+        getQuestions(state) {
+            return state.questions
+        }
     },
 
     mutations: {
-        createVote(state, vote) {
-            state.vote = vote
-        },
-
-        addAnswer(state, payload) {
-            const existingAnswerIndex = state.answers.findIndex(answer => answer.title === payload.title);
+        writeDownAnswer(state, { payload }) {
+            const existingAnswerIndex = state.formAnswers.findIndex(answer => answer.title === payload.title);
             if (existingAnswerIndex !== -1) {
                 // Если объект с таким title уже существует, заменяем его
-                state.answers.splice(existingAnswerIndex, 1, payload);
+                state.formAnswers.splice(existingAnswerIndex, 1, payload);
             } else {
                 // Иначе добавляем новый объект в массив
-                state.answers.push(payload);
+                state.formAnswers.push(payload);
             }
         },
 
-        answerClear(state) {
-            state.answers = []
-        },
-
-        voteClear(state) {
-            state.vote = []
+        clear(state) {
+            state.questions = []
+            state.formAnswers = []
         }
     },
 
     actions: {
-        async sendAnswer({ state, commit }) {
-            try {
-                await axios.post('http://127.0.0.1:8000/sendAnswer',{
-                    userID: state.userID,
-                    votingTitle: state.votingTitle,
-                    answers: state.answers
-                });
-
-                commit('answerClear')
-                commit('voteClear')
-            } catch (error) {
-                console.error('Ошибка при отправке запроса: ', error);
-            }
-        },
-
-        async question({ commit }) {
-            try {
-                const response = await axios.post('http://127.0.0.1:8000/question');
-
-                commit('createVote', response.data.response)
-            } catch (error) {
-                console.error('Ошибка при отправке запроса: ', error);
-            }
-        },
+        sendAnswers({ commit, state }) {
+            axios.post("http://localhost:8000/saveAnswers", {
+                formAnswers: state.formAnswers
+            }, {
+                headers: {
+                    Authorization: `Bearer ${ localStorage.getItem('authToken') }`
+                }
+            }).then((response) => {
+                commit("clear")
+            }).catch((error) => {
+                console.log("Ошибка при отправке запроса:", error)
+            })
+        }
     },
 
     namespaced: true

@@ -1,8 +1,7 @@
 <template>
   <div class="type-answer">
     <div class="one-answer">
-      <label class="answer">
-        Один ответ
+      <label>
         <input
             class="radio-button"
             type="radio"
@@ -11,12 +10,12 @@
             @change="oneAnswer"
         >
         <span class="radio-style"/>
+        Один ответ
       </label>
     </div>
 
     <div class="several-answers">
-      <label class="answer">
-        Несколько ответов
+      <label>
         <input
             class="radio-button"
             type="radio"
@@ -25,6 +24,7 @@
             @change="severalAnswers"
         >
         <span class="radio-style"/>
+        Несколько ответов
       </label>
     </div>
   </div>
@@ -51,14 +51,11 @@ function severalAnswers() {
   flex-direction: column;
 
   .one-answer, .several-answers {
-    .answer {
-      background: var(--neutral-light-theme);
-      margin-top: 8px;
-      border-radius: 12px;
-      padding: 8px 0 8px 8px;
-      display: flex;
-      justify-content: space-between;
-      position: relative;
+    margin-left: 24px;
+
+    label {
+      margin: 6px 0;
+      display: block;
 
       .radio-button {
         position: absolute;
@@ -66,6 +63,7 @@ function severalAnswers() {
         height: 1px;
         overflow: hidden;
         clip: rect(0 0 0 0);
+        padding-left: 24px;
 
         &:checked + .radio-style::before {
           content: "";
@@ -86,7 +84,7 @@ function severalAnswers() {
         height: 12px;
         border-radius: 50%;
         border: 2px solid var(--secondary-light-theme);
-        right: 16px;
+        margin-left: -24px;
       }
     }
   }

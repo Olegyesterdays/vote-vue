@@ -1,84 +1,118 @@
 <template>
-  <div class="background">
+  <div class="header">
     <button
+        v-if="showBackButton"
         class="button back"
         @click="back"
     >
-      <svg-icon type="mdi" :path="mdiArrowLeft"/>
+      <svg-icon type="mdi" :path="mdiArrowLeft" />
     </button>
 
-    <button
-        class="button language"
-        @click="toggleLanguage"
-    >
-      {{ $t("toggleLanguage") }}
-    </button>
+    <div /> <!-- TODO: Так надо, но лучше переделать -->
+
+    <div class="language-and-theme">
+      <button
+          class="button language"
+          @click="toggleLanguage"
+      >
+        {{ $t("header.toggleLanguage") }}
+      </button>
+
+      <button
+          class="button theme"
+          @click="switchingTheTheme"
+      >
+        <svg-icon type="mdi" :path="mdiBrightness6" />
+      </button>
+    </div>
   </div>
 </template>
 
 <script setup>
-import {useI18n} from "vue-i18n";
-import {ref} from "vue";
+import { useRouter } from 'vue-router'
+import { useI18n } from "vue-i18n";
+import { ref } from "vue";
 import SvgIcon from '@jamescoyle/vue-icon';
-import {mdiArrowLeft} from '@mdi/js';
-import {useRouter} from 'vue-router'
+import {
+  mdiArrowLeft,
+  mdiBrightness6
+} from '@mdi/js';
 
 const router = useRouter()
-const {locale} = useI18n();
-const theme = ref(localStorage.getItem('theme') || 'light-theme');
+const { locale } = useI18n();
 
 function back() {
   router.push('/account')
 }
 
+const showBackButton = ref(true);
+
+router.beforeEach((to, from, next) => {
+  showBackButton.value = !(to.path === '/' || to.path === '/account');
+  next();
+});
+
 function toggleLanguage() {
   locale.value = locale.value === 'ru' ? 'en' : 'ru';
+}
+
+function switchingTheTheme() {
+
 }
 </script>
 
 <style scoped lang="scss">
-.background {
-  width: 100%;
+.header {
+  z-index: 100;
+  width: 900px;
+  border-radius: 12px;
   position: fixed;
   top: 0;
   left: 50%;
   transform: translate(-50%, 0);
   display: flex;
+  align-items: center;
   justify-content: space-between;
   background: var(--neutral-light-theme);
   box-shadow: 0 4px 6px var(--shadow-color);
 
   .button {
-    padding: 12px;
+    border: 0;
+    width: 40px;
+    height: 40px;
+    margin: 12px;
     border-radius: 12px;
     background: var(--white-light-theme);
-    margin: 12px;
-    box-shadow: 0 4px 6px var(--shadow-color);
-    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
 
-  .back {
-    padding: 0;
-    width: 36px;
-  }
-
-  .language {
-    margin: 12px;
+    &:hover {
+      background: var(--accent-dark-theme);
+      color: var(--white-light-theme);
+    }
   }
 
   .language-and-theme {
     display: flex;
     align-items: center;
+
+    .language {
+      width: auto;
+      margin-left: 0;
+      padding: 0 12px;
+    }
+
+    .theme {
+      margin-left: 0;
+    }
   }
 }
 
-@media screen and (min-width: 900px) {
-  .background {
-    border-radius: 12px;
-    width: 900px;
+@media screen and (max-width: 900px) {
+  .header {
+    border-radius: 0;
+    width: 100%;
   }
 }
 </style>

@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import "@/styles/index.css";
+import "@/styles/color-palette.css"
 import index from '@/router';
 import store from '@/store';
 import { createI18n } from 'vue-i18n';

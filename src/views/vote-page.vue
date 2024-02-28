@@ -1,89 +1,98 @@
 <template>
-  <div class="background">
-    <div class="vote">
-      <div class="question" v-for="({ title, typeQuestion, answersToQuestions }, index) in question" :key="index">
-        <one-answer v-if="typeQuestion === 'one answer'"
-          :title="title"
-          :answersToQuestions="answersToQuestions"
-          @update:oneItems="handleOneItems($event, index)"
+  <div class="container">
+    <VoteContent />
+    <div class="questions">
+      <div
+          class="question"
+          v-for="({ titleQuestion, typeQuestion, options }, index) in questions"
+          :key="index"
+      >
+        <OneAnswer
+            v-if="typeQuestion === 'one answer'"
+            :titleQuestion="titleQuestion"
+            :options="options"
+            @update:oneAnswer="handleOneItems($event)"
         />
 
-        <several-answers v-if="typeQuestion === 'several answers'"
-          :title="title"
-          :answersToQuestions="answersToQuestions"
-          @update:severalItems="handleSeveralItems($event, index)"
+        <SeveralAnswers
+            v-if="typeQuestion === 'several answers'"
+            :titleQuestion="titleQuestion"
+            :options="options"
+            @update:severalAnswers="handleSeveralItems($event)"
         />
       </div>
-      <div class="button-push">
-        <button class="button" @click="sendAnswers">
-          {{ $t("votePage.sendAnswers")}}
-        </button>
-      </div>
     </div>
+    <button
+        @click="sendAnswers"
+        class="sendAnswers"
+    >Отправить</button>
   </div>
 </template>
 
 <script setup>
-import { computed, ref, toRaw } from "vue"
-import { useStore } from "vuex"
-import { useRouter } from 'vue-router'
+import VoteContent from "@/components/vote-page/vote-content.vue";
+import OneAnswer from "@/components/vote-page/one-answer.vue";
+import SeveralAnswers from "@/components/vote-page/several-answers.vue";
+import { computed, ref, toRaw } from "vue";
+import { useStore } from "vuex";
 
-import oneAnswer from "@/components/one-answer.vue"
-import severalAnswers from "@/components/several-answers.vue"
-
-const router = useRouter()
-const store = useStore()
-const question = computed(() => store.getters["voteModule/getVote"]);
-
-const oneItems = ref([]);
-const severalItems = ref([]);
-
-function handleSeveralItems(items) {
-  severalItems.value = items
-  store.commit("voteModule/addAnswer", toRaw(severalItems.value))
-}
+const store = useStore();
+const questions = computed(() => store.getters["voteModule/getQuestions"]);
+const oneAnswer = ref([]);
+const severalAnswers = ref([]);
 
 function handleOneItems(items) {
-  oneItems.value = items;
-  store.commit("voteModule/addAnswer", items)
+  oneAnswer.value = items;
+  // console.log(toRaw(oneAnswer.value));
+  store.commit("voteModule/writeDownAnswer", {
+    payload: toRaw(oneAnswer.value)
+  });
+}
+
+function handleSeveralItems(items) {
+  severalAnswers.value = items;
+  // console.log(toRaw(severalAnswers.value));
+  store.commit("voteModule/writeDownAnswer", {
+    payload: toRaw(severalAnswers.value)
+  });
 }
 
 function sendAnswers() {
-  store.dispatch("voteModule/sendAnswer")
-  router.push('/account')
+  store.dispatch("voteModule/sendAnswers")
 }
 </script>
 
 <style scoped lang="scss">
-.background {
+.container {
   display: flex;
+  flex-direction: column;
 
-  .vote {
-    margin: auto;
-    width: 900px;
-    box-shadow: 0 4px 6px var(--box-shadow-color);
-    border-radius: 20px;
-    background: var(--neutral-light-theme);
-
+  .questions {
     .question {
-      display: flex;
-      flex-direction: column;
-      background: var(--white-light-theme);
-      margin: 12px;
-      padding: 12px;
-      border-radius: 16px;
+      margin-bottom: 8px;
     }
+  }
 
-    .button-push {
-      margin: 0 12px 12px 12px;
+  .sendAnswers {
+    width: 900px;
+    padding: 12px;
+    background: var(--neutral-light-theme);
+    box-shadow: 0 4px 6px var(--shadow-color);
+    border: 0;
+    border-radius: 12px;
+    margin: 0 auto 40px;
 
-      .button {
-        padding: 20px;
-        width: 100%;
-        border-radius: 16px;
-        background: var(--white-light-theme);
-        border: 0;
-      }
+    &:hover {
+      background: var(--accent-light-theme);
+      color: var(--white-light-theme);
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .container {
+    .sendAnswers {
+      width: 100%;
     }
   }
 }

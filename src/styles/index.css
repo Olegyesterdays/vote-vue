@@ -1,35 +1,7 @@
-:root {
-    /* Light theme */
-    --accent-light-theme: #ED202E;
-    --secondary-light-theme: #9DB0BB;
-    --black-light-theme: #000000;
-    --additional-light-theme: #0065E2;
-    --neutral-light-theme: #E6F0FD;
-    --white-light-theme: #FFFFFF;
-
-    /* Dark theme */
-    --accent-dark-theme: #ED202E;
-    --secondary-dark-theme: #9DB0BB;
-    --black-dark-theme: #0C0C0C;
-    --additional-dark-theme: #0065E2;
-    --neutral-dark-theme: #B3D1F7;
-    --white-dark-theme: #FFFFFF;
-
-    /* My color */
-    --shadow-color: #00000019;
-
-    /* My light theme */
-    --my-main-background-color-light-theme: #FFFFFF;
-    --my-dop-background-color-light-theme: #E6F0FD;
-
-    /* My dark theme */
-    --my-main-background-color-dark-theme: #2D2D2D;
-    --my-dop-background-color-dark-theme: #0C0C0C;
-}
-
 * {
     font-family: 'Montserrat', sans-serif;
     color: var(--black-light-theme);
+
 
     &::-webkit-scrollbar {
         width: 8px;
@@ -52,49 +24,16 @@ body {
     margin: 0;
     background: var(--white-light-theme);
 
-    &::-webkit-scrollbar {
-        width: 8px;
-    }
-
-    &::-webkit-scrollbar-track {
-        border-radius: 4px;
-        background-color: transparent;
-        border: 0;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        border-radius: 4px;
-        background: var(--accent-light-theme);
-    }
+    /*background: #2D2D2D;*/
 }
 
-
-
-
 button {
-    border: 0;
-    padding: 12px;
-    border-radius: 12px;
     cursor: pointer;
     transition: background-color  0.3s ease;
-
-    &:hover {
-        background: var(--accent-light-theme) !important;
-        color: var(--white-light-theme);
-    }
-
-    &:active {
-        transform: scale(0.99);
-    }
 }
 
 input {
-    border: 0;
-    padding: 12px;
-    border-radius: 12px;
-
     &:focus {
         outline: none;
     }
 }
-

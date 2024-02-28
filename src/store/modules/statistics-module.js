@@ -2,185 +2,147 @@ import axios from "axios";
 
 export const statisticsModule = {
     state: {
-        vote: {
-            votingTitle: "votingTitle 1",
-            description: "description vote",
-            numberOfQuestions: 5,
-            creationDate: "11.11.1111",
-            updateDate: "11.11.1111",
-            numberOfParticipants: "11111"
-        },
+        voteID: 123,
 
-        voteID: "",
+        additionalInformation: {
+            numberOfQuestions: "21",
+            dateOfCreation: "дд.мм.гггг",
+            numberOfParticipants: "356"
+        },
 
         questions: [
             {
-                title: "title 1",
-                numberOfParticipants: "",
-                answersToQuestions: [
+                question: "question 1",
+                answers: [
                     {
-                        title: "title 1 answer 1",
-                        voteCount: 11,
+                        title: "question 1 answer 1",
+                        percent: 11
                     },
                     {
-                        title: "title 1 answer 2",
-                        voteCount: 12
+                        title: "question 1 answer 2",
+                        percent: 12
                     },
                     {
-                        title: "title 1 answer 3",
-                        voteCount: 13
+                        title: "question 1 answer 3",
+                        percent: 13
                     },
                     {
-                        title: "title 1 answer 4",
-                        voteCount: 14
+                        title: "question 1 answer 4",
+                        percent: 14
                     },
                     {
-                        title: "title 1 answer 5",
-                        voteCount: 15
-                    },
-                ],
-            },
-            {
-                title: "title 2",
-                numberOfParticipants: "",
-                answersToQuestions: [
-                    {
-                        title: "title 2 answer 1",
-                        voteCount: 21
-                    },
-                    {
-                        title: "title 2 answer 2",
-                        voteCount: 22
-                    },
-                    {
-                        title: "title 2 answer 3",
-                        voteCount: 23
-                    },
-                    {
-                        title: "title 2 answer 4",
-                        voteCount: 24
-                    },
-                    {
-                        title: "title 2 answer 5",
-                        voteCount: 25
+                        title: "question 1 answer 5",
+                        percent: 15
                     },
                 ]
             },
             {
-                title: "title 2",
-                numberOfParticipants: "",
-                answersToQuestions: [
+                question: "question 2",
+                answers: [
                     {
-                        title: "title 2 answer 1",
-                        voteCount: 21
+                        title: "question 2 answer 1",
+                        percent: 21
                     },
                     {
-                        title: "title 2 answer 2",
-                        voteCount: 22
+                        title: "question 2 answer 2",
+                        percent: 22
                     },
                     {
-                        title: "title 2 answer 3",
-                        voteCount: 23
+                        title: "question 2 answer 3",
+                        percent: 23
                     },
                     {
-                        title: "title 2 answer 4",
-                        voteCount: 24
+                        title: "question 2 answer 4",
+                        percent: 24
                     },
                     {
-                        title: "title 2 answer 5",
-                        voteCount: 25
-                    },
-                ]
-            },
-            {
-                title: "title 2",
-                numberOfParticipants: "",
-                answersToQuestions: [
-                    {
-                        title: "title 2 answer 1",
-                        voteCount: 21
-                    },
-                    {
-                        title: "title 2 answer 2",
-                        voteCount: 22
-                    },
-                    {
-                        title: "title 2 answer 3",
-                        voteCount: 23
-                    },
-                    {
-                        title: "title 2 answer 4",
-                        voteCount: 24
-                    },
-                    {
-                        title: "title 2 answer 5",
-                        voteCount: 25
+                        title: "question 2 answer 5",
+                        percent: 25
                     },
                 ]
             },
             {
-                title: "title 2",
-                numberOfParticipants: "",
-                answersToQuestions: [
+                question: "question 3",
+                answers: [
                     {
-                        title: "title 2 answer 1",
-                        voteCount: 21
+                        title: "question 3 answer 1",
+                        percent: 31
                     },
                     {
-                        title: "title 2 answer 2",
-                        voteCount: 22
+                        title: "question 3 answer 2",
+                        percent: 32
                     },
                     {
-                        title: "title 2 answer 3",
-                        voteCount: 23
+                        title: "question 3 answer 3",
+                        percent: 33
                     },
                     {
-                        title: "title 2 answer 4",
-                        voteCount: 24
+                        title: "question 3 answer 4",
+                        percent: 34
                     },
                     {
-                        title: "title 2 answer 5",
-                        voteCount: 25
+                        title: "question 3 answer 5",
+                        percent: 35
                     },
                 ]
-            }
-        ]
+            },
+        ],
+
+        votingStatus: true
     },
 
     getters: {
-        getVotingTitle(state) {
-            return state.vote.votingTitle;
-        },
-
-        getDescription(state) {
-            return state.vote.description
-        },
-
         getNumberOfQuestions(state) {
-            return state.vote.numberOfQuestions;
+            return state.additionalInformation.numberOfQuestions
         },
 
-        getCreationDate(state) {
-            return state.vote.creationDate;
+        getDateOfCreation(state) {
+            return state.additionalInformation.dateOfCreation
         },
 
         getNumberOfParticipants(state) {
-            return state.vote.numberOfParticipants;
+            return state.additionalInformation.numberOfParticipants
         },
 
         getQuestions(state) {
-            return state.questions;
-        },
-    },
-
-    mutations: {
-        voteID(state, { voteID }) {
-            state.voteID = voteID
+            return state.questions
         }
     },
 
-    actions: {
+    mutations: {},
 
+    actions: {
+        endVoting({ state }) {
+            axios.post(`http://localhost:8000/endVoting/${ state.voteID }`, {} , {
+                headers: {
+                    Authorization: `Bearer ${ localStorage.getItem('authToken') }`
+                }
+            })
+
+            .then((response) => {
+
+            })
+
+            .catch((e) => {
+                console.error(e)
+            })
+        },
+
+        deleteVoting({ state }) {
+            axios.delete(`http://localhost:8000/deleteVoting/${ state.voteID }`, {
+                headers: {
+                    Authorization: `Bearer ${ localStorage.getItem('authToken') }`
+                }
+            })
+
+            .then((response) => {
+
+            })
+
+            .catch((e) => {
+                console.error(e)
+            })
+        }
     },
 
     namespaced: true

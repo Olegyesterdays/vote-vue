@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="background">
     <Header class="header" />
 
     <router-view class="content" />
@@ -11,7 +11,13 @@ import Header from "@/components/header.vue";
 </script>
 
 <style lang="scss" scoped>
-.content {
-  margin-top: 72px;
+.background {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .content {
+    margin-top: 72px;
+  }
 }
 </style>

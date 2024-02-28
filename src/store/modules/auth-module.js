@@ -3,89 +3,74 @@ import { toRaw } from "vue";
 
 export const authModule = {
     state: {
-        formLogin: {
-            email: "",
-            password: ""
-        },
+        loginOrRegistration: "login",
 
-        formRegistration: {
+        formAuth: {
             email: "",
             password: ""
         }
     },
 
     getters: {
-        getFormLogin(state) {
-            return state.formLogin
+        getLoginOrRegistration(state) {
+            return state.loginOrRegistration
         },
 
-        getFormRegistration(state) {
-            return state.formRegistration
+        getEmail(state) {
+            return state.formAuth.email
+        },
+
+        getPassword(state) {
+            return state.formAuth.password
         }
     },
 
     mutations: {
-        loginEmail(state, { email }) {
-            state.formLogin.email = email
+        loginOrRegistration(state) {
+            state.loginOrRegistration = state.loginOrRegistration === 'login' ? 'registration' : 'login'
         },
 
-        loginPassword(state, { password }) {
-            state.formLogin.password = password
+        email(state, { email }) {
+            state.formAuth.email = email
         },
 
-        registrationEmail(state, { email }) {
-            state.formRegistration.email = email
+        password(state, { password }) {
+            state.formAuth.password = password
         },
 
-        registrationPassword(state, { password }) {
-            state.formRegistration.password = password
-        },
-
-        formLoginClear(state) {
-            state.formLogin = {
+        clear(state) {
+            state.formAuth = {
                 email: "",
                 password: ""
             }
-        },
-
-        formRegistrationClear(state) {
-            state.formRegistration = {
-                email: "",
-                password: ""
-            }
-        },
+        }
     },
 
     actions: {
-        async authLogin({ commit, state }) {
+        async login({ commit, state }) {
             try {
-                const response = await axios.post("http://localhost:8000/api/v1/user/login", toRaw(state.formLogin));
+                const response = await axios.post("http://localhost:8000/api/v1/user/login", toRaw(state.formAuth));
                 localStorage.setItem('authToken', response.data.token);
-                // localStorage.setItem('role', response.data.role);
                 localStorage.setItem('role', "admin");
-                // localStorage.setItem('role', "user");
                 localStorage.setItem('theme', "light-theme");
-                commit('formLoginClear');
-
+                commit('clear');
             } catch (error) {
                 console.error('Ошибка при отправке запроса: ', error);
             }
         },
 
-        async authRegistration({ commit, state }){
+        async registration({ commit, state }) {
             try {
-                const response = await axios.post("http://localhost:8000/api/v1/user",  toRaw(state.formRegistration));
-                console.log(response)
+                const response = await axios.post("http://localhost:8000/api/v1/user",  toRaw(state.formAuth));
                 localStorage.setItem('authToken', response.data.token);
-                // localStorage.setItem('role', response.data.role);
                 localStorage.setItem('role', "admin");
-                // localStorage.setItem('role', "user");
                 localStorage.setItem('theme', "light-theme");
-                commit('formRegistrationClear');
+                commit('clear');
             } catch (error) {
                 console.error('Ошибка при отправке запроса: ', error);
             }
-        },
+        }
     },
+
     namespaced: true
 }

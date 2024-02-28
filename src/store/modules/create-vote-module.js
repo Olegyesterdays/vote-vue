@@ -29,11 +29,11 @@ export const createVoteModule = {
     },
 
     mutations: {
-        addTitle(state, {title}) {
+        addTitle(state, { title }) {
             state.title = title
         },
 
-        addDescription(state, {description}) {
+        addDescription(state, { description }) {
             state.description = description
         },
 

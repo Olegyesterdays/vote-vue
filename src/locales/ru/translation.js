@@ -1,82 +1,43 @@
 export default {
-    toggleLanguage: "Русский",
-    changeTheSubject: "Переключить тему",
-    accountPage: {
-        profile: {
-            createVoting: "Создать голосование",
-            settings: "Настройки",
-            exit: "Выход"
-        },
-        votingList: {
-            myVote: "Мои голосования",
-            new: "Новые",
-            passed: "Пройденные"
-        },
-        voteSearchPlaceholder: "Название голосования"
+    header: {
+        toggleLanguage: "English"
     },
-
     authPage: {
-        login: "Авторизоваться",
-        registration: "Зарегистрироваться",
-        form: {
-            login: {
-                email: "Электронная почта",
-                password: "Пароль"
+        authPanel: {
+            loginOrRegistration: {
+                login: "Авторизоваться",
+                registration: "Зарегистрироваться"
             },
-            registration: {
-                name: "Имя",
-                surname: "Фамилия",
-                email: "Электронная почта",
+            form: {
+                email: "Почта",
                 password: "Пароль"
             }
         },
-        button: {
+        buttonAuth: {
             login: "Войти",
-            registration: "Зарегистрировать",
+            registration: "Зарегистрировать"
         }
     },
-
-    createVotePage: {
-        createVote: {
-            addImg: "Добавить картинку",
-            title: "Название голосования",
-            description: "Описание",
-            search: "Кто участвует"
-        },
-        createQuestions: {
-            back: "Назад",
-            votingTemplate: {
-                question: "Вопрос",
-                typeAnswers: {
-                    oneAnswer: "Один ответ",
-                    severalAnswers: "Несколько ответов",
-                    userAnswer: "Ответ пользователя"
-                },
-                answer: "Ответ",
-                addAnswer: "Добавить ответ"
-            },
-            createQuestion: "Создать вопрос"
-        },
-        buttons: {
-            buttonCreate: "Создать",
-            buttonCreateAndPublish: "Создать и опубликовать"
-        }
+    accountPage: {
+        createVote: "Создать голосование",
+        settings: "Настройки",
+        listOfUsers: "Список пользователей",
+        exit: "Выход",
+        nameVote: "Название голосования",
+        myVotes: "Мои голосования",
+        new: "Новае",
+        passed: "Пройденые"
     },
-
-    settingsPage: {},
-
-    statisticsVotePage: {
-        statisticsMenu: {
-            back: "Назад",
+    statisticsPage: {
+        additionalInformation: {
             numberOfQuestions: "Количество вопросов",
-            creationDate: "Дата создания",
+            dateOfCreation: "Дата создания",
             numberOfParticipants: "Количество участников",
-            closeTheVote: "Завершить голосование",
-            deleteVote: "Удалить голосование"
+            endVoting: "Завершить голосование",
+            deleteVoting: "Удалить голосование"
         }
     },
-
-    votePage: {
-        sendAnswers: "Отправить"
-    }
-};
+    createVotePage: {},
+    settingsPage: {},
+    votePage: {}
+}

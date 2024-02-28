@@ -1,164 +1,204 @@
-import axios from "axios";
-
 export const accountModule = {
     state: {
-        voting: {
+        voteType: "MyVote",
+
+        vote: {
             myVote: [
                 {
-                    titleVote: "myVote",
+                    title: "title myVote 1",
                     date: "дд.мм.гггг",
-                    voteID: "123"
-                },                {
-                    titleVote: "myVote",
-                    date: "дд.мм.гггг",
-                    voteID: "123"
-                },                {
-                    titleVote: "myVote",
-                    date: "дд.мм.гггг",
-                    voteID: "123"
-                },                {
-                    titleVote: "myVote",
-                    date: "дд.мм.гггг",
-                    voteID: "123"
-                },                {
-                    titleVote: "myVote",
-                    date: "дд.мм.гггг",
-                    voteID: "123"
-                },                {
-                    titleVote: "myVote",
-                    date: "дд.мм.гггг",
-                    voteID: "123"
-                },                {
-                    titleVote: "myVote",
-                    date: "дд.мм.гггг",
-                    voteID: "123"
-                },                {
-                    titleVote: "myVote",
-                    date: "дд.мм.гггг",
-                    voteID: "123"
-                },                {
-                    titleVote: "myVote",
-                    date: "дд.мм.гггг",
-                    voteID: "123"
-                },                {
-                    titleVote: "myVote",
-                    date: "дд.мм.гггг",
-                    voteID: "123"
-                },                {
-                    titleVote: "myVote",
-                    date: "дд.мм.гггг",
-                    voteID: "123"
-                },                {
-                    titleVote: "myVote",
-                    date: "дд.мм.гггг",
-                    voteID: "123"
-                },                {
-                    titleVote: "myVote",
-                    date: "дд.мм.гггг",
-                    voteID: "123"
-                },                {
-                    titleVote: "myVote",
-                    date: "дд.мм.гггг",
-                    voteID: "123"
-                },                {
-                    titleVote: "myVote",
-                    date: "дд.мм.гггг",
-                    voteID: "123"
-                },                {
-                    titleVote: "myVote",
-                    date: "дд.мм.гггг",
-                    voteID: "123"
+                    voteID: ""
                 },
                 {
-                    titleVote: "AmyVote",
+                    title: "title myVote 2",
                     date: "дд.мм.гггг",
-                    voteID: "123"
+                    voteID: ""
                 },
                 {
-                    titleVote: "ABmyVote",
+                    title: "title myVote 1",
                     date: "дд.мм.гггг",
-                    voteID: "123"
+                    voteID: ""
                 },
                 {
-                    titleVote: "ABCmyVote",
+                    title: "title myVote 2",
                     date: "дд.мм.гггг",
-                    voteID: "123"
+                    voteID: ""
                 },
                 {
-                    titleVote: "myVoteABC",
+                    title: "title myVote 1",
                     date: "дд.мм.гггг",
-                    voteID: "123"
+                    voteID: ""
                 },
                 {
-                    titleVote: "myVoteABCD",
+                    title: "title myVo5te 2",
                     date: "дд.мм.гггг",
-                    voteID: "123"
+                    voteID: ""
                 },
+                {
+                    title: "title myVote 1",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title myVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title myVote 1",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title 65myVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title myVote 1",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title my4Vote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title myVote 1",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title myVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title myVote 1",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title myVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title myVote 1",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title myVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title myVote 1",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title myVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title myVgote 1",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title myVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title myVote 1",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title myVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title mgyVote 1",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "titlde myVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title myikrtuyVote 3",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                }
             ],
-            new: [
+
+            newVote: [
                 {
-                    titleVote: "new",
+                    title: "title newVote 1",
                     date: "дд.мм.гггг",
-                    voteID: "123"
+                    voteID: ""
                 },
                 {
-                    titleVote: "Anew",
+                    title: "title newVote 2",
                     date: "дд.мм.гггг",
-                    voteID: "123"
-                },
-                {
-                    titleVote: "nAew",
-                    date: "дд.мм.гггг",
-                    voteID: "123"
-                },
-                {
-                    titleVote: "nABew",
-                    date: "дд.мм.гггг",
-                    voteID: "123"
-                },
-                {
-                    titleVote: "ABnew",
-                    date: "дд.мм.гггг",
-                    voteID: "123"
-                },
-                {
-                    titleVote: "newCD",
-                    date: "дд.мм.гггг",
-                    voteID: "123"
-                },
-                {
-                    titleVote: "CD  new",
-                    date: "дд.мм.гггг",
-                    voteID: "123"
-                },
+                    voteID: ""
+                }
             ],
+
             passed: [
                 {
-                    titleVote: "passed",
+                    title: "title passed 1",
                     date: "дд.мм.гггг",
-                    voteID: "123"
+                    voteID: ""
                 }
             ]
         }
     },
 
     getters: {
-        getMyVote(state) {
-            return state.voting.myVote
+        getVoteType(state) {
+            return state.voteType
         },
 
-        getNew(state) {
-            return state.voting.new
+        getMyVote(state) {
+            return state.vote.myVote
+        },
+
+        getNewVote(state) {
+            return state.vote.newVote
         },
 
         getPassed(state) {
-            return state.voting.passed
+            return state.vote.passed
         }
     },
 
-    mutations: {},
+    mutations: {
+        voteTypeMyVote(state) {
+            state.voteType = "MyVote"
+        },
 
-    actions: {},
+        voteTypeNewVote(state) {
+            state.voteType = "NewVote"
+        },
+
+        voteTypePassed(state) {
+            state.voteType = "Passed"
+        }
+    },
+
+    actions: {
+
+    },
 
     namespaced: true
 }

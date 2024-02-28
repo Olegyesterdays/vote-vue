@@ -1,28 +1,29 @@
 <template>
-  <div class="background">
-    <div class="content">
-      <create-vote />
-      <create-questions />
-      <div class="buttons">
-        <button class="button add-question"
-          @click="store.commit('createVoteModule/newQuestion')"
-        >
-          Добавить вопрос
-        </button>
-        <button class="button create" @click="create">
-          {{ $t("createVotePage.buttons.buttonCreate")}}
-        </button>
-        <button class="button create-and-publish" @click="createAndPublish">
-          {{ $t("createVotePage.buttons.buttonCreateAndPublish")}}
-        </button>
-      </div>
+  <div class="container">
+    <CreatingATitleAndDescription />
+    <CreateQuestion />
+    <div class="buttons">
+      <button class="button add-question"
+              @click="store.commit('createVoteModule/newQuestion')"
+      >
+        Добавить вопрос
+      </button>
+      <button class="button create" @click="create">
+        Создать
+<!--        {{ $t("createVotePage.buttons.buttonCreate")}}-->
+      </button>
+      <button class="button create-and-publish" @click="createAndPublish">
+        Создатьи опубликовать
+<!--        {{ $t("createVotePage.buttons.buttonCreateAndPublish")}}-->
+      </button>
     </div>
   </div>
 </template>
 
 <script setup>
-import CreateVote from "@/components/create-vote.vue";
-import CreateQuestions from "@/components/create-questions.vue";
+import CreatingATitleAndDescription from "@/components/create-vote-page/creating-a-title-and-description.vue";
+import CreateQuestion from "@/components/create-vote-page/create-question.vue";
+
 import { useStore } from "vuex"
 import { useRouter } from 'vue-router'
 
@@ -40,31 +41,33 @@ function createAndPublish() {
 </script>
 
 <style scoped lang="scss">
-.background {
-  display: flex;
-  flex-direction: column;
+.container {
+  width: 900px;
+  margin: auto;
 
-  .content {
-    margin: auto;
-    width: 100%;
+  .buttons {
+    display: flex;
+    flex-direction: column;
 
-    .buttons {
-      display: flex;
-      flex-direction: column;
+    .button {
+      background: var(--neutral-light-theme);
+      margin-bottom: 8px;
+      box-shadow: 0 4px 6px var(--shadow-color);
+      padding: 12px;
+      border: 0;
+      border-radius: 12px;
 
-      .button {
-        background: var(--neutral-light-theme);
-        margin-bottom: 8px;
-        box-shadow: 0 4px 6px var(--shadow-color);
+      &:hover {
+        background: var(--accent-light-theme);
+        color: var(--white-light-theme);
       }
     }
   }
+}
 
-  @media screen and (min-width: 900px) {
-    /* Если экран имеет ширину 1024px или больше, применяем следующие стили */
-    .content {
-      width: 900px; /* Ширина контента будет 1024px на десктопах и больших экранах */
-    }
+@media screen and (max-width: 900px) {
+  .container {
+    width: 100%;
   }
 }
 </style>
