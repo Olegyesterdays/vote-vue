@@ -20,7 +20,7 @@ export default {
     },
     accountPage: {
         createVote: "Создать голосование",
-        settings: "Настройки",
+        profile: "Профиль",
         listOfUsers: "Список пользователей",
         exit: "Выход",
         nameVote: "Название голосования",
@@ -38,6 +38,5 @@ export default {
         }
     },
     createVotePage: {},
-    settingsPage: {},
     votePage: {}
 }

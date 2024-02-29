@@ -4,16 +4,18 @@
     --secondary-light-theme: #9DB0BB;
     --black-light-theme: #000000;
     --additional-light-theme: #0065E2;
-    --neutral-light-theme: #E6F0FD;
-    --white-light-theme: #FFFFFF;
+
+    --additional-color-light-theme: #E6F0FD;
+    --main-color-light-theme: #FFFFFF;
 
     /* Dark theme */
     --accent-dark-theme: #ED202E;
     --secondary-dark-theme: #9DB0BB;
     --black-dark-theme: #0C0C0C;
     --additional-dark-theme: #0065E2;
-    --neutral-dark-theme: #B3D1F7;
-    --white-dark-theme: #FFFFFF;
+
+    --additional-color-dark-theme: #B3D1F7;
+    --main-color-dark-theme: #FFFFFF;
 
     /* My color */
     --shadow-color: #00000019;

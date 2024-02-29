@@ -1,5 +1,8 @@
 <template>
-  <div class="container">
+  <div
+      class="container"
+      :class="theme === 'dark' ? 'dark-theme' : 'light-theme'"
+  >
     <div class="content">
       <div class="additional-information">
         <div class="item number-of-questions">
@@ -49,6 +52,7 @@ import { useRouter } from 'vue-router'
 const store = useStore()
 const router = useRouter()
 
+const theme = computed(() => store.getters["getCurrentTheme"])
 const numberOfQuestions = computed(() => store.getters['statisticsModule/getNumberOfQuestions'])
 const dateOfCreation = computed(() => store.getters['statisticsModule/getDateOfCreation'])
 const numberOfParticipants = computed(() => store.getters['statisticsModule/getNumberOfParticipants'])
@@ -67,8 +71,6 @@ async function deleteVoting() {
 .container {
   box-sizing: border-box;
   border-radius: 12px;
-  background: var(--white-light-theme);
-  border: 4px solid var(--neutral-light-theme);
   box-shadow: 0 4px 6px var(--shadow-color);
 
   .content {
@@ -92,16 +94,42 @@ async function deleteVoting() {
       padding: 12px;
       border-radius: 12px;
       border: 0;
-      background: var(--neutral-light-theme);
-
-      &:hover {
-        background: var(--accent-light-theme);
-        color: var(--white-light-theme);
-      }
     }
 
     .delete-vote {
       margin-bottom: 12px;
+    }
+  }
+}
+
+.dark-theme {
+  background: var(--main-color-dark-theme);
+  border: 4px solid var(--additional-color-dark-theme);
+
+  .content {
+    .button {
+      background: var(--additional-color-dark-theme);
+
+      &:hover {
+        background: var(--accent-dark-theme);
+        color: var(--main-color-dark-theme);
+      }
+    }
+  }
+}
+
+.light-theme {
+  background: var(--main-color-light-theme);
+  border: 4px solid var(--additional-color-light-theme);
+
+  .content {
+    .button {
+      background: var(--additional-color-light-theme);
+
+      &:hover {
+        background: var(--accent-light-theme);
+        color: var(--main-color-light-theme);
+      }
     }
   }
 }

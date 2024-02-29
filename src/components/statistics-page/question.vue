@@ -1,5 +1,8 @@
 <template>
-  <div class="container">
+  <div
+      class="container"
+      :class="theme === 'dark' ? 'dark-theme' : 'light-theme'"
+  >
     <h3 class="question">
       {{ question }}
     </h3>
@@ -21,7 +24,11 @@
 </template>
 
 <script setup>
-import {defineProps} from "vue";
+import {computed, defineProps} from "vue";
+import {useStore} from "vuex";
+
+const store = useStore()
+const theme = computed(() => store.getters["getCurrentTheme"])
 
 defineProps({
   question: {
@@ -39,13 +46,10 @@ defineProps({
 <style scoped lang="scss">
 .container {
   border-radius: 12px;
-  //background: var(--neutral-light-theme);
-  border: 4px solid var(--neutral-light-theme);
   box-shadow: 0 4px 6px var(--shadow-color);
   margin-top: 12px;
   display: flex;
   flex-direction: column;
-  background: var(--white-light-theme);
   width: auto;
 
   .question {
@@ -62,14 +66,6 @@ defineProps({
       &-title {
         display: flex;
         justify-content: space-between;
-
-        &-text {
-
-        }
-
-        &-percent {
-
-        }
       }
 
       .progress {
@@ -81,10 +77,6 @@ defineProps({
         border-radius: 10px;
         height: 10px;
 
-        &::-webkit-progress-bar {
-          background: var(--neutral-light-theme);
-        }
-
         &::-webkit-progress-bar,
         &::-webkit-progress-value, {
           border-radius: 10px;
@@ -93,13 +85,38 @@ defineProps({
         &::-moz-progress-bar {
           border-radius: 10px;
         }
-
-        &::-webkit-progress-value {
-          background-color: var(--accent-light-theme);
-        }
       }
     }
   }
+}
 
+.dark-theme {
+  border: 4px solid var(--additional-color-dark-theme);
+  background: var(--main-color-dark-theme);
+
+  .progress {
+    &::-webkit-progress-bar {
+      background: var(--additional-color-dark-theme);
+    }
+
+    &::-webkit-progress-value {
+      background-color: var(--accent-dark-theme);
+    }
+  }
+}
+
+.light-theme {
+  border: 4px solid var(--additional-color-light-theme);
+  background: var(--main-color-light-theme);
+
+  .progress {
+    &::-webkit-progress-bar {
+      background: var(--additional-color-light-theme);
+    }
+
+    &::-webkit-progress-value {
+      background-color: var(--accent-light-theme);
+    }
+  }
 }
 </style>

@@ -1,5 +1,8 @@
 <template>
-  <div class="oneAnswers">
+  <div
+      class="oneAnswers"
+      :class="theme === 'dark' ? 'dark-theme' : 'light-theme'"
+  >
     <h3 class="title">
       {{ titleQuestion }}
     </h3>
@@ -23,7 +26,11 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, ref } from "vue";
+import {defineProps, defineEmits, ref, computed} from "vue";
+import {useStore} from "vuex";
+
+const store = useStore()
+const theme = computed(() => store.getters["getCurrentTheme"])
 
 defineProps({
   titleQuestion: {
@@ -50,7 +57,6 @@ const handleSelection = (title) => {
 <style scoped lang="scss">
 .oneAnswers {
   box-sizing: border-box;
-  border: 4px solid var(--neutral-light-theme);
   box-shadow: 0 4px 6px var(--shadow-color);
   border-radius: 12px;
   padding: 8px;
@@ -64,7 +70,6 @@ const handleSelection = (title) => {
   }
 
   .answer {
-    background: var(--neutral-light-theme);
     margin-top: 8px;
     border-radius: 12px;
     padding: 16px;
@@ -84,7 +89,6 @@ const handleSelection = (title) => {
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        background: var(--additional-light-theme);
         position: absolute;
         top: 50%;
         left: 50%;
@@ -97,8 +101,43 @@ const handleSelection = (title) => {
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      border: 2px solid var(--secondary-light-theme);
       right: 16px;
+    }
+  }
+}
+
+.dark-theme {
+  border: 4px solid var(--additional-color-dark-theme);
+
+  .answer {
+    background: var(--additional-color-dark-theme);
+
+    .radio-button {
+      &:checked + .radio-style::before {
+        background: var(--additional-dark-theme);
+      }
+    }
+
+    .radio-style {
+      border: 2px solid var(--secondary-dark-theme);
+    }
+  }
+}
+
+.light-theme {
+  border: 4px solid var(--additional-color-light-theme);
+
+  .answer {
+    background: var(--additional-color-light-theme);
+
+    .radio-button {
+      &:checked + .radio-style::before {
+        background: var(--additional-light-theme);
+      }
+    }
+
+    .radio-style {
+      border: 2px solid var(--secondary-light-theme);
     }
   }
 }

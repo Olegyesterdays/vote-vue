@@ -1,6 +1,7 @@
 * {
     font-family: 'Montserrat', sans-serif;
     color: var(--black-light-theme);
+    transition: background-color  0.3s ease;
 
 
     &::-webkit-scrollbar {
@@ -22,14 +23,10 @@
 body {
     padding: 0;
     margin: 0;
-    background: var(--white-light-theme);
-
-    /*background: #2D2D2D;*/
 }
 
 button {
     cursor: pointer;
-    transition: background-color  0.3s ease;
 }
 
 input {

@@ -1,6 +1,10 @@
 <template>
-  <div class="container">
+  <div
+      class="container"
+      :class="theme === 'dark' ? 'dark-theme' : 'light-theme'"
+  >
     <VoteContent />
+
     <div class="questions">
       <div
           class="question"
@@ -22,10 +26,13 @@
         />
       </div>
     </div>
+
     <button
         @click="sendAnswers"
         class="sendAnswers"
-    >Отправить</button>
+    >
+      Отправить
+    </button>
   </div>
 </template>
 
@@ -37,6 +44,7 @@ import { computed, ref, toRaw } from "vue";
 import { useStore } from "vuex";
 
 const store = useStore();
+const theme = computed(() => store.getters["getCurrentTheme"])
 const questions = computed(() => store.getters["voteModule/getQuestions"]);
 const oneAnswer = ref([]);
 const severalAnswers = ref([]);
@@ -76,15 +84,31 @@ function sendAnswers() {
   .sendAnswers {
     width: 900px;
     padding: 12px;
-    background: var(--neutral-light-theme);
     box-shadow: 0 4px 6px var(--shadow-color);
     border: 0;
     border-radius: 12px;
     margin: 0 auto 40px;
+  }
+}
+
+.dark-theme {
+  .sendAnswers {
+    background: var(--additional-color-dark-theme);
+
+    &:hover {
+      background: var(--accent-dark-theme);
+      color: var(--main-color-dark-theme);
+    }
+  }
+}
+
+.light-theme {
+  .sendAnswers {
+    background: var(--additional-color-light-theme);
 
     &:hover {
       background: var(--accent-light-theme);
-      color: var(--white-light-theme);
+      color: var(--main-color-light-theme);
     }
   }
 }

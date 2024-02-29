@@ -1,5 +1,8 @@
 <template>
-  <div class="vote-panel">
+  <div
+      class="vote-panel"
+      :class="theme === 'dark' ? 'dark-theme' : 'light-theme'"
+  >
     <div class="vote-type">
       <button
           class="button my-vote"
@@ -11,7 +14,10 @@
 
       <button
           class="button new-vote"
-          :class="voteType === 'NewVote' ? 'button__active' : ''"
+          :class="[
+              theme === 'dark' ? 'dark-theme' : 'light-theme',
+              voteType === 'NewVote' ? 'button__active' : ''
+          ]"
           @click="newVote"
       >
         {{ $t("accountPage.new") }}
@@ -19,7 +25,10 @@
 
       <button
           class="button passed"
-          :class="voteType === 'Passed' ? 'button__active' : ''"
+          :class="[
+              theme === 'dark' ? 'dark-theme' : 'light-theme',
+              voteType === 'Passed' ? 'button__active' : ''
+          ]"
           @click="passed"
       >
         {{ $t("accountPage.passed") }}
@@ -53,8 +62,9 @@ import {computed, ref} from "vue"
 import {useStore} from "vuex"
 
 const store = useStore()
+const theme = computed(() => store.getters["getCurrentTheme"])
 const voteType = computed(() => store.getters["accountModule/getVoteType"]);
-const voting = computed(() => store.getters[`accountModule/get${voteType.value}`] || []); // Ensure voting is initialized as an array
+const voting = computed(() => store.getters[`accountModule/get${voteType.value}`] || []);
 const searchText = ref('')
 
 const filteredVoting = computed(() => {
@@ -87,15 +97,9 @@ function passed() {
     margin: 0 12px 8px;
 
     .button {
-      background: var(--neutral-light-theme);
       border: 0;
-      border-bottom: 4px solid var(--neutral-light-theme);
       padding: 12px;
       width: 100%;
-
-      &__active {
-        border-bottom: 4px solid var(--accent-light-theme);
-      }
     }
   }
 
@@ -126,19 +130,57 @@ function passed() {
       }
     }
   }
+}
 
-  @media screen and (max-width: 375px) {
-    .vote-type {
-      display: flex;
-      flex-direction: column;
+.dark-theme {
+  .vote-type {
+    .button {
+      background: var(--additional-color-dark-theme);
+      margin-bottom: 4px;
 
+      &__active {
+        margin-bottom: 0;
+        border-bottom: 4px solid var(--accent-dark-theme);
+      }
     }
+  }
+
+  .input {
+    background: var(--main-color-dark-theme);
+  }
+}
+
+.light-theme {
+  .vote-type {
+    .button {
+      background: var(--additional-color-light-theme);
+      margin-bottom: 4px;
+
+      &__active {
+        margin-bottom: 0;
+        border-bottom: 4px solid var(--accent-light-theme);
+      }
+    }
+  }
+
+  .input {
+    background: var(--main-color-light-theme);
   }
 }
 
 @media screen and (max-width: 900px) {
   .vote-panel {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .vote-panel {
+    .vote-type {
+      display: flex;
+      flex-direction: column;
+
+    }
   }
 }
 </style>

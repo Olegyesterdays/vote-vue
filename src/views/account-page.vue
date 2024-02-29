@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" :class="theme === 'dark' ? 'dark-theme' : 'light-theme'">
     <Menu class="menu" />
     <VoteList class="vote-list" />
   </div>
@@ -8,6 +8,11 @@
 <script setup>
 import Menu from "@/components/account-page/menu.vue";
 import VoteList from "@/components/account-page/vote-list.vue";
+import { useStore } from 'vuex';
+import { computed } from "vue";
+
+const store = useStore();
+const theme = computed(() => store.getters["getCurrentTheme"])
 </script>
 
 <style scoped lang="scss">
@@ -17,7 +22,6 @@ import VoteList from "@/components/account-page/vote-list.vue";
   border-radius: 12px;
   display: flex;
   flex-direction: column;
-  background: var(--neutral-light-theme);
 
   .menu {
     width: auto;
@@ -26,6 +30,15 @@ import VoteList from "@/components/account-page/vote-list.vue";
   .vote-list {
     width: auto;
   }
+
+}
+
+.dark-theme {
+  background: var(--additional-color-dark-theme);
+}
+
+.light-theme {
+  background: var(--additional-color-light-theme);
 }
 
 @media screen and (max-width: 900px) {

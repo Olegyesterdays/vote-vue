@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="header" :class="theme === 'dark' ? 'dark-theme' : 'light-theme'">
     <button
         v-if="showBackButton"
         class="button back"
@@ -22,24 +22,29 @@
           class="button theme"
           @click="switchingTheTheme"
       >
-        <svg-icon type="mdi" :path="mdiBrightness6" />
+        <svg-icon type="mdi" :path="theme === 'dark' ? mdiBrightness7 : mdiBrightness5" />
       </button>
     </div>
   </div>
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router'
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 import { useI18n } from "vue-i18n";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import SvgIcon from '@jamescoyle/vue-icon';
 import {
   mdiArrowLeft,
-  mdiBrightness6
+  mdiBrightness5,
+  mdiBrightness7
 } from '@mdi/js';
 
 const router = useRouter()
+const store = useStore()
+
 const { locale } = useI18n();
+const theme = computed(() => store.getters["getCurrentTheme"])
 
 function back() {
   router.push('/account')
@@ -57,7 +62,7 @@ function toggleLanguage() {
 }
 
 function switchingTheTheme() {
-
+  store.dispatch('toggleTheme');
 }
 </script>
 
@@ -65,7 +70,8 @@ function switchingTheTheme() {
 .header {
   z-index: 100;
   width: 900px;
-  border-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 12px;
   position: fixed;
   top: 0;
   left: 50%;
@@ -73,7 +79,6 @@ function switchingTheTheme() {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--neutral-light-theme);
   box-shadow: 0 4px 6px var(--shadow-color);
 
   .button {
@@ -82,15 +87,9 @@ function switchingTheTheme() {
     height: 40px;
     margin: 12px;
     border-radius: 12px;
-    background: var(--white-light-theme);
     display: flex;
     align-items: center;
     justify-content: center;
-
-    &:hover {
-      background: var(--accent-dark-theme);
-      color: var(--white-light-theme);
-    }
   }
 
   .language-and-theme {
@@ -105,6 +104,32 @@ function switchingTheTheme() {
 
     .theme {
       margin-left: 0;
+    }
+  }
+}
+
+.dark-theme {
+  background: var(--additional-color-dark-theme) !important;
+
+  .button {
+    background: var(--main-color-dark-theme);
+
+    &:hover {
+      background: var(--accent-dark-theme);
+      color: var(--main-color-dark-theme);
+    }
+  }
+}
+
+.light-theme {
+  background: var(--additional-color-light-theme) !important;
+
+  .button {
+    background: var(--main-color-light-theme);
+
+    &:hover {
+      background: var(--accent-light-theme);
+      color: var(--main-color-light-theme);
     }
   }
 }

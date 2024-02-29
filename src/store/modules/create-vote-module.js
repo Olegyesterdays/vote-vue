@@ -95,7 +95,7 @@ export const createVoteModule = {
     },
 
     actions: {
-        createVote({commit, state}) {
+        createVote({ commit, state }) {
             axios.post("http://localhost:8000/api/v1/quiz", {
                 quiz: {
                     title: state.title,
@@ -104,16 +104,16 @@ export const createVoteModule = {
                 }
             }, {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem('authToken')}`
+                    Authorization: `Bearer ${ localStorage.getItem('authToken') }`
                 }
-            }).then((resp) => {
+            }).then((response) => {
                 commit("clear")
-            }).catch((e) => {
-                console.log(e)
+            }).catch((error) => {
+                console.log(error)
             })
         },
 
-        createAndPublishVote({commit, state}) {
+        createAndPublishVote({ commit, state }) {
             axios.post("http://localhost:8000/api/v1/quiz", {
                 quiz: {
                     title: state.title,
@@ -122,12 +122,12 @@ export const createVoteModule = {
                 }
             }, {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem('authToken')}`
+                    Authorization: `Bearer ${ localStorage.getItem('authToken') }`
                 }
-            }).then((resp) => {
+            }).then((response) => {
                 commit("clear")
-            }).catch((e) => {
-                console.log(e)
+            }).catch((error) => {
+                console.log(error)
             })
         }
     },

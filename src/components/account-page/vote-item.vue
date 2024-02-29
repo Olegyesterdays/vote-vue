@@ -1,5 +1,9 @@
 <template>
-  <button class="button item vote" @click="clickItem">
+  <button
+      class="button item vote"
+      :class="theme === 'dark' ? 'dark-theme' : 'light-theme'"
+      @click="clickItem"
+  >
     <span class="title">{{ title }}</span>
     <span
         v-if="voteType !== 'MyVote'"
@@ -11,6 +15,7 @@
     <button
         v-if="voteType === 'MyVote'"
         class="button additionalInformation"
+        :class="theme === 'dark' ? 'dark-theme' : 'light-theme'"
         @click.stop="additionalInformation"
     >
       <svg-icon type="mdi" :path="mdiDotsVertical" />
@@ -25,9 +30,10 @@ import { defineProps, computed } from "vue";
 import { useStore } from "vuex"
 import { useRouter } from "vue-router";
 
-const store = useStore()
+const store = useStore();
 const router = useRouter();
 const voteType = computed(() => store.getters["accountModule/getVoteType"]);
+const theme = computed(() => store.getters["getCurrentTheme"]);
 
 const props = defineProps({
   title: {
@@ -68,7 +74,6 @@ function additionalInformation() {
   align-items: center;
   justify-content: space-between;
   box-shadow: 0 4px 6px var(--shadow-color);
-  background: var(--white-light-theme);
   border: 0;
   border-radius: 12px;
   padding: 0;
@@ -86,11 +91,6 @@ function additionalInformation() {
     width: 36px;
     height: 36px;
     border: 0;
-    background: var(--white-light-theme);
-
-    &:hover {
-      background: var(--neutral-light-theme);
-    }
   }
 
   .date {
@@ -99,6 +99,30 @@ function additionalInformation() {
     align-items: center;
     justify-content: center;
     height: 36px;
+  }
+}
+
+.dark-theme {
+  background: var(--main-color-dark-theme);
+
+  .additionalInformation {
+    background: var(--main-color-dark-theme);
+
+    &:hover {
+      background: var(--additional-color-dark-theme);
+    }
+  }
+}
+
+.light-theme {
+  background: var(--main-color-light-theme);
+
+  .additionalInformation {
+    background: var(--main-color-light-theme);
+
+    &:hover {
+      background: var(--additional-color-light-theme);
+    }
   }
 }
 </style>

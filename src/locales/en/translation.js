@@ -20,7 +20,7 @@ export default {
     },
     accountPage: {
         createVote: "Create vote",
-        settings: "Settings",
+        profile: "Profile",
         listOfUsers: "List of users",
         exit: "Exit",
         nameVote: "The name of the vote",
@@ -38,6 +38,5 @@ export default {
         }
     },
     createVotePage: {},
-    settingsPage: {},
     votePage: {}
 }

@@ -1,5 +1,8 @@
 <template>
-  <div class="container">
+  <div
+      class="container"
+      :class="theme === 'dark' ? 'dark-theme' : 'light-theme'"
+  >
     <img class="voting-img" :src="ava" alt="Картинка голосования"/>
 
     <div class="content">
@@ -23,13 +26,13 @@ import ava from "@/assets/ava.jpg"
 
 const store = useStore();
 
+const theme = computed(() => store.getters["getCurrentTheme"])
 const title = computed(() => store.getters['statisticsModule/getTitle'])
 const description = computed(() => store.getters['statisticsModule/getDescription'])
 </script>
 
 <style scoped lang="scss">
 .container {
-  border: 4px solid var(--neutral-light-theme);
   box-shadow: 0 4px 6px var(--shadow-color);
   border-radius: 12px;
   margin-top: 8px;
@@ -55,5 +58,13 @@ const description = computed(() => store.getters['statisticsModule/getDescriptio
       margin: 12px auto;
     }
   }
+}
+
+.dark-theme {
+  border: 4px solid var(--additional-color-dark-theme);
+}
+
+.light-theme {
+  border: 4px solid var(--additional-color-light-theme);
 }
 </style>
