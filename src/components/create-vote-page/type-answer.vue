@@ -1,8 +1,5 @@
 <template>
-  <div
-      class="type-answer"
-      :class="theme === 'dark' ? 'dark-theme' : 'light-theme'"
-  >
+  <div class="type-answer">
     <div class="one-answer">
       <label>
         <input
@@ -40,7 +37,6 @@ import {useStore} from "vuex";
 const store = useStore()
 const emit = defineEmits();
 const oneItems = ref([]);
-const theme = computed(() => store.getters["getCurrentTheme"])
 
 function oneAnswer() {
   emit('update:oneAnswer', "one answer");
@@ -80,6 +76,7 @@ function severalAnswers() {
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
+          background: var(--additional-color);
         }
       }
 
@@ -89,38 +86,7 @@ function severalAnswers() {
         height: 12px;
         border-radius: 50%;
         margin-left: -24px;
-      }
-    }
-  }
-}
-
-.dark-theme {
-  .one-answer, .several-answers {
-    label {
-      .radio-button {
-        &:checked + .radio-style::before {
-          background: var(--additional-dark-theme);
-        }
-      }
-
-      .radio-style {
-        border: 2px solid var(--secondary-dark-theme);
-      }
-    }
-  }
-}
-
-.light-theme {
-  .one-answer, .several-answers {
-    label {
-      .radio-button {
-        &:checked + .radio-style::before {
-          background: var(--additional-light-theme);
-        }
-      }
-
-      .radio-style {
-        border: 2px solid var(--secondary-light-theme);
+        border: 2px solid var(--secondary-color);
       }
     }
   }

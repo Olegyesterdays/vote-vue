@@ -1,8 +1,5 @@
 <template>
-  <div
-      class="container"
-      :class="theme === 'dark' ? 'dark-theme' : 'light-theme'"
-  >
+  <div class="container">
     <div class="auth-panel">
       <LoginOrRegistration />
       <Form />
@@ -25,7 +22,6 @@ import { useStore } from "vuex";
 const store = useStore();
 const router = useRouter();
 
-const theme = computed(() => store.getters["getCurrentTheme"])
 const loginOrRegistration = computed(() => store.getters["authModule/getLoginOrRegistration"]);
 
 async function auth() {
@@ -45,6 +41,7 @@ async function auth() {
     display: flex;
     flex-direction: column;
     border-radius: 12px;
+    background: var(--neutral-color);
   }
 
   .button-auth {
@@ -53,35 +50,11 @@ async function auth() {
     margin-top: 8px;
     border: 0;
     width: 100%;
-  }
-}
-
-.dark-theme {
-  .auth-panel {
-    background: var(--additional-color-dark-theme);
-  }
-
-  .button-auth {
-    background: var(--additional-color-dark-theme);
+    background: var(--neutral-color);
 
     &:hover {
-      background: var(--accent-dark-theme);
-      color: var(--main-color-dark-theme);
-    }
-  }
-}
-
-.light-theme {
-  .auth-panel {
-    background: var(--additional-color-light-theme);
-  }
-
-  .button-auth {
-    background: var(--additional-color-light-theme);
-
-    &:hover {
-      background: var(--accent-light-theme);
-      color: var(--main-color-light-theme);
+      background: var(--accent-color);
+      color: var(--main-color);
     }
   }
 }

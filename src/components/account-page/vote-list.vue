@@ -1,8 +1,5 @@
 <template>
-  <div
-      class="vote-panel"
-      :class="theme === 'dark' ? 'dark-theme' : 'light-theme'"
-  >
+  <div class="vote-panel">
     <div class="vote-type">
       <button
           class="button my-vote"
@@ -14,10 +11,7 @@
 
       <button
           class="button new-vote"
-          :class="[
-              theme === 'dark' ? 'dark-theme' : 'light-theme',
-              voteType === 'NewVote' ? 'button__active' : ''
-          ]"
+          :class="voteType === 'NewVote' ? 'button__active' : ''"
           @click="newVote"
       >
         {{ $t("accountPage.new") }}
@@ -25,10 +19,7 @@
 
       <button
           class="button passed"
-          :class="[
-              theme === 'dark' ? 'dark-theme' : 'light-theme',
-              voteType === 'Passed' ? 'button__active' : ''
-          ]"
+          :class="voteType === 'Passed' ? 'button__active' : ''"
           @click="passed"
       >
         {{ $t("accountPage.passed") }}
@@ -62,7 +53,6 @@ import {computed, ref} from "vue"
 import {useStore} from "vuex"
 
 const store = useStore()
-const theme = computed(() => store.getters["getCurrentTheme"])
 const voteType = computed(() => store.getters["accountModule/getVoteType"]);
 const voting = computed(() => store.getters[`accountModule/get${voteType.value}`] || []);
 const searchText = ref('')
@@ -100,6 +90,13 @@ function passed() {
       border: 0;
       padding: 12px;
       width: 100%;
+      background: var(--neutral-color);
+      margin-bottom: 4px;
+
+      &__active {
+        margin-bottom: 0;
+        border-bottom: 4px solid var(--accent-color);
+      }
     }
   }
 
@@ -110,6 +107,7 @@ function passed() {
     border-radius: 12px;
     padding: 16px;
     box-shadow: 0 4px 6px var(--shadow-color);
+    background: var(--main-color);
   }
 
   .vote-list {
@@ -129,42 +127,6 @@ function passed() {
         margin: 0;
       }
     }
-  }
-}
-
-.dark-theme {
-  .vote-type {
-    .button {
-      background: var(--additional-color-dark-theme);
-      margin-bottom: 4px;
-
-      &__active {
-        margin-bottom: 0;
-        border-bottom: 4px solid var(--accent-dark-theme);
-      }
-    }
-  }
-
-  .input {
-    background: var(--main-color-dark-theme);
-  }
-}
-
-.light-theme {
-  .vote-type {
-    .button {
-      background: var(--additional-color-light-theme);
-      margin-bottom: 4px;
-
-      &__active {
-        margin-bottom: 0;
-        border-bottom: 4px solid var(--accent-light-theme);
-      }
-    }
-  }
-
-  .input {
-    background: var(--main-color-light-theme);
   }
 }
 

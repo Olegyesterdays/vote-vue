@@ -1,8 +1,5 @@
 <template>
-  <div
-      class="container"
-      :class="theme === 'dark' ? 'dark-theme' : 'light-theme'"
-  >
+  <div class="container">
     <div class="question" v-for="(question, indexQuestion) in questions" :key="indexQuestion">
       <div class="title-question">
         <div class="title">
@@ -70,7 +67,6 @@ import TypeAnswer from "@/components/create-vote-page/type-answer.vue"
 
 const store = useStore()
 
-const theme = computed(() => store.getters["getCurrentTheme"])
 const questions = computed(() => store.getters["createVoteModule/getQuestions"])
 
 function typeQuestion(type, indexQuestion) {
@@ -108,6 +104,8 @@ function deleteQuestion(indexQuestion) {
     border-radius: 20px;
     margin: 8px 0;
     box-shadow: 0 4px 6px var(--shadow-color);
+    border: 4px solid var(--neutral-color);
+    background: var(--main-color);
 
     .title-question {
       display: flex;
@@ -124,6 +122,7 @@ function deleteQuestion(indexQuestion) {
           padding: 12px;
           border-radius: 12px;
           border: 0;
+          background: var(--neutral-color);
         }
 
         .delete {
@@ -135,6 +134,11 @@ function deleteQuestion(indexQuestion) {
           align-items: center;
           justify-content: center;
           padding: 0;
+          background: var(--neutral-color);
+
+          &:hover {
+            background: var(--accent-color);
+          }
 
           .mdi {
             padding: 8px;
@@ -162,6 +166,7 @@ function deleteQuestion(indexQuestion) {
               border-radius: 12px;
               border: 0;
               width: 100%;
+              background: var(--neutral-color);
             }
 
             .delete {
@@ -173,6 +178,11 @@ function deleteQuestion(indexQuestion) {
               align-items: center;
               justify-content: center;
               padding: 0;
+              background: var(--neutral-color);
+
+              &:hover {
+                background: var(--accent-color);
+              }
 
               .mdi {
                 padding: 8px;
@@ -186,109 +196,11 @@ function deleteQuestion(indexQuestion) {
           padding: 12px;
           border-radius: 12px;
           border: 0;
-        }
-      }
-    }
-  }
-}
-
-.dark-theme {
-  .question {
-    border: 4px solid var(--additional-color-dark-theme);
-    background: var(--main-color-dark-theme);
-
-    .title-question {
-      .title {
-        .input-question {
-          background: var(--additional-color-dark-theme);
-        }
-
-        .delete {
-          background: var(--additional-color-dark-theme);
+          background: var(--neutral-color);
 
           &:hover {
-            background: var(--accent-dark-theme);
-          }
-        }
-      }
-    }
-
-    .content-question {
-      .answers {
-        .answer {
-          .input {
-            input {
-              background: var(--additional-color-dark-theme);
-            }
-
-            .delete {
-              background: var(--additional-color-dark-theme);
-
-              &:hover {
-                background: var(--accent-dark-theme);
-              }
-            }
-          }
-        }
-
-        .button {
-          background: var(--additional-color-dark-theme);
-
-          &:hover {
-            background: var(--accent-dark-theme);
-            color: var(--main-color-dark-theme);
-          }
-        }
-      }
-    }
-  }
-}
-
-.light-theme {
-  .question {
-    border: 4px solid var(--additional-color-light-theme);
-    background: var(--main-color-light-theme);
-
-    .title-question {
-      .title {
-        .input-question {
-          background: var(--additional-color-light-theme);
-        }
-
-        .delete {
-          background: var(--additional-color-light-theme);
-
-          &:hover {
-            background: var(--accent-light-theme);
-          }
-        }
-      }
-    }
-
-    .content-question {
-      .answers {
-        .answer {
-          .input {
-            input {
-              background: var(--additional-color-light-theme);
-            }
-
-            .delete {
-              background: var(--additional-color-light-theme);
-
-              &:hover {
-                background: var(--accent-light-theme);
-              }
-            }
-          }
-        }
-
-        .button {
-          background: var(--additional-color-light-theme);
-
-          &:hover {
-            background: var(--accent-light-theme);
-            color: var(--main-color-light-theme);
+            background: var(--accent-color);
+            color: var(--main-color);
           }
         }
       }

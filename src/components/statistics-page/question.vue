@@ -1,8 +1,5 @@
 <template>
-  <div
-      class="container"
-      :class="theme === 'dark' ? 'dark-theme' : 'light-theme'"
-  >
+  <div class="container">
     <h3 class="question">
       {{ question }}
     </h3>
@@ -24,11 +21,7 @@
 </template>
 
 <script setup>
-import {computed, defineProps} from "vue";
-import {useStore} from "vuex";
-
-const store = useStore()
-const theme = computed(() => store.getters["getCurrentTheme"])
+import { defineProps } from "vue";
 
 defineProps({
   question: {
@@ -46,11 +39,13 @@ defineProps({
 <style scoped lang="scss">
 .container {
   border-radius: 12px;
-  box-shadow: 0 4px 6px var(--shadow-color);
   margin-top: 12px;
   display: flex;
   flex-direction: column;
   width: auto;
+  box-shadow: 0 4px 6px var(--shadow-color);
+  border: 4px solid var(--neutral-color);
+  background: var(--main-color);
 
   .question {
     margin: 12px auto 6px;
@@ -77,6 +72,14 @@ defineProps({
         border-radius: 10px;
         height: 10px;
 
+        &::-webkit-progress-bar {
+          background: var(--neutral-color);
+        }
+
+        &::-webkit-progress-value {
+          background-color: var(--accent-color);
+        }
+
         &::-webkit-progress-bar,
         &::-webkit-progress-value, {
           border-radius: 10px;
@@ -86,36 +89,6 @@ defineProps({
           border-radius: 10px;
         }
       }
-    }
-  }
-}
-
-.dark-theme {
-  border: 4px solid var(--additional-color-dark-theme);
-  background: var(--main-color-dark-theme);
-
-  .progress {
-    &::-webkit-progress-bar {
-      background: var(--additional-color-dark-theme);
-    }
-
-    &::-webkit-progress-value {
-      background-color: var(--accent-dark-theme);
-    }
-  }
-}
-
-.light-theme {
-  border: 4px solid var(--additional-color-light-theme);
-  background: var(--main-color-light-theme);
-
-  .progress {
-    &::-webkit-progress-bar {
-      background: var(--additional-color-light-theme);
-    }
-
-    &::-webkit-progress-value {
-      background-color: var(--accent-light-theme);
     }
   }
 }

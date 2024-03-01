@@ -1,8 +1,5 @@
 <template>
-  <div
-      class="container"
-      :class="theme === 'dark' ? 'dark-theme' : 'light-theme'"
-  >
+  <div class="container">
     <CreatingATitleAndDescription />
     <CreateQuestion />
     <div class="buttons">
@@ -25,11 +22,9 @@ import CreateQuestion from "@/components/create-vote-page/create-question.vue";
 
 import { useStore } from "vuex";
 import { useRouter } from 'vue-router';
-import {computed} from "vue";
 
 const router = useRouter();
 const store = useStore();
-const theme = computed(() => store.getters["getCurrentTheme"])
 
 function create() {
   store.dispatch("createVoteModule/createVote");
@@ -53,35 +48,15 @@ function createAndPublish() {
 
     .button {
       margin-bottom: 8px;
-      box-shadow: 0 4px 6px var(--shadow-color);
       padding: 12px;
       border: 0;
       border-radius: 12px;
-    }
-  }
-}
-
-.dark-theme {
-  .buttons {
-    .button {
-      background: var(--additional-color-dark-theme);
+      box-shadow: 0 4px 6px var(--shadow-color);
+      background: var(--neutral-color);
 
       &:hover {
-        background: var(--accent-dark-theme);
-        color: var(--main-color-dark-theme);
-      }
-    }
-  }
-}
-
-.light-theme {
-  .buttons {
-    .button {
-      background: var(--additional-color-light-theme);
-
-      &:hover {
-        background: var(--accent-light-theme);
-        color: var(--main-color-light-theme);
+        background: var(--accent-color);
+        color: var(--main-color);
       }
     }
   }

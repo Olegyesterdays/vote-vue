@@ -1,8 +1,5 @@
 <template>
-  <div
-      class="login-or-registration"
-      :class="theme === 'dark' ? 'dark-theme' : 'light-theme'"
-  >
+  <div class="login-or-registration">
     <button
         class="button"
         :class="loginOrRegistration === 'login' ? 'button__active' : ''"
@@ -26,8 +23,6 @@ import { computed } from "vue";
 import { useStore } from "vuex";
 
 const store = useStore();
-
-const theme = computed(() => store.getters["getCurrentTheme"])
 const loginOrRegistration = computed(() => store.getters["authModule/getLoginOrRegistration"]);
 
 function change() {
@@ -45,25 +40,10 @@ function change() {
     width: 50%;
     padding: 12px;
     border: 0;
-  }
-}
-
-.dark-theme {
-  .button {
-    background: var(--additional-color-dark-theme);
+    background: var(--neutral-color);
 
     &__active {
-      border-bottom: 4px solid var(--accent-dark-theme);
-    }
-  }
-}
-
-.light-theme {
-  .button {
-    background: var(--additional-color-light-theme);
-
-    &__active {
-      border-bottom: 4px solid var(--accent-light-theme);
+      border-bottom: 4px solid var(--accent-color);
     }
   }
 }

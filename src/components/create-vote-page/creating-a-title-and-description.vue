@@ -1,8 +1,5 @@
 <template>
-  <div
-      class="container"
-      :class="theme === 'dark' ? 'dark-theme' : 'light-theme'"
-  >
+  <div class="container">
     <img
         class="img"
         :src="ava"
@@ -46,11 +43,9 @@
 <script setup>
 import ava from "@/assets/ava.jpg";
 import { useStore } from "vuex";
-import {computed} from "vue";
 
 const store = useStore()
 
-const theme = computed(() => store.getters["getCurrentTheme"])
 function addPicture() {
 
 }
@@ -78,6 +73,8 @@ function addParticipants() {
   border-radius: 12px;
   overflow: hidden;
   box-sizing: border-box;
+  background: var(--main-color);
+  border: 4px solid var(--neutral-color);
 
   .img {
     margin: 0 auto;
@@ -90,6 +87,12 @@ function addParticipants() {
     padding: 12px;
     border-radius: 12px;
     border: 0;
+    background: var(--neutral-color);
+
+    &:hover {
+      background: var(--accent-color);
+      color: var(--main-color);
+    }
   }
 
   .title-vote, .description-vote {
@@ -105,6 +108,7 @@ function addParticipants() {
       padding: 12px;
       border-radius: 12px;
       border: 0;
+      background: var(--neutral-color);
     }
   }
 
@@ -113,42 +117,6 @@ function addParticipants() {
     padding: 12px;
     border-radius: 12px;
     border: 0;
-  }
-}
-
-.dark-theme {
-  background: var(--main-color-dark-theme);
-  border: 4px solid var(--additional-color-dark-theme);
-
-  .button {
-    background: var(--additional-color-dark-theme);
-
-    &:hover {
-      background: var(--accent-dark-theme);
-      color: var(--main-color-dark-theme);
-    }
-  }
-
-  .input {
-    background: var(--additional-color-dark-theme);
-  }
-}
-
-.light-theme {
-  background: var(--main-color-light-theme);
-  border: 4px solid var(--additional-color-light-theme);
-
-  .button {
-    background: var(--additional-color-light-theme);
-
-    &:hover {
-      background: var(--accent-light-theme);
-      color: var(--main-color-light-theme);
-    }
-  }
-
-  .input {
-    background: var(--additional-color-light-theme);
   }
 }
 

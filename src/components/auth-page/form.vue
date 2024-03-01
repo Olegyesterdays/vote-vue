@@ -1,23 +1,24 @@
 <template>
-  <div
-      class="form"
-      :class="theme === 'dark' ? 'dark-theme' : 'light-theme'"
-  >
-    <input
-        v-model="email"
-        class="input email"
-        type="email"
-        :placeholder="$t('authPage.authPanel.form.email')"
-        @input="emailRecording($event.target.value)"
-    >
+  <div class="form">
+    <label class="input-block">
+      <span>{{ $t('authPage.authPanel.form.email') }}</span>
+      <input
+          v-model="email"
+          class="input email"
+          type="email"
+          @input="emailRecording($event.target.value)"
+      >
+    </label>
 
-    <input
-        v-model="password"
-        class="input password"
-        type="password"
-        :placeholder="$t('authPage.authPanel.form.password')"
-        @input="passwordRecording($event.target.value)"
-    >
+    <label class="input-block">
+      <span>{{ $t('authPage.authPanel.form.password') }}</span>
+      <input
+          v-model="password"
+          class="input password"
+          type="password"
+          @input="passwordRecording($event.target.value)"
+      >
+    </label>
   </div>
 </template>
 
@@ -27,7 +28,6 @@ import {computed} from "vue";
 import {useStore} from "vuex";
 
 const store = useStore();
-const theme = computed(() => store.getters["getCurrentTheme"])
 const email = computed(() => store.getters["authModule/getEmail"]);
 const password = computed(() => store.getters["authModule/getPassword"]);
 
@@ -46,29 +46,20 @@ function passwordRecording(password) {
   display: flex;
   flex-direction: column;
 
-  .input {
-    margin-top: 8px;
+  .input-block {
     display: flex;
     flex-direction: column;
-    padding: 12px;
-    border-radius: 12px;
-    border: 0;
-    width: auto;
-  }
-}
+    margin-top: 8px;
 
-.dark-theme {
-  .input {
-    input {
-      background: var(--main-color-dark-theme);
-    }
-  }
-}
-
-.light-theme {
-  .input {
-    input {
-      background: var(--main-color-light-theme);
+    .input {
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      padding: 12px;
+      border-radius: 12px;
+      border: 0;
+      width: auto;
+      background: var(--main-color);
     }
   }
 }

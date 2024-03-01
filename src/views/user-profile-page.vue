@@ -1,8 +1,5 @@
 <template>
-  <div
-      class="container"
-      :class="theme === 'dark' ? 'dark-theme' : 'light-theme'"
-  >
+  <div class="container">
     <input
         class="input name"
         type="text"
@@ -67,7 +64,6 @@ import {computed} from "vue";
 const store = useStore();
 
 const role = localStorage.getItem('role');
-const theme = computed(() => store.getters["getCurrentTheme"])
 
 function editName(name) {
   store.commit("userProfileModule/editName", { name })
@@ -103,12 +99,19 @@ function editPost(post) {
   display: flex;
   flex-direction: column;
   padding: 6px 0;
+  background: var(--main-color);
+  border: 4px solid var(--neutral-color);
 
   .input {
     margin: 6px 12px;
     padding: 12px;
     border-radius: 12px;
     border: 0;
+    background: var(--neutral-color);
+
+    &:disabled {
+      background: var(--secondary-color);
+    }
   }
 
   .button {
@@ -116,59 +119,16 @@ function editPost(post) {
     padding: 12px;
     border-radius: 12px;
     border: 0;
-  }
-}
-
-.dark-theme {
-  background: var(--main-color-dark-theme);
-  border: 4px solid var(--additional-color-dark-theme);
-
-  .input {
-    background: var(--additional-color-dark-theme);
-
-    &:disabled {
-      background: var(--secondary-dark-theme);
-    }
-  }
-
-  .button {
-    background: var(--additional-color-dark-theme);
+    background: var(--neutral-color);
 
     &:hover {
-      background: var(--accent-dark-theme);
-      color: var(--main-color-dark-theme);
+      background: var(--accent-color);
+      color: var(--main-color);
     }
 
     &:disabled {
-      background: var(--secondary-dark-theme);
-      color: var(--black-dark-theme);
-    }
-  }
-}
-
-.light-theme {
-  background: var(--main-color-light-theme);
-  border: 4px solid var(--additional-color-light-theme);
-
-  .input {
-    background: var(--additional-color-light-theme);
-
-    &:disabled {
-      background: var(--secondary-light-theme);
-    }
-  }
-
-  .button {
-    background: var(--additional-color-light-theme);
-
-    &:hover {
-      background: var(--accent-light-theme);
-      color: var(--main-color-light-theme);
-    }
-
-    &:disabled {
-      background: var(--secondary-light-theme);
-      color: var(--black-light-theme);
+      background: var(--secondary-color);
+      color: var(--black-color);
     }
   }
 }

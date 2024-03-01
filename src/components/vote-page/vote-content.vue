@@ -1,8 +1,5 @@
 <template>
-  <div
-      class="container"
-      :class="theme === 'dark' ? 'dark-theme' : 'light-theme'"
-  >
+  <div class="container">
     <img
         class="voting-img"
         :src="ava"
@@ -29,7 +26,6 @@ import {computed} from "vue";
 import {useStore} from "vuex";
 
 const store = useStore();
-const theme = computed(() => store.getters["getCurrentTheme"])
 const title = computed(() => store.getters['statisticsModule/getTitle'])
 const description = computed(() => store.getters['statisticsModule/getDescription'])
 </script>
@@ -37,13 +33,15 @@ const description = computed(() => store.getters['statisticsModule/getDescriptio
 <style scoped lang="scss">
 .container {
   width: 900px;
-  box-shadow: 0 4px 6px var(--shadow-color);
   box-sizing: border-box;
   border-radius: 12px;
   margin: 8px auto;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  box-shadow: 0 4px 6px var(--shadow-color);
+  background: var(--main-color);
+  border: 4px solid var(--neutral-color);
 
   .voting-img {
     margin: 0 auto;
@@ -63,16 +61,6 @@ const description = computed(() => store.getters['statisticsModule/getDescriptio
       margin: 12px auto;
     }
   }
-}
-
-.dark-theme {
-  background: var(--main-color-dark-theme);
-  border: 4px solid var(--additional-color-dark-theme);
-}
-
-.light-theme {
-  background: var(--main-color-light-theme);
-  border: 4px solid var(--additional-color-light-theme);
 }
 
 @media screen and (max-width: 900px) {

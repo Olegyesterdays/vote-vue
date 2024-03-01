@@ -1,5 +1,5 @@
 <template>
-  <div class="header" :class="theme === 'dark' ? 'dark-theme' : 'light-theme'">
+  <div class="header">
     <button
         v-if="showBackButton"
         class="button back"
@@ -32,7 +32,7 @@
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import { useI18n } from "vue-i18n";
-import { computed, ref } from "vue";
+import { ref, computed } from "vue";
 import SvgIcon from '@jamescoyle/vue-icon';
 import {
   mdiArrowLeft,
@@ -80,6 +80,7 @@ function switchingTheTheme() {
   align-items: center;
   justify-content: space-between;
   box-shadow: 0 4px 6px var(--shadow-color);
+  background: var(--neutral-color);
 
   .button {
     border: 0;
@@ -90,6 +91,12 @@ function switchingTheTheme() {
     display: flex;
     align-items: center;
     justify-content: center;
+    background: var(--main-color);
+
+    &:hover {
+      background: var(--accent-color);
+      color: var(--main-color);
+    }
   }
 
   .language-and-theme {
@@ -104,32 +111,6 @@ function switchingTheTheme() {
 
     .theme {
       margin-left: 0;
-    }
-  }
-}
-
-.dark-theme {
-  background: var(--additional-color-dark-theme) !important;
-
-  .button {
-    background: var(--main-color-dark-theme);
-
-    &:hover {
-      background: var(--accent-dark-theme);
-      color: var(--main-color-dark-theme);
-    }
-  }
-}
-
-.light-theme {
-  background: var(--additional-color-light-theme) !important;
-
-  .button {
-    background: var(--main-color-light-theme);
-
-    &:hover {
-      background: var(--accent-light-theme);
-      color: var(--main-color-light-theme);
     }
   }
 }

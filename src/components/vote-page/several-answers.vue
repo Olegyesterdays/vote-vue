@@ -1,8 +1,5 @@
 <template>
-  <div
-      class="severalAnswers"
-      :class="theme === 'dark' ? 'dark-theme' : 'light-theme'"
-  >
+  <div class="severalAnswers">
     <h3 class="title">
       {{ titleQuestion }}
     </h3>
@@ -26,11 +23,7 @@
 </template>
 
 <script setup>
-import {defineProps, defineEmits, ref, toRaw, computed} from "vue";
-import {useStore} from "vuex"
-
-const store = useStore()
-const theme = computed(() => store.getters["getCurrentTheme"])
+import {defineProps, defineEmits, ref, toRaw} from "vue";
 
 defineProps({
   titleQuestion: {
@@ -57,13 +50,14 @@ const handleSelection = (title) => {
 <style scoped lang="scss">
 .severalAnswers {
   box-sizing: border-box;
-  box-shadow: 0 4px 6px var(--shadow-color);
   border-radius: 12px;
   padding: 8px;
   margin: auto;
   width: 900px;
   display: flex;
   flex-direction: column;
+  border: 4px solid var(--neutral-color);
+  box-shadow: 0 4px 6px var(--shadow-color);
 
   .title {
     margin: 0 auto;
@@ -76,6 +70,7 @@ const handleSelection = (title) => {
     display: flex;
     justify-content: space-between;
     position: relative;
+    background: var(--neutral-color);
 
     .check-box {
       position: absolute;
@@ -93,6 +88,7 @@ const handleSelection = (title) => {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        background: var(--additional-color);
       }
     }
 
@@ -102,42 +98,7 @@ const handleSelection = (title) => {
       width: 12px;
       height: 12px;
       right: 16px;
-    }
-  }
-}
-
-.dark-theme {
-  border: 4px solid var(--additional-color-dark-theme);
-
-  .answer {
-    background: var(--additional-color-dark-theme);
-
-    .check-box {
-      &:checked + .check-style::before {
-        background: var(--additional-dark-theme);
-      }
-    }
-
-    .check-style {
-      border: 2px solid var(--secondary-dark-theme);
-    }
-  }
-}
-
-.light-theme {
-  border: 4px solid var(--additional-color-light-theme);
-
-  .answer {
-    background: var(--additional-color-light-theme);
-
-    .check-box {
-      &:checked + .check-style::before {
-        background: var(--additional-light-theme);
-      }
-    }
-
-    .check-style {
-      border: 2px solid var(--secondary-light-theme);
+      border: 2px solid var(--secondary-color);
     }
   }
 }
