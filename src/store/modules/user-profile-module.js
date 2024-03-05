@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from '@/services/api.js';
 
 export const userProfileModule = {
     state: {
@@ -7,7 +7,7 @@ export const userProfileModule = {
             surname: "",
             patronymic: "",
             placeOfWork: "",
-            role: localStorage.getItem('role') || "user",
+            role: "",
             post: "",
         }
     },
@@ -36,7 +36,6 @@ export const userProfileModule = {
         },
 
         editRole(state, { role }) {
-            localStorage.setItem('role', role);
             state.userInformation.role = role
         },
 
@@ -47,11 +46,8 @@ export const userProfileModule = {
 
     action: {
         gettingUserInformation({ commit }) {
-            axios.get("http://localhost:8000/profileUserInformation", {
-                headers: {
-                    Authorization: `Bearer ${ localStorage.getItem('authToken') }`
-                }
-            }).then((response) => {
+            api.get("/profileUserInformation",
+            ).then((response) => {
                 commit("userInformation", { response })
             }).catch((error) => {
                 console.log(error)
@@ -59,12 +55,8 @@ export const userProfileModule = {
         },
 
         saveChanges({ state }) {
-            axios.post("http://localhost:8000/profileSaveChanges", {
+            api.post("/profileSaveChanges", {
                 userInformation: state.userInformation
-            }, {
-                headers: {
-                    Authorization: `Bearer ${ localStorage.getItem('authToken') }`
-                }
             }).then((response) => {
 
             }).catch((error) => {

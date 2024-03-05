@@ -1,5 +1,4 @@
-import axios from "axios";
-import {toRaw} from "vue";
+import api from '@/services/api.js';
 
 export const createVoteModule = {
     state: {
@@ -96,15 +95,11 @@ export const createVoteModule = {
 
     actions: {
         createVote({ commit, state }) {
-            axios.post("http://localhost:8000/api/v1/quiz", {
+            api.post("/quiz", {
                 quiz: {
                     title: state.title,
                     description: state.description,
                     questions: state.questions
-                }
-            }, {
-                headers: {
-                    Authorization: `Bearer ${ localStorage.getItem('authToken') }`
                 }
             }).then((response) => {
                 commit("clear")
@@ -114,15 +109,11 @@ export const createVoteModule = {
         },
 
         createAndPublishVote({ commit, state }) {
-            axios.post("http://localhost:8000/api/v1/quiz", {
+            api.post("/quiz", {
                 quiz: {
                     title: state.title,
                     description: state.description,
                     questions: state.questions
-                }
-            }, {
-                headers: {
-                    Authorization: `Bearer ${ localStorage.getItem('authToken') }`
                 }
             }).then((response) => {
                 commit("clear")

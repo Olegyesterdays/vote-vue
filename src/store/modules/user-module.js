@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from '@/services/api.js';
 import router from "@/router"
 
 export const userModule = {
@@ -112,7 +112,7 @@ export const userModule = {
         },
 
         login({ commit, state }) {
-            axios.post("http://localhost:8000/api/v1/user/login", {
+            api.post("/user/login", {
                 email: state.email,
                 password: state.password
 
@@ -130,7 +130,7 @@ export const userModule = {
         },
 
         registration({ commit, state }) {
-            axios.post("http://localhost:8000/api/v1/user", {
+            api.post("/user", {
                 email: state.email,
                 password: state.password
 

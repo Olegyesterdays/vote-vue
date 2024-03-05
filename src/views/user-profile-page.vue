@@ -56,6 +56,7 @@
 
     <button
         class="button"
+        @click="saveChanges"
         :disabled="userInformation.role !== 'super-admin'"
     >
       сохранить
@@ -65,7 +66,7 @@
 
 <script setup>
 import { useStore } from "vuex";
-import {computed} from "vue";
+import { computed } from "vue";
 
 const store = useStore();
 
@@ -93,6 +94,10 @@ function editRole(role) {
 
 function editPost(post) {
   store.commit("userProfileModule/editPost", { post })
+}
+
+function saveChanges() {
+  store.dispatch("userProfileModule/saveChanges")
 }
 </script>
 
