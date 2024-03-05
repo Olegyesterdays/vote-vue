@@ -1,10 +1,12 @@
+<template>
+  <div class="container">
+    
+  </div>
+</template>
+
 <script setup>
 
 </script>
-
-<template>
-
-</template>
 
 <style scoped lang="scss">
 

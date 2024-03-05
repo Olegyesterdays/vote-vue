@@ -16,18 +16,14 @@ import Form from "@/components/auth-page/form.vue";
 import LoginOrRegistration from "@/components/auth-page/login-or-registration.vue";
 
 import { computed } from "vue";
-import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 
 const store = useStore();
-const router = useRouter();
 
-const loginOrRegistration = computed(() => store.getters["authModule/getLoginOrRegistration"]);
+const loginOrRegistration = computed(() => store.getters["userModule/getLoginOrRegistration"]);
 
-async function auth() {
-  const action = loginOrRegistration.value === "login" ? "authModule/login" : "authModule/registration"
-  await store.dispatch(action)
-  await router.push("/account");
+function auth() {
+  store.dispatch(loginOrRegistration.value === "login" ? "userModule/login" : "userModule/registration")
 }
 </script>
 

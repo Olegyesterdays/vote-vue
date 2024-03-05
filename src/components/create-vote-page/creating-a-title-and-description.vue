@@ -3,21 +3,24 @@
     <img
         class="img"
         :src="ava"
-        alt="Картинка голосования"
+        :alt="$t('createVotePage.creatingATitleAndDescription.img.imageAlt')"
     />
 
     <button
         class="button"
         @click="addPicture"
     >
-      {{ ava === "" ? "Добавить картинку" : "Удалить картинку"}}
+      {{ ava === "" ?
+        $t("createVotePage.creatingATitleAndDescription.img.addImage") :
+        $t("createVotePage.creatingATitleAndDescription.img.deleteImage")
+      }}
     </button>
 
     <label class="title-vote">
       <input
           class="input"
           type="text"
-          placeholder="Название голосования"
+          :placeholder="$t('createVotePage.creatingATitleAndDescription.titleVote')"
           @input="writeDownTitleVote($event.target.value)"
       >
     </label>
@@ -26,7 +29,7 @@
       <input
           class="input"
           type="text"
-          placeholder="Описание"
+          :placeholder="$t('createVotePage.creatingATitleAndDescription.descriptionVote')"
           @input="writeDownDescriptionVote($event.target.value)"
       >
     </label>
@@ -35,7 +38,7 @@
         class="button add-participants"
         @click="addParticipants"
     >
-      Добавить участников
+      {{ $t('createVotePage.creatingATitleAndDescription.addParticipants') }}
     </button>
   </div>
 </template>

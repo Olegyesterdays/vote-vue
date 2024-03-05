@@ -1,7 +1,7 @@
 <template>
   <div class="menu">
     <button
-        v-if="role === 'admin' && 'super-admin'"
+        v-if="role === 'admin' || 'super-admin'"
         class="button create-vote"
         @click="createVote"
     >
@@ -9,14 +9,14 @@
     </button>
 
     <button
-        class="button settings"
-        @click="settings"
+        class="button user-profile"
+        @click="userProfile"
     >
       {{ $t("accountPage.profile") }}
     </button>
 
     <button
-        v-if="role === 'admin'"
+        v-if="role === 'super-admin'"
         class="button list-of-users"
         @click="listOfUsers"
     >
@@ -40,22 +40,23 @@ import { computed } from "vue";
 const store = useStore();
 
 const router = useRouter();
-const role = localStorage.getItem('role');
+const role = computed(() => store.getters["userModule/getUserRole"]);
 
 function createVote() {
-  router.push("account/createVote");
+  router.push({ path: "account/createVote"});
 }
 
-function settings() {
-  router.push("account/userProfilePage");
+function userProfile() {
+  router.push({ path: "account/userProfilePage"});
 }
 
 function listOfUsers() {
-  router.push("account/listOfUsers");
+  router.push({ path: "account/listOfUsers"});
 }
 
 function exit() {
-  router.push("/");
+  store.commit("userModule/clearDataUser")
+  router.push({ path: "/" });
 }
 </script>
 

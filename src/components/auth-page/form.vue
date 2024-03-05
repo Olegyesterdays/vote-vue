@@ -28,15 +28,15 @@ import {computed} from "vue";
 import {useStore} from "vuex";
 
 const store = useStore();
-const email = computed(() => store.getters["authModule/getEmail"]);
-const password = computed(() => store.getters["authModule/getPassword"]);
+const email = computed(() => store.getters["userModule/getEmail"]);
+const password = computed(() => store.getters["userModule/getPassword"]);
 
 function emailRecording(email) {
-  store.commit("authModule/email", {email: email})
+  store.commit("userModule/email", {email: email})
 }
 
 function passwordRecording(password) {
-  store.commit("authModule/password", {password: password})
+  store.commit("userModule/password", {password: password})
 }
 </script>
 

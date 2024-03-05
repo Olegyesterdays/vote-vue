@@ -5,7 +5,8 @@
         type="text"
         placeholder="Имя"
         @input="editName($event.target.value)"
-        :disabled="role !== 'super-admin'"
+        :value="userInformation.name"
+        :disabled="userInformation.role !== 'super-admin'"
     >
 
     <input
@@ -13,7 +14,8 @@
         type="text"
         placeholder="Фамилия"
         @input="editSurname($event.target.value)"
-        :disabled="role !== 'super-admin'"
+        :value="userInformation.surname"
+        :disabled="userInformation.role !== 'super-admin'"
     >
 
     <input
@@ -21,7 +23,8 @@
         type="text"
         placeholder="Отчечтво"
         @input="editPatronymic($event.target.value)"
-        :disabled="role !== 'super-admin'"
+        :value="userInformation.patronymic"
+        :disabled="userInformation.role !== 'super-admin'"
     >
 
     <input
@@ -29,7 +32,8 @@
         type="text"
         placeholder="Место работы"
         @input="editPlaceOfWork($event.target.value)"
-        :disabled="role !== 'super-admin'"
+        :value="userInformation.placeOfWork"
+        :disabled="userInformation.role !== 'super-admin'"
     >
 
     <input
@@ -37,7 +41,8 @@
         type="text"
         placeholder="Права"
         @input="editRole($event.target.value)"
-        :disabled="role !== 'super-admin'"
+        :value="userInformation.role"
+        :disabled="userInformation.role !== 'super-admin'"
     >
 
     <input
@@ -45,12 +50,13 @@
         type="text"
         placeholder="Должность"
         @input="editPost($event.target.value)"
-        :disabled="role !== 'super-admin'"
+        :value="userInformation.post"
+        :disabled="userInformation.role !== 'super-admin'"
     >
 
     <button
         class="button"
-        :disabled="role !== 'super-admin'"
+        :disabled="userInformation.role !== 'super-admin'"
     >
       сохранить
     </button>
@@ -63,7 +69,7 @@ import {computed} from "vue";
 
 const store = useStore();
 
-const role = localStorage.getItem('role');
+const userInformation = computed(() => store.getters["userProfileModule/getUserInformation"])
 
 function editName(name) {
   store.commit("userProfileModule/editName", { name })

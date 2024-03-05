@@ -2,7 +2,7 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import "@/styles/index.css";
 import "@/styles/color-palette.css";
-import router from '@/router';
+import router from './router';
 import store from '@/store';
 import { createI18n } from 'vue-i18n';
 import translation_RU from "@/locales/ru/translation.js";
@@ -16,6 +16,7 @@ const i18n = createI18n({
         ru: translation_RU
     }
 });
+
 
 const app = createApp(App);
 

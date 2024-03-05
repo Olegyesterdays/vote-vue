@@ -16,7 +16,7 @@
               class="delete"
               @click="deleteQuestion(indexQuestion)"
           >
-            <svg-icon class="mdi" type="mdi" :path="mdiDelete"/>
+            <span class="mdi mdi-delete" />
           </button>
         </div>
       </div>
@@ -44,7 +44,7 @@
                   class="delete"
                   @click="deleteAnswer(indexQuestion, indexAnswer)"
               >
-                <svg-icon class="mdi" type="mdi" :path="mdiDelete"/>
+                <span class="mdi mdi-delete" />
               </button>
             </div>
           </div>
@@ -59,10 +59,8 @@
 </template>
 
 <script setup>
-import {computed} from 'vue'
-import {useStore} from "vuex"
-import {mdiDelete} from '@mdi/js'
-import SvgIcon from '@jamescoyle/vue-icon'
+import { computed } from 'vue'
+import { useStore } from "vuex"
 import TypeAnswer from "@/components/create-vote-page/type-answer.vue"
 
 const store = useStore()
@@ -136,8 +134,16 @@ function deleteQuestion(indexQuestion) {
           padding: 0;
           background: var(--neutral-color);
 
+          .mdi-delete {
+            font-size: 24px;
+          }
+
           &:hover {
             background: var(--accent-color);
+
+            .mdi-delete {
+              color: var(--main-color);
+            }
           }
 
           .mdi {
@@ -180,8 +186,16 @@ function deleteQuestion(indexQuestion) {
               padding: 0;
               background: var(--neutral-color);
 
+              .mdi-delete {
+                font-size: 24px;
+              }
+
               &:hover {
                 background: var(--accent-color);
+
+                .mdi-delete {
+                  color: var(--main-color);
+                }
               }
 
               .mdi {

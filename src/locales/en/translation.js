@@ -37,6 +37,23 @@ export default {
             deleteVoting: "Delete a vote"
         }
     },
-    createVotePage: {},
-    votePage: {}
+    createVotePage: {
+        creatingATitleAndDescription: {
+            img: {
+                imageAlt: "Voting picture",
+                addImage: "Add a picture",
+                deleteImage: "Delete an image"
+            },
+            titleVote: "The name of the vote",
+            descriptionVote: "Description",
+            addParticipants: "Add participants"
+        },
+    },
+    votePage: {
+        send: "Send"
+    },
+    notFoundPage: {
+        header: "The page was not found",
+        description: "Sorry, the requested page does not exist."
+    }
 }

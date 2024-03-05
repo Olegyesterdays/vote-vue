@@ -5,10 +5,12 @@
         class="button back"
         @click="back"
     >
-      <svg-icon type="mdi" :path="mdiArrowLeft" />
+      <span
+          class="arrowLeft mdi mdi-arrow-left"
+      />
     </button>
 
-    <div /> <!-- TODO: Так надо, но лучше переделать -->
+    <div/> <!-- TODO: Так надо, но лучше переделать -->
 
     <div class="language-and-theme">
       <button
@@ -22,32 +24,30 @@
           class="button theme"
           @click="switchingTheTheme"
       >
-        <svg-icon type="mdi" :path="theme === 'dark' ? mdiBrightness7 : mdiBrightness5" />
+        <span
+            class="brightness"
+            :class="theme === 'dark' ? 'mdi mdi-brightness-7' : 'mdi mdi-brightness-5'"
+        />
       </button>
     </div>
   </div>
 </template>
 
 <script setup>
-import { useStore } from 'vuex';
-import { useRouter } from 'vue-router';
-import { useI18n } from "vue-i18n";
-import { ref, computed } from "vue";
-import SvgIcon from '@jamescoyle/vue-icon';
-import {
-  mdiArrowLeft,
-  mdiBrightness5,
-  mdiBrightness7
-} from '@mdi/js';
+import {useStore} from 'vuex';
+import {useRouter} from 'vue-router';
+import {useI18n} from "vue-i18n";
+import {ref, computed} from "vue";
 
 const router = useRouter()
 const store = useStore()
 
-const { locale } = useI18n();
-const theme = computed(() => store.getters["getCurrentTheme"])
+const {locale} = useI18n();
+const theme = computed(() => store.getters["userModule/getCurrentTheme"])
 
 function back() {
-  router.push('/account')
+  // router.go(-1);
+  router.push({ path: "/account"});
 }
 
 const showBackButton = ref(true);
@@ -62,7 +62,7 @@ function toggleLanguage() {
 }
 
 function switchingTheTheme() {
-  store.dispatch('toggleTheme');
+  store.commit("userModule/switchTheme")
 }
 </script>
 
@@ -99,6 +99,15 @@ function switchingTheTheme() {
     }
   }
 
+  .back {
+    font-size: 24px;
+    &:hover {
+      .arrowLeft {
+        color: var(--main-color);
+      }
+    }
+  }
+
   .language-and-theme {
     display: flex;
     align-items: center;
@@ -111,13 +120,22 @@ function switchingTheTheme() {
 
     .theme {
       margin-left: 0;
+
+      &:hover {
+        .brightness {
+          color: var(--main-color);
+        }
+      }
+
+      .brightness {
+        font-size: 24px;
+      }
     }
   }
 }
 
 @media screen and (max-width: 900px) {
   .header {
-    border-radius: 0;
     width: 100%;
   }
 }

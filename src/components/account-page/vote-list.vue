@@ -2,6 +2,7 @@
   <div class="vote-panel">
     <div class="vote-type">
       <button
+          v-if="role === 'admin' || 'super-admin'"
           class="button my-vote"
           :class="voteType === 'MyVote' ? 'button__active' : ''"
           @click="myVote"
@@ -53,6 +54,8 @@ import {computed, ref} from "vue"
 import {useStore} from "vuex"
 
 const store = useStore()
+
+const role = computed(() => store.getters["userModule/getUserRole"]);
 const voteType = computed(() => store.getters["accountModule/getVoteType"]);
 const voting = computed(() => store.getters[`accountModule/get${voteType.value}`] || []);
 const searchText = ref('')
@@ -116,7 +119,7 @@ function passed() {
     display: flex;
     flex-direction: column;
     margin: 8px 12px 12px;
-    height: 60vh;
+    height: 50vh;
     overflow: hidden;
     overflow-y: auto;
 

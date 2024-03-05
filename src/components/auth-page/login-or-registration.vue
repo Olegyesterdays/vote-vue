@@ -23,11 +23,10 @@ import { computed } from "vue";
 import { useStore } from "vuex";
 
 const store = useStore();
-const loginOrRegistration = computed(() => store.getters["authModule/getLoginOrRegistration"]);
+const loginOrRegistration = computed(() => store.getters["userModule/getLoginOrRegistration"]);
 
 function change() {
-  store.commit("authModule/loginOrRegistration");
-  store.commit("authModule/clear");
+  store.commit("userModule/loginOrRegistration");
 }
 </script>
 

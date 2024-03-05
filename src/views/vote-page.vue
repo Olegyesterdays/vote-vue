@@ -28,7 +28,7 @@
         @click="sendAnswers"
         class="sendAnswers"
     >
-      Отправить
+      {{ $t("votePage.send") }}
     </button>
   </div>
 </template>

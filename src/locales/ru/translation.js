@@ -37,6 +37,23 @@ export default {
             deleteVoting: "Удалить голосование"
         }
     },
-    createVotePage: {},
-    votePage: {}
+    createVotePage: {
+        creatingATitleAndDescription: {
+            img: {
+                imageAlt: "Картинка голосования",
+                addImage: "Добавить картинку",
+                deleteImage: "Удалить картинку"
+            },
+            titleVote: "Название голосования",
+            descriptionVote: "Описание",
+            addParticipants: "Добавить участников"
+        },
+    },
+    votePage: {
+        send: "Отправить"
+    },
+    notFoundPage: {
+        header: "Страница не найдена",
+        description: "Извините, запрашиваемая страница не существует."
+    }
 }

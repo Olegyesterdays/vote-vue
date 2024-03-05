@@ -7,7 +7,7 @@ export const userProfileModule = {
             surname: "",
             patronymic: "",
             placeOfWork: "",
-            role: "",
+            role: localStorage.getItem('role') || "user",
             post: "",
         }
     },
@@ -15,14 +15,10 @@ export const userProfileModule = {
     getters: {
         getUserInformation(state) {
             return state.userInformation
-        }
+        },
     },
 
     mutations: {
-        userInformation(state, { userInformation }) {
-            state.userInformation = userInformation
-        },
-
         editName(state, { name }) {
             state.userInformation.name = name
         },
@@ -40,15 +36,16 @@ export const userProfileModule = {
         },
 
         editRole(state, { role }) {
+            localStorage.setItem('role', role);
             state.userInformation.role = role
         },
 
         editPost(state, { post }) {
             state.userInformation.post = post
-        }
+        },
     },
 
-    actions: {
+    action: {
         gettingUserInformation({ commit }) {
             axios.get("http://localhost:8000/profileUserInformation", {
                 headers: {
