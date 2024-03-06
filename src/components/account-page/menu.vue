@@ -51,7 +51,7 @@ function userProfile() {
 }
 
 function listOfUsers() {
-  router.push({ path: "account/listOfUsers"});
+  router.push({ path: "account/listUsersPage"});
 }
 
 function exit() {

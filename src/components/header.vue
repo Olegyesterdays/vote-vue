@@ -92,6 +92,7 @@ function switchingTheTheme() {
     align-items: center;
     justify-content: center;
     background: var(--main-color);
+    box-shadow: 0 4px 6px var(--shadow-color);
 
     &:hover {
       background: var(--accent-color);

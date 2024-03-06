@@ -8,8 +8,8 @@ export const userModule = {
         role: "",
 
         loginOrRegistration: "login",
-        email: "test123@gmail.com",
-        password: "123"
+        email: "admin1@mail.ru",
+        password: "admin"
     },
 
     getters: {
@@ -112,39 +112,45 @@ export const userModule = {
         },
 
         login({ commit, state }) {
-            api.post("/user/login", {
-                email: state.email,
-                password: state.password
+            api
+                .post("/user/login", {
+                    email: state.email,
+                    password: state.password
+                })
 
-            }).then((response) => {
-                commit("setAuthToken", { authToken: response.data.token })
-                commit("setTheme", { theme: "light" })
-                commit("setUserRole", { role: "super-admin" })
-                commit("clearEmailAndPassword")
+                .then((response) => {
+                    commit("setAuthToken", { authToken: response.data.token })
+                    commit("setTheme", { theme: "light" })
+                    commit("setUserRole", { role: "super-admin" })
+                    commit("clearEmailAndPassword")
 
-                router.push({ path: "/account" })
+                    router.push({ path: "/account" })
+                })
 
-            }).catch((error) => {
-                console.log(error)
-            })
+                .catch((error) => {
+                    console.log(error)
+                })
         },
 
         registration({ commit, state }) {
-            api.post("/user", {
-                email: state.email,
-                password: state.password
+            api
+                .post("/user", {
+                    email: state.email,
+                    password: state.password
+                })
 
-            }).then((response) => {
-                commit("setAuthToken", { authToken: response.data.token })
-                commit("setTheme", { theme: "light-theme" })
-                commit("setUserRole", { role: "admin" })
-                commit("clearEmailAndPassword")
+                .then((response) => {
+                    commit("setAuthToken", { authToken: response.data.token })
+                    commit("setTheme", { theme: "light-theme" })
+                    commit("setUserRole", { role: "admin" })
+                    commit("clearEmailAndPassword")
 
-                router.push({ path: "/account" })
+                    router.push({ path: "/account" })
+                })
 
-            }).catch((error) => {
-                console.log(error)
-            })
+                .catch((error) => {
+                    console.log(error)
+                })
         },
     },
 

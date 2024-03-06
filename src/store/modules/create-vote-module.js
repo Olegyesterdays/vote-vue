@@ -95,31 +95,41 @@ export const createVoteModule = {
 
     actions: {
         createVote({ commit, state }) {
-            api.post("/quiz", {
-                quiz: {
-                    title: state.title,
-                    description: state.description,
-                    questions: state.questions
-                }
-            }).then((response) => {
-                commit("clear")
-            }).catch((error) => {
-                console.log(error)
-            })
+            api
+                .post("/quiz", {
+                    quiz: {
+                        title: state.title,
+                        description: state.description,
+                        questions: state.questions
+                    }
+                })
+
+                .then((response) => {
+                    commit("clear")
+                })
+
+                .catch((error) => {
+                    console.log(error)
+                })
         },
 
         createAndPublishVote({ commit, state }) {
-            api.post("/quiz", {
-                quiz: {
-                    title: state.title,
-                    description: state.description,
-                    questions: state.questions
-                }
-            }).then((response) => {
-                commit("clear")
-            }).catch((error) => {
-                console.log(error)
-            })
+            api
+                .post("/quiz", {
+                    quiz: {
+                        title: state.title,
+                        description: state.description,
+                        questions: state.questions
+                    }
+                })
+
+                .then((response) => {
+                    commit("clear")
+                })
+
+                .catch((error) => {
+                    console.log(error)
+                })
         }
     },
 
