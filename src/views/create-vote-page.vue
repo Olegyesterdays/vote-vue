@@ -1,39 +1,70 @@
 <template>
   <div class="container">
-    <CreatingATitleAndDescription />
-    <CreateQuestion />
-    <div class="buttons">
-      <button class="button add-question" @click="store.commit('createVoteModule/newQuestion')">
+    <button
+        class="button creatingOrParticipants"
+        @click="switchCreatingOrParticipants"
+    >
+      {{ creatingOrParticipants === "participants" ? "Создание голосования" : "Участники голосования"}}
+    </button>
+
+    <VotingParticipants v-if="creatingOrParticipants === 'participants'" />
+
+    <CreatingATitleAndDescription v-if="creatingOrParticipants === 'creating'" />
+    <CreateQuestion v-if="creatingOrParticipants === 'creating'" />
+
+    <div class="buttons" v-if="creatingOrParticipants === 'creating'">
+      <button
+          class="button add-question"
+          @click="newQuestion"
+      >
         Добавить вопрос
       </button>
-      <button class="button create" @click="create">
+
+      <button
+          class="button create"
+          @click="create"
+      >
         Создать
       </button>
-      <button class="button create-and-publish" @click="createAndPublish">
+
+      <button
+          class="button create-and-publish"
+          @click="createAndPublish"
+      >
         Создать и опубликовать
       </button>
     </div>
+
+    <TheQuickMoveButton />
   </div>
 </template>
 
 <script setup>
 import CreatingATitleAndDescription from "@/components/create-vote-page/creating-a-title-and-description.vue";
+import VotingParticipants from "@/components/create-vote-page/voting-participants.vue";
 import CreateQuestion from "@/components/create-vote-page/create-question.vue";
+import TheQuickMoveButton from "@/components/the-quick-move-button.vue";
 
 import { useStore } from "vuex";
-import { useRouter } from 'vue-router';
+import { computed } from "vue";
 
-const router = useRouter();
 const store = useStore();
+
+const creatingOrParticipants = computed(() => store.getters["createVoteModule/getCreatingOrParticipants"])
+
+function switchCreatingOrParticipants() {
+  store.commit("createVoteModule/creatingOrParticipants")
+}
+function newQuestion() {
+  store.commit("createVoteModule/newQuestion")
+}
 
 function create() {
   store.dispatch("createVoteModule/createVote");
-  router.push('/account');
 }
 
 function createAndPublish() {
   store.dispatch("createVoteModule/createAndPublishVote");
-  router.push('/account');
 }
 </script>
 
@@ -41,6 +72,48 @@ function createAndPublish() {
 .container {
   width: 900px;
   margin: auto;
+
+    .button {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: 0;
+      background: var(--neutral-color);
+      box-shadow: 0 4px 6px var(--shadow-color);
+      margin-bottom: 8px;
+
+      &:hover {
+        background: var(--accent-color);
+        color: var(--main-color);
+      }
+    }
+
+  //.creating-and-participants {
+  //  display: flex;
+  //  justify-content: space-between;
+  //  margin-bottom: 6px;
+  //
+  //  .button {
+  //    width: 100%;
+  //    padding: 12px;
+  //    border-radius: 12px;
+  //    border: 0;
+  //    background: var(--neutral-color);
+  //
+  //    &:hover {
+  //      background: var(--accent-color);
+  //      color: var(--main-color);
+  //    }
+  //  }
+  //
+  //  .creating {
+  //    margin-right: 6px;
+  //  }
+  //
+  //  .participants {
+  //    margin-left: 6px;
+  //  }
+  //}
 
   .buttons {
     display: flex;

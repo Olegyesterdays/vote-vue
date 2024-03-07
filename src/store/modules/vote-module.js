@@ -1,7 +1,10 @@
-import axios from "axios";
+import api from '@/services/api.js';
+import router from "@/router/index.js";
 
 export const voteModule = {
     state: {
+        voteID: 12,
+
         questions: [
             {
                 titleQuestion: "question 1",
@@ -50,6 +53,10 @@ export const voteModule = {
     },
 
     mutations: {
+        gettingVote(state, { questions }) {
+            state.questions = questions
+        },
+
         writeDownAnswer(state, { payload }) {
             const existingAnswerIndex = state.formAnswers.findIndex(answer => answer.title === payload.title);
             if (existingAnswerIndex !== -1) {
@@ -68,18 +75,35 @@ export const voteModule = {
     },
 
     actions: {
+        gettingVote({ commit, state }) {
+            api
+                .get(`/vote/${ state.voteID }`
+                )
+
+                .then((response) => {
+                    commit("gettingVote", { questions: response.data.questions })
+                })
+
+                .catch((error) => {
+                    console.log(error)
+                })
+        },
+
         sendAnswers({ commit, state }) {
-            axios.post("http://localhost:8000/saveAnswers", {
-                formAnswers: state.formAnswers
-            }, {
-                headers: {
-                    Authorization: `Bearer ${ localStorage.getItem('authToken') }`
-                }
-            }).then((response) => {
-                commit("clear")
-            }).catch((error) => {
-                console.log("Ошибка при отправке запроса:", error)
-            })
+            api
+                .post("/saveAnswers", {
+                    formAnswers: state.formAnswers
+                })
+
+                .then((response) => {
+                    commit("clear")
+
+                    router.push({ path: "/account" })
+                })
+
+                .catch((error) => {
+                    console.log(error)
+                })
         }
     },
 

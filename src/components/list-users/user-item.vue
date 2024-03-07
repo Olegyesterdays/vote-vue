@@ -25,11 +25,6 @@ defineProps({
   box-shadow: 0 4px 6px var(--shadow-color);
   text-align: left;
 
-  &:hover {
-    background: var(--accent-color);
-    color: var(--main-color);
-  }
-
   &:first-child {
     margin: 0;
   }

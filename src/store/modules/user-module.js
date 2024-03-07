@@ -8,7 +8,7 @@ export const userModule = {
         role: "",
 
         loginOrRegistration: "login",
-        email: "admin1@mail.ru",
+        email: "admin2@mail.ru",
         password: "admin"
     },
 
@@ -113,15 +113,15 @@ export const userModule = {
 
         login({ commit, state }) {
             api
-                .post("/user/login", {
+                .post("/users/login", {
                     email: state.email,
                     password: state.password
                 })
 
                 .then((response) => {
                     commit("setAuthToken", { authToken: response.data.token })
-                    commit("setTheme", { theme: "light" })
-                    commit("setUserRole", { role: "super-admin" })
+                    commit("setTheme", { theme: response.data.theme })
+                    commit("setUserRole", { role: response.data.role })
                     commit("clearEmailAndPassword")
 
                     router.push({ path: "/account" })
@@ -134,15 +134,15 @@ export const userModule = {
 
         registration({ commit, state }) {
             api
-                .post("/user", {
+                .post("/users", {
                     email: state.email,
                     password: state.password
                 })
 
                 .then((response) => {
                     commit("setAuthToken", { authToken: response.data.token })
-                    commit("setTheme", { theme: "light-theme" })
-                    commit("setUserRole", { role: "admin" })
+                    commit("setTheme", { theme: response.data.theme })
+                    commit("setUserRole", { role: response.data.role })
                     commit("clearEmailAndPassword")
 
                     router.push({ path: "/account" })

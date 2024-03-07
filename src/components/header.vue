@@ -25,8 +25,8 @@
           @click="switchingTheTheme"
       >
         <span
-            class="brightness"
-            :class="theme === 'dark' ? 'mdi mdi-brightness-7' : 'mdi mdi-brightness-5'"
+            class="brightness mdi"
+            :class="theme === 'dark' ? 'mdi-white-balance-sunny' : 'mdi-weather-night'"
         />
       </button>
     </div>
@@ -46,8 +46,8 @@ const {locale} = useI18n();
 const theme = computed(() => store.getters["userModule/getCurrentTheme"])
 
 function back() {
-  // router.go(-1);
-  router.push({ path: "/account"});
+  router.go(-1);
+  // router.push({ path: "/account"});
 }
 
 const showBackButton = ref(true);

@@ -1,12 +1,48 @@
 import api from '@/services/api.js';
+import router from "@/router/index.js";
 
 export const createVoteModule = {
     state: {
         userID: "14",
 
+        creatingOrParticipants: "creating",
+
         title: "",
 
         description: "",
+
+        listUsers: [
+            {
+                name: "name 1"
+            },
+            {
+                name: "name 2"
+            },
+            {
+                name: "name 3"
+            },
+            {
+                name: "name 4"
+            },
+            {
+                name: "name 5"
+            },
+            {
+                name: "name 6"
+            },
+            {
+                name: "name 7"
+            },
+            {
+                name: "name 8"
+            },
+            {
+                name: "name 9"
+            },
+            {
+                name: "name 10"
+            },
+        ],
 
         questions: [
             {
@@ -24,10 +60,26 @@ export const createVoteModule = {
     getters: {
         getQuestions(state) {
             return state.questions
-        }
+        },
+
+        getCreatingOrParticipants(state) {
+            return state.creatingOrParticipants
+        },
+
+        getListUsers(state) {
+            return state.listUsers
+        },
     },
 
     mutations: {
+        creatingOrParticipants(state) {
+            state.creatingOrParticipants = state.creatingOrParticipants === "creating" ? "participants" : "creating"
+        },
+
+        deleteUser(state, { index }) {
+            state.listUsers.splice(index, 1)
+        },
+
         addTitle(state, { title }) {
             state.title = title
         },
@@ -106,6 +158,8 @@ export const createVoteModule = {
 
                 .then((response) => {
                     commit("clear")
+
+                    router.push('/account');
                 })
 
                 .catch((error) => {
@@ -125,6 +179,8 @@ export const createVoteModule = {
 
                 .then((response) => {
                     commit("clear")
+
+                    router.push('/account');
                 })
 
                 .catch((error) => {

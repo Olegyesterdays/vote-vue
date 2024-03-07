@@ -18,11 +18,11 @@
 
     <div class="buttons">
       <button class="button back">
-        <span class="mdi mdi-chevron-left"></span>
+        <span class="mdi mdi-chevron-left" />
       </button>
 
       <button class="button next">
-        <span class="mdi mdi-chevron-right"></span>
+        <span class="mdi mdi-chevron-right" />
       </button>
     </div>
   </div>

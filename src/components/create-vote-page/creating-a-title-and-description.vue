@@ -33,13 +33,6 @@
           @input="writeDownDescriptionVote($event.target.value)"
       >
     </label>
-
-    <button
-        class="button add-participants"
-        @click="addParticipants"
-    >
-      {{ $t('createVotePage.creatingATitleAndDescription.addParticipants') }}
-    </button>
   </div>
 </template>
 
@@ -59,10 +52,6 @@ function writeDownTitleVote(title) {
 
 function writeDownDescriptionVote(description) {
   store.commit("createVoteModule/addDescription", { description: description })
-}
-
-function addParticipants() {
-
 }
 </script>
 
@@ -115,11 +104,8 @@ function addParticipants() {
     }
   }
 
-  .add-participants {
-    margin: 4px 12px 12px;
-    padding: 12px;
-    border-radius: 12px;
-    border: 0;
+  .description-vote {
+    margin-bottom: 12px;
   }
 }
 

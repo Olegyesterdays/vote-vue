@@ -7,7 +7,8 @@
           :class="voteType === 'MyVote' ? 'button__active' : ''"
           @click="myVote"
       >
-        {{ $t("accountPage.myVotes") }}
+        <span class="text">{{ $t("accountPage.myVotes") }} </span>
+        <span class="mdi mdi-pencil-outline" />
       </button>
 
       <button
@@ -15,7 +16,8 @@
           :class="voteType === 'NewVote' ? 'button__active' : ''"
           @click="newVote"
       >
-        {{ $t("accountPage.new") }}
+        <span class="text">{{ $t("accountPage.new") }}</span>
+        <span class="mdi mdi-account-alert-outline" />
       </button>
 
       <button
@@ -23,7 +25,8 @@
           :class="voteType === 'Passed' ? 'button__active' : ''"
           @click="passed"
       >
-        {{ $t("accountPage.passed") }}
+        <span class="text">{{ $t("accountPage.passed") }}</span>
+        <span class="mdi mdi-account-outline" />
       </button>
     </div>
 
@@ -96,6 +99,10 @@ function passed() {
       background: var(--neutral-color);
       margin-bottom: 4px;
 
+      .mdi {
+        display: none;
+      }
+
       &__active {
         margin-bottom: 0;
         border-bottom: 4px solid var(--accent-color);
@@ -139,12 +146,20 @@ function passed() {
   }
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 480px) {
   .vote-panel {
     .vote-type {
-      display: flex;
-      flex-direction: column;
 
+      .button {
+        .text {
+          display: none;
+        }
+
+        .mdi {
+          display: block;
+          font-size: 32px;
+        }
+      }
     }
   }
 }

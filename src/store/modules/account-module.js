@@ -1,5 +1,9 @@
+import api from "@/services/api.js";
+
 export const accountModule = {
     state: {
+        userID: 17,
+
         voteType: "MyVote",
 
         vote: {
@@ -193,11 +197,69 @@ export const accountModule = {
 
         voteTypePassed(state) {
             state.voteType = "Passed"
+        },
+
+        listMyVote(state, { list }) {
+            state.vote.myVote = list
+        },
+
+        listNewVote(state, { list }) {
+            state.vote.newVote = list
+        },
+
+        listPassed(state, { list }) {
+            state.vote.passed = list
         }
     },
 
     actions: {
+        notPublished({ commit }) {
+            api
+                .get("/user"
+                )
 
+                .then((response) => {
+                    commit("listMyVote", {
+                        list: response
+                    })
+                })
+
+                .catch((error) => {
+                    console.log(error)
+                })
+        },
+
+        onlyNotCompleted({ commit }) {
+            api
+                .get("/user"
+                )
+
+                .then((response) => {
+                    commit("listNewVote", {
+                        list: response
+                    })
+                })
+
+                .catch((error) => {
+                    console.log(error)
+                })
+        },
+
+        onlyCompleted({ commit }) {
+            api
+                .get("/user"
+                )
+
+                .then((response) => {
+                    commit("listPassed", {
+                        list: response
+                    })
+                })
+
+                .catch((error) => {
+                    console.log(error)
+                })
+        },
     },
 
     namespaced: true
