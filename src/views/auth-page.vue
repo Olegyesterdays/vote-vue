@@ -37,7 +37,8 @@ function auth() {
     display: flex;
     flex-direction: column;
     border-radius: 12px;
-    background: var(--neutral-color);
+    background: var(--main-color);
+    border: 4px solid var(--neutral-color);
   }
 
   .button-auth {

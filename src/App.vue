@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import Header from "@/components/header.vue";
+import Header from "@/components/header/header.vue";
 </script>
 
 <style lang="scss" scoped>
@@ -18,7 +18,7 @@ import Header from "@/components/header.vue";
   background: var(--main-color);
 
   .content {
-    margin-top: 72px;
+    margin-top: 80px;
   }
 }
 </style>

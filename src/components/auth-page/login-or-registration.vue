@@ -39,7 +39,7 @@ function change() {
     width: 50%;
     padding: 12px;
     border: 0;
-    background: var(--neutral-color);
+    background: var(--main-color);
 
     &__active {
       border-bottom: 4px solid var(--accent-color);

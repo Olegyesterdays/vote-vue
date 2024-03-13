@@ -74,10 +74,10 @@ function additionalInformation() {
   border: 0;
   border-radius: 12px;
   padding: 0;
-  background: var(--main-color);
+  background: var(--neutral-color);
 
   .title {
-    margin-left: 8px;
+    margin-left: 16px;
   }
 
   .additionalInformation {
@@ -89,10 +89,10 @@ function additionalInformation() {
     width: 36px;
     height: 36px;
     border: 0;
-    background: var(--main-color);
+    background: var(--neutral-color);
 
     &:hover {
-      background: var(--neutral-color);
+      background: var(--main-color);
     }
   }
 

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Menu class="menu" />
+<!--    <Menu class="menu" />-->
     <VoteList class="vote-list" />
   </div>
 </template>

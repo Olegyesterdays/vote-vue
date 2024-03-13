@@ -59,7 +59,7 @@ function passwordRecording(password) {
       border-radius: 12px;
       border: 0;
       width: auto;
-      background: var(--main-color);
+      background: var(--neutral-color);
     }
   }
 }

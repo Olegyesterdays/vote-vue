@@ -86,6 +86,9 @@ function passed() {
   width: 900px;
   display: flex;
   flex-direction: column;
+  border: 4px solid var(--neutral-color);
+  background: var(--main-color);
+  border-radius: 12px;
 
   .vote-type {
     width: auto;
@@ -96,7 +99,7 @@ function passed() {
       border: 0;
       padding: 12px;
       width: 100%;
-      background: var(--neutral-color);
+      background: var(--main-color);
       margin-bottom: 4px;
 
       .mdi {
@@ -117,7 +120,7 @@ function passed() {
     border-radius: 12px;
     padding: 16px;
     box-shadow: 0 4px 6px var(--shadow-color);
-    background: var(--main-color);
+    background: var(--neutral-color);
   }
 
   .vote-list {
