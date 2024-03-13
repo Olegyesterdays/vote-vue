@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="header" :class="isMenu ? 'header__open' : ''">
+    <div class="header" :class="isMenu ? 'header__open' : 'header__close'">
       <img
           class="logo"
           :src="LOGO"
@@ -35,7 +35,7 @@
         :class="isMenu ? 'header-menu__open' : 'header-menu__close'"
         v-click-outside="closingMenu"
     >
-      <HeaderMenu />
+      <HeaderMenu @update:close="closingMenu" />
     </div>
   </div>
 </template>
@@ -100,14 +100,18 @@ function closingMenu() {
     box-shadow: 0 4px 6px var(--shadow-color);
     border-radius: 12px;
     position: relative;
-    z-index: 1000;
+    z-index: 100;
     height: auto;
 
     &__open {
       border-bottom-right-radius: 0;
       border-bottom-left-radius: 0;
       border-bottom: 0;
-      box-shadow: 0 0 0 var(--shadow-color);
+      box-shadow: 0 0 0;
+    }
+
+    &__close {
+      height: 64px;
     }
 
     .logo {
@@ -156,9 +160,14 @@ function closingMenu() {
     border-bottom-right-radius: 12px;
     border-bottom-left-radius: 12px;
     transition: transform 0.3s ease;
+    overflow: hidden;
 
     &__close {
       transform: translateY(-100%);
+      //position: absolute;
+      //z-index: -100;
+
+      height: 0;
     }
 
     &__open {
