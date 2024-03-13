@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="header">
+    <div class="header" :class="isMenu ? 'header__open' : ''">
       <img
           class="logo"
           :src="LOGO"
@@ -26,15 +26,6 @@
           />
         </button>
 
-<!--        <button-->
-<!--            v-if="isMenuButton"-->
-<!--            class="menu"-->
-<!--            :class="isMenu ? 'menu__open' : ''"-->
-<!--            @click.stop="openingAndClosingMenu"-->
-<!--        >-->
-<!--          <span />-->
-<!--        </button>-->
-
         <ButtonMenu v-if="isMenuButton" />
       </div>
     </div>
@@ -44,10 +35,7 @@
         :class="isMenu ? 'header-menu__open' : 'header-menu__close'"
         v-click-outside="closingMenu"
     >
-      <HeaderMenu
-          class="header-menu"
-          @update:close="closingMenu"
-      />
+      <HeaderMenu />
     </div>
   </div>
 </template>
@@ -99,10 +87,7 @@ function closingMenu() {
   left: 50%;
   border-radius: 12px;
   transform: translate(-50%, 0);
-  z-index: 100;
-  background: var(--main-color);
-  border: 4px solid var(--neutral-color);
-  box-shadow: 0 4px 6px var(--shadow-color);
+  z-index: 99;
   box-sizing: border-box;
   overflow: hidden;
 
@@ -110,10 +95,23 @@ function closingMenu() {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 64px;
+    background: var(--main-color);
+    border: 4px solid var(--neutral-color);
+    box-shadow: 0 4px 6px var(--shadow-color);
+    border-radius: 12px;
+    position: relative;
+    z-index: 1000;
+    height: auto;
+
+    &__open {
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+      border-bottom: 0;
+      box-shadow: 0 0 0 var(--shadow-color);
+    }
 
     .logo {
-      height: 100%;
+      height: 64px;
     }
 
     .buttons {
@@ -124,64 +122,6 @@ function closingMenu() {
         width: auto !important;
         padding: 0 12px;
       }
-
-      //.menu {
-      //  position: relative;
-      //  display: flex;
-      //  flex-direction: column;
-      //  align-items: center;
-      //  justify-content: center;
-      //  background: var(--neutral-color);
-      //  border-radius: 12px;
-      //  width: 40px;
-      //  height: 40px;
-      //  margin-right: 12px;
-      //  border: 0;
-      //
-      //  span {
-      //    transition-duration: 0s;
-      //    transition-delay: 0.15s;
-      //
-      //    &:before, &:after {
-      //      transition-property: margin, transform;
-      //      transition-duration: 0.15s;
-      //      transition-delay: 0.15s, 0s;
-      //      position: absolute;
-      //      content: '';
-      //    }
-      //
-      //    &, &:before, &:after {
-      //      width: 20px;
-      //      height: 4px;
-      //      background-color: #000;
-      //      display: block;
-      //    }
-      //
-      //    &:before {
-      //      margin-top: -8px;
-      //    }
-      //
-      //    &:after {
-      //      margin-top: 8px;
-      //    }
-      //  }
-      //
-      //  &__open span {
-      //    background-color: rgba(0, 0, 0, 0.0);
-      //
-      //    &:before {
-      //      margin-top: 0;
-      //      transform: rotate(45deg);
-      //      transition-delay: 0s, 0.15s;
-      //    }
-      //
-      //    &:after {
-      //      margin-top: 0;
-      //      transform: rotate(-45deg);
-      //      transition-delay: 0s, 0.15s;
-      //    }
-      //  }
-      //}
 
       .button {
         border: 0;
@@ -210,33 +150,19 @@ function closingMenu() {
   }
 
   .header-menu {
-    &__open {
-      height: 158px;
-      animation: menuOpen 0.3s forwards;
-    }
+    background: var(--main-color);
+    border: 4px solid var(--neutral-color);
+    border-top: 0;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    transition: transform 0.3s ease;
 
     &__close {
-      height: 0;
-      animation: menuClose 0.3s forwards;
-    }
-  }
-
-  @keyframes menuOpen {
-    0% {
-      height: 0;
-    }
-    100% {
-      height: 158px;
-    }
-  }
-
-  @keyframes menuClose {
-    0% {
-      height: 158px;
+      transform: translateY(-100%);
     }
 
-    100% {
-      height: 0;
+    &__open {
+      transform: translateY(0);
     }
   }
 }

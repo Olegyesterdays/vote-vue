@@ -32,7 +32,7 @@ function openingAndClosingMenu() {
   border-radius: 12px;
   width: 40px;
   height: 40px;
-  margin: 25px;
+  margin-right: 12px;
   border: 0;
 
   span {

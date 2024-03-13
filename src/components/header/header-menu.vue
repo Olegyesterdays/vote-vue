@@ -107,7 +107,7 @@ function exit() {
 
   .button {
     background: var(--neutral-color);
-    box-shadow: 0 4px 6px var(--shadow-color);
+    //box-shadow: 0 4px 6px var(--shadow-color);
     border: 0;
     border-radius: 12px;
     padding: 12px;
