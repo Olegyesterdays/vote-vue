@@ -13,7 +13,7 @@ import StatisticsVote from "@/components/statistics-page/statistics-vote.vue";
 <style scoped lang="scss">
 .container {
   margin: auto;
-  width: 900px;
+  width: 1000px;
   display: flex;
   flex-direction: column;
 
@@ -22,7 +22,7 @@ import StatisticsVote from "@/components/statistics-page/statistics-vote.vue";
   }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1000px) {
   .container {
     width: 100%;
   }

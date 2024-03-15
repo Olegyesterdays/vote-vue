@@ -4,7 +4,7 @@ export const accountModule = {
     state: {
         userID: 17,
 
-        voteType: "MyVote",
+        voteType: "NewVote",
 
         vote: {
             myVote: [
@@ -155,7 +155,222 @@ export const accountModule = {
                     title: "title newVote 2",
                     date: "дд.мм.гггг",
                     voteID: ""
-                }
+                },
+                {
+                    title: "title newVote 1",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 1",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 1",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 1",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 1",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 1",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 1",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 1",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 1",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
             ],
 
             passed: [

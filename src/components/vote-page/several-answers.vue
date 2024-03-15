@@ -53,7 +53,7 @@ const handleSelection = (title) => {
   border-radius: 12px;
   padding: 8px;
   margin: auto;
-  width: 900px;
+  width: 1000px;
   display: flex;
   flex-direction: column;
   border: 4px solid var(--neutral-color);
@@ -103,7 +103,7 @@ const handleSelection = (title) => {
   }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1000px) {
   .severalAnswers {
     width: 100%;
   }

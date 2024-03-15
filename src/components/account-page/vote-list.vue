@@ -1,33 +1,19 @@
 <template>
-  <div class="vote-panel">
-    <div class="vote-type">
-      <button
-          v-if="role === 'admin' || 'super-admin'"
-          class="button my-vote"
-          :class="voteType === 'MyVote' ? 'button__active' : ''"
-          @click="myVote"
-      >
-        <span class="text">{{ $t("accountPage.myVotes") }} </span>
-        <span class="mdi mdi-pencil-outline" />
-      </button>
+  <div class="container">
+    <div class="tabs">
+      <input type="radio" id="radio-1" name="tabs" @change="newVote" checked/>
+      <label class="tab" for="radio-1">
+        {{ $t("accountPage.new") }}
+        <span>
+          {{ votingNewVote.length }}
+        </span>
+      </label>
 
-      <button
-          class="button new-vote"
-          :class="voteType === 'NewVote' ? 'button__active' : ''"
-          @click="newVote"
-      >
-        <span class="text">{{ $t("accountPage.new") }}</span>
-        <span class="mdi mdi-account-alert-outline" />
-      </button>
-
-      <button
-          class="button passed"
-          :class="voteType === 'Passed' ? 'button__active' : ''"
-          @click="passed"
-      >
-        <span class="text">{{ $t("accountPage.passed") }}</span>
-        <span class="mdi mdi-account-outline" />
-      </button>
+      <input type="radio" id="radio-2" name="tabs" @change="passed"/>
+      <label class="tab" for="radio-2">
+        {{ $t("accountPage.passed") }}
+      </label>
+      <span class="glider"></span>
     </div>
 
     <input
@@ -38,39 +24,40 @@
     />
 
     <div class="vote-list">
-      <VoteItem
-          class="item"
-          v-for="(vote, index) in filteredVoting"
+      <button
+          class="button vote"
+          v-for="({ title, date, voteID }, index) in voteType === 'NewVote' ? votingNewVote : votingPassed"
           :key="index"
-          :title="vote.title"
-          :date="vote.date"
-          :userID="vote.voteID"
-          :typeVote="voteType"
-      />
+          @click="takeAVote"
+      >
+        <img v-if="ava !== ''" :src="ava" alt="">
+        <span v-else class="mdi mdi-vote" />
+        <span class="title">
+          {{ title }}
+        </span>
+      </button>
     </div>
   </div>
 </template>
 
 <script setup>
-import VoteItem from "@/components/account-page/vote-item.vue";
 import {computed, ref} from "vue"
 import {useStore} from "vuex"
+import { useRouter } from "vue-router"
+// import ava from "@/assets/ava.jpg";
+const ava = ref("")
 
-const store = useStore()
-
-const role = computed(() => store.getters["userModule/getUserRole"]);
+const store = useStore();
+const router = useRouter();
 const voteType = computed(() => store.getters["accountModule/getVoteType"]);
-const voting = computed(() => store.getters[`accountModule/get${voteType.value}`] || []);
-const searchText = ref('')
+const votingNewVote = computed(() => store.getters["accountModule/getNewVote"]);
+const votingPassed = computed(() => store.getters["accountModule/getPassed"]);
+const searchText = ref('');
 
 const filteredVoting = computed(() => {
   const search = searchText.value.toLowerCase()
   return voting.value.filter(vote => vote.title.toLowerCase().includes(search))
 })
-
-function myVote() {
-  store.commit("accountModule/voteTypeMyVote")
-}
 
 function newVote() {
   store.commit("accountModule/voteTypeNewVote")
@@ -79,91 +66,177 @@ function newVote() {
 function passed() {
   store.commit("accountModule/voteTypePassed")
 }
+
+function takeAVote() {
+  router.push({ path: '/account/vote'})
+}
 </script>
 
 <style scoped lang="scss">
-.vote-panel {
-  width: 900px;
+.container {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  border: 4px solid var(--neutral-color);
-  background: var(--main-color);
-  border-radius: 12px;
 
-  .vote-type {
-    width: auto;
+  .tabs {
+    width: 1000px;
+    margin: 12px auto;
     display: flex;
-    margin: 0 12px 8px;
+    justify-content: space-between;
+    background-color: #fff;
+    position: relative;
 
-    .button {
-      border: 0;
-      padding: 12px;
+    * {
+      z-index: 2;
+    }
+
+    input[type="radio"] {
+      display: none;
+    }
+
+    .tab {
       width: 100%;
-      background: var(--main-color);
-      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 44px;
+      border-radius: 99px;
+      cursor: pointer;
+      transition: color 0.15s ease-in;
 
-      .mdi {
-        display: none;
+      span {
+        margin-left: 12px;
+        border-radius: 50%;
+        font-size: 16px;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--accent-color);
+        color: var(--main-color);
       }
+    }
 
-      &__active {
-        margin-bottom: 0;
-        border-bottom: 4px solid var(--accent-color);
+    input[type="radio"] {
+      &:checked {
+        & + label {
+          color: var(--main-color);
+
+          span {
+            background: var(--main-color);
+            color: var(--accent-color);
+          }
+        }
       }
+    }
+
+    input[id="radio-1"] {
+      &:checked {
+        & ~ .glider {
+          transform: translateX(0);
+        }
+      }
+    }
+
+    input[id="radio-2"] {
+      &:checked {
+        & ~ .glider {
+          transform: translateX(100%);
+        }
+      }
+    }
+
+    input[id="radio-3"] {
+      &:checked {
+        & ~ .glider {
+          transform: translateX(200%);
+        }
+      }
+    }
+
+    .glider {
+      position: absolute;
+      display: flex;
+      height: 44px;
+      width: 50%;
+      background-color: var(--accent-color);
+      z-index: 1;
+      border-radius: 99px;
+      transition: 0.25s ease-out;
     }
   }
 
   .input {
-    width: auto;
-    margin: 0 12px;
-    border: 0;
-    border-radius: 12px;
+    width: 968px;
+    margin: 0 auto 12px;
+    border-radius: 40px;
     padding: 16px;
     box-shadow: 0 4px 6px var(--shadow-color);
-    background: var(--neutral-color);
+    border: 4px solid var(--additional-color__30);
   }
 
   .vote-list {
-    padding-right: 8px;
-    width: auto;
+    width: 1000px;
+    margin: 0 auto 20px;
     display: flex;
-    flex-direction: column;
-    margin: 8px 12px 12px;
-    height: 50vh;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 25px;
     overflow: hidden;
-    overflow-y: auto;
+    transition: height 0.3s ease-in-out;
 
-    .item {
-      width: auto;
+    .button {
+      height: 250px;
+      width: 180px;
+      flex-grow: 0;
+      flex-shrink: 0;
+      flex-basis: auto;
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 4px solid var(--additional-color__30);
+      background: var(--main-color);
+      transition: width 0.3s ease-in-out; /* Добавлено для анимации изменения ширины */
 
-      &:first-child{
-        margin: 0;
+      .mdi-vote {
+        font-size: 88px;
+        position: absolute;
+        width: 100%;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%,0);
+        color: var(--additional-color__30);
+      }
+
+      img {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%,0);
+      }
+
+      .title {
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translate(-50%, -50%);
+      }
+
+      &:active {
+        transform: scale(0.98);
       }
     }
   }
 }
 
-@media screen and (max-width: 900px) {
-  .vote-panel {
-    width: 100%;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .vote-panel {
-    .vote-type {
-
-      .button {
-        .text {
-          display: none;
-        }
-
-        .mdi {
-          display: block;
-          font-size: 32px;
-        }
-      }
+@media screen and (max-width: 1000px) {
+  .container {
+    .tabs, .vote-list, .input {
+      width: 100%;
     }
   }
 }
+
 </style>

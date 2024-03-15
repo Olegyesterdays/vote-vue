@@ -32,7 +32,7 @@ const description = computed(() => store.getters['statisticsModule/getDescriptio
 
 <style scoped lang="scss">
 .container {
-  width: 900px;
+  width: 1000px;
   box-sizing: border-box;
   border-radius: 12px;
   margin: 8px auto;
@@ -63,7 +63,7 @@ const description = computed(() => store.getters['statisticsModule/getDescriptio
   }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1000px) {
   .container {
     width: 100%;
   }

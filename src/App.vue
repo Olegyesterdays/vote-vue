@@ -1,18 +1,35 @@
 <template>
   <div class="background">
-    <Header class="header" />
+    <Header />
 
     <router-view class="content" :class="isMenu ? 'header-menu__open' : ''"/>
+
+    <TheQuickMoveButton v-if="isScrollable" />
   </div>
 </template>
 
 <script setup>
 import Header from "@/components/header/header.vue";
 import { useStore } from 'vuex';
-import {computed} from "vue";
+import {computed, onMounted, ref} from "vue";
+import TheQuickMoveButton from "@/components/the-quick-move-button.vue";
 
 const store = useStore();
-const isMenu = computed(() => store.getters["appModule/getIsMenu"])
+const isMenu = computed(() => store.getters["appModule/getIsMenu"]);
+const isScrollable = ref(false);
+
+// Проверяем, есть ли возможность прокрутки страницы
+function checkScrollable() {
+  isScrollable.value = document.body.scrollHeight > window.innerHeight;
+}
+
+// Вызываем функцию для проверки при монтировании компонента
+onMounted(() => {
+  checkScrollable();
+});
+
+// Добавляем обработчик изменения размеров окна браузера
+window.addEventListener('resize', checkScrollable);
 </script>
 
 <style lang="scss" scoped>
@@ -23,7 +40,7 @@ const isMenu = computed(() => store.getters["appModule/getIsMenu"])
   background: var(--main-color);
 
   .content {
-    margin-top: 80px;
+    margin-top: 68px;
   }
 
   .header-menu__open:before {

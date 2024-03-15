@@ -25,8 +25,8 @@ export default {
         exit: "Выход",
         nameVote: "Название голосования",
         myVotes: "Мои голосования",
-        new: "Новае",
-        passed: "Пройденые"
+        new: "Не пройденные",
+        passed: "Пройденные"
     },
     statisticsPage: {
         additionalInformation: {

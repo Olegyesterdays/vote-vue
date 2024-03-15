@@ -74,6 +74,7 @@ export const userModule = {
                 document.documentElement.style.setProperty('--secondary-color', '#9DB0BB');
                 document.documentElement.style.setProperty('--black-color', '#000000');
                 document.documentElement.style.setProperty('--additional-color', '#0065E2');
+                document.documentElement.style.setProperty('--additional-color__30', '#B3D1F6');
                 document.documentElement.style.setProperty('--neutral-color', '#E6F0FD');
                 document.documentElement.style.setProperty('--main-color', '#FFFFFF');
             } else {
@@ -81,6 +82,7 @@ export const userModule = {
                 document.documentElement.style.setProperty('--secondary-color', '#9DB0BB');
                 document.documentElement.style.setProperty('--black-color', '#0C0C0C');
                 document.documentElement.style.setProperty('--additional-color', '#0065E2');
+                document.documentElement.style.setProperty('--additional-color__30', '#B3D1F6');
                 document.documentElement.style.setProperty('--neutral-color', '#B3D1F7');
                 document.documentElement.style.setProperty('--main-color', '#FFFFFF');
             }

@@ -29,14 +29,6 @@
         <ButtonMenu v-if="isMenuButton" />
       </div>
     </div>
-
-    <div
-        class="header-menu"
-        :class="isMenu ? 'header-menu__open' : 'header-menu__close'"
-        v-click-outside="closingMenu"
-    >
-      <HeaderMenu @update:close="closingMenu" />
-    </div>
   </div>
 </template>
 
@@ -81,24 +73,19 @@ function closingMenu() {
 
 <style scoped lang="scss">
 .container {
-  width: 900px;
+  width: 100%;
   position: fixed;
-  top: 0;
-  left: 50%;
-  border-radius: 12px;
-  transform: translate(-50%, 0);
   z-index: 99;
   box-sizing: border-box;
   overflow: hidden;
+  border-bottom: 4px solid var(--neutral-color);
 
   .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     background: var(--main-color);
-    border: 4px solid var(--neutral-color);
     box-shadow: 0 4px 6px var(--shadow-color);
-    border-radius: 12px;
     position: relative;
     z-index: 100;
     height: auto;
@@ -150,28 +137,6 @@ function closingMenu() {
           transform: scale(0.98);
         }
       }
-    }
-  }
-
-  .header-menu {
-    background: var(--main-color);
-    border: 4px solid var(--neutral-color);
-    border-top: 0;
-    border-bottom-right-radius: 12px;
-    border-bottom-left-radius: 12px;
-    transition: transform 0.3s ease;
-    overflow: hidden;
-
-    &__close {
-      transform: translateY(-100%);
-      //position: absolute;
-      //z-index: -100;
-
-      height: 0;
-    }
-
-    &__open {
-      transform: translateY(0);
     }
   }
 }

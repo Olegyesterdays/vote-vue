@@ -34,8 +34,6 @@
         Создать и опубликовать
       </button>
     </div>
-
-    <TheQuickMoveButton />
   </div>
 </template>
 
@@ -43,7 +41,6 @@
 import CreatingATitleAndDescription from "@/components/create-vote-page/creating-a-title-and-description.vue";
 import VotingParticipants from "@/components/create-vote-page/voting-participants.vue";
 import CreateQuestion from "@/components/create-vote-page/create-question.vue";
-import TheQuickMoveButton from "@/components/the-quick-move-button.vue";
 
 import { useStore } from "vuex";
 import { computed } from "vue";
@@ -70,8 +67,12 @@ function createAndPublish() {
 
 <style scoped lang="scss">
 .container {
-  width: 900px;
+  width: 1000px;
   margin: auto;
+
+  .creatingOrParticipants {
+    margin-top: 8px;
+  }
 
     .button {
       width: 100%;
@@ -87,33 +88,6 @@ function createAndPublish() {
         color: var(--main-color);
       }
     }
-
-  //.creating-and-participants {
-  //  display: flex;
-  //  justify-content: space-between;
-  //  margin-bottom: 6px;
-  //
-  //  .button {
-  //    width: 100%;
-  //    padding: 12px;
-  //    border-radius: 12px;
-  //    border: 0;
-  //    background: var(--neutral-color);
-  //
-  //    &:hover {
-  //      background: var(--accent-color);
-  //      color: var(--main-color);
-  //    }
-  //  }
-  //
-  //  .creating {
-  //    margin-right: 6px;
-  //  }
-  //
-  //  .participants {
-  //    margin-left: 6px;
-  //  }
-  //}
 
   .buttons {
     display: flex;
@@ -131,13 +105,27 @@ function createAndPublish() {
         background: var(--accent-color);
         color: var(--main-color);
       }
+
+      &:last-child {
+        margin-bottom: 400px;
+      }
     }
   }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1000px) {
   .container {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    .buttons {
+      .button:last-child {
+        margin-bottom: 12px;
+      }
+    }
   }
 }
 </style>

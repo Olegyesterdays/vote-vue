@@ -1,17 +1,21 @@
 <template>
   <button class="button the-quick-move-button" @click="scrollToTopOrBottom">
-    <span v-if="scrollPosition === 'top'" class="mdi mdi-arrow-up"></span>
-    <span v-else class="mdi mdi-arrow-down"></span>
+    <span
+        class="mdi mdi-arrow-up"
+        :class="upOrDown ? 'icon__up' : ''"
+    />
   </button>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import {ref} from 'vue';
 
 const scrollPosition = ref('top');
+const upOrDown = ref(false)
 let savedScrollPosition = 0;
 
 function scrollToTopOrBottom() {
+  upOrDown.value = !upOrDown.value
   if (scrollPosition.value === 'top') {
     savedScrollPosition = window.scrollY;
     window.scrollTo({
@@ -26,7 +30,7 @@ function scrollToTopOrBottom() {
     });
     scrollPosition.value = 'top';
   }
-};
+}
 </script>
 
 <style scoped lang="scss">
@@ -34,19 +38,26 @@ function scrollToTopOrBottom() {
   display: flex;
   flex-direction: column;
   position: fixed;
-  width: 44px !important;
-  height: 44px !important;
+  width: 44px;
+  height: 44px;
   z-index: 100;
   bottom: 10px;
   right: 10px;
   font-size: 20px;
   align-items: center;
   justify-content: center;
+  background: var(--accent-color);
+  border: 0;
+  border-radius: 12px;
 
-  &:hover {
-    .mdi {
-      color: var(--main-color);
-    }
+  span {
+    color: var(--main-color);
+    font-size: 24px;
+    transition: transform 0.3s;
+  }
+
+  .icon__up {
+    transform: rotate(-180deg);
   }
 }
 </style>

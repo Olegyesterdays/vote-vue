@@ -1,32 +1,21 @@
 <template>
   <div class="container">
-<!--    <Menu class="menu" />-->
-    <VoteList class="vote-list" />
+    <OpportunitiesToCreateAVote />
+    <VoteList />
   </div>
 </template>
 
 <script setup>
-import Menu from "@/components/account-page/menu.vue";
+import OpportunitiesToCreateAVote from "@/components/account-page/opportunities-to-create-a-vote.vue";
 import VoteList from "@/components/account-page/vote-list.vue";
 </script>
 
 <style scoped lang="scss">
 .container {
   margin: auto;
-  width: 900px;
-  border-radius: 12px;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  background: var(--neutral-color);
-
-  .menu {
-    width: auto;
-  }
-
-  .vote-list {
-    width: auto;
-  }
-
 }
 
 @media screen and (max-width: 900px) {

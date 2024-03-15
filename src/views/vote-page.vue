@@ -47,7 +47,6 @@ const severalAnswers = ref([]);
 
 function handleOneItems(items) {
   oneAnswer.value = items;
-  // console.log(toRaw(oneAnswer.value));
   store.commit("voteModule/writeDownAnswer", {
     payload: toRaw(oneAnswer.value)
   });
@@ -55,7 +54,6 @@ function handleOneItems(items) {
 
 function handleSeveralItems(items) {
   severalAnswers.value = items;
-  // console.log(toRaw(severalAnswers.value));
   store.commit("voteModule/writeDownAnswer", {
     payload: toRaw(severalAnswers.value)
   });
@@ -78,12 +76,12 @@ function sendAnswers() {
   }
 
   .sendAnswers {
-    width: 900px;
+    width: 1000px;
     padding: 12px;
     box-shadow: 0 4px 6px var(--shadow-color);
     border: 0;
     border-radius: 12px;
-    margin: 0 auto 40px;
+    margin: 0 auto 400px;
     background: var(--neutral-color);
 
     &:hover {
@@ -93,7 +91,7 @@ function sendAnswers() {
   }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1000px) {
   .container {
     .sendAnswers {
       width: 100%;
