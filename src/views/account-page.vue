@@ -17,10 +17,4 @@ import VoteList from "@/components/account-page/vote-list.vue";
   display: flex;
   flex-direction: column;
 }
-
-@media screen and (max-width: 900px) {
-  .container {
-    width: 100%;
-  }
-}
 </style>

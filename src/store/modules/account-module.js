@@ -371,6 +371,16 @@ export const accountModule = {
                     date: "дд.мм.гггг",
                     voteID: ""
                 },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
+                {
+                    title: "title newVote 2",
+                    date: "дд.мм.гггг",
+                    voteID: ""
+                },
             ],
 
             passed: [

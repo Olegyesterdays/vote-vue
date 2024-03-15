@@ -3,15 +3,23 @@
     <div class="tabs">
       <input type="radio" id="radio-1" name="tabs" @change="newVote" checked/>
       <label class="tab" for="radio-1">
-        {{ $t("accountPage.new") }}
-        <span>
+        <span class="text">
+          {{ $t("accountPage.new") }}
+        </span>
+
+        <span class="mdi mdi-checkbox-blank-outline" />
+        <span class="quantity">
           {{ votingNewVote.length }}
         </span>
       </label>
 
       <input type="radio" id="radio-2" name="tabs" @change="passed"/>
       <label class="tab" for="radio-2">
-        {{ $t("accountPage.passed") }}
+        <span class="text">
+          {{ $t("accountPage.passed") }}
+        </span>
+
+        <span class="mdi mdi-checkbox-marked-outline" />
       </label>
       <span class="glider"></span>
     </div>
@@ -31,7 +39,7 @@
           @click="takeAVote"
       >
         <img v-if="ava !== ''" :src="ava" alt="">
-        <span v-else class="mdi mdi-vote" />
+        <span v-else class="mdi mdi-vote"/>
         <span class="title">
           {{ title }}
         </span>
@@ -43,7 +51,7 @@
 <script setup>
 import {computed, ref} from "vue"
 import {useStore} from "vuex"
-import { useRouter } from "vue-router"
+import {useRouter} from "vue-router"
 // import ava from "@/assets/ava.jpg";
 const ava = ref("")
 
@@ -68,7 +76,7 @@ function passed() {
 }
 
 function takeAVote() {
-  router.push({ path: '/account/vote'})
+  router.push({path: '/account/vote'})
 }
 </script>
 
@@ -104,7 +112,11 @@ function takeAVote() {
       cursor: pointer;
       transition: color 0.15s ease-in;
 
-      span {
+      .mdi {
+        display: none;
+      }
+
+      .quantity {
         margin-left: 12px;
         border-radius: 50%;
         font-size: 16px;
@@ -121,9 +133,11 @@ function takeAVote() {
     input[type="radio"] {
       &:checked {
         & + label {
-          color: var(--main-color);
+          .text, .mdi {
+            color: var(--main-color);
+          }
 
-          span {
+          .quantity {
             background: var(--main-color);
             color: var(--accent-color);
           }
@@ -168,18 +182,20 @@ function takeAVote() {
   }
 
   .input {
-    width: 968px;
+    width: 1000px;
     margin: 0 auto 12px;
     border-radius: 40px;
     padding: 16px;
     box-shadow: 0 4px 6px var(--shadow-color);
     border: 4px solid var(--additional-color__30);
+    box-sizing: border-box;
   }
 
   .vote-list {
     width: 1000px;
     margin: 0 auto 20px;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     flex-wrap: wrap;
     justify-content: flex-start;
     gap: 25px;
@@ -188,10 +204,7 @@ function takeAVote() {
 
     .button {
       height: 250px;
-      width: 180px;
-      flex-grow: 0;
-      flex-shrink: 0;
-      flex-basis: auto;
+      //width: 180px;
       position: relative;
       overflow: hidden;
       border-radius: 12px;
@@ -205,7 +218,7 @@ function takeAVote() {
         width: 100%;
         top: 20%;
         left: 50%;
-        transform: translate(-50%,0);
+        transform: translate(-50%, 0);
         color: var(--additional-color__30);
       }
 
@@ -214,7 +227,7 @@ function takeAVote() {
         width: 100%;
         top: 0;
         left: 50%;
-        transform: translate(-50%,0);
+        transform: translate(-50%, 0);
       }
 
       .title {
@@ -233,10 +246,52 @@ function takeAVote() {
 
 @media screen and (max-width: 1000px) {
   .container {
+    padding: 0 12px;
+
     .tabs, .vote-list, .input {
       width: 100%;
+    }
+
+    .vote-list {
+      grid-template-columns: repeat(4, 1fr);
     }
   }
 }
 
+@media screen and (max-width: 800px) {
+  .container {
+    .vote-list {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    .vote-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .container {
+    .tabs {
+      .tab {
+        .text {
+          display: none;
+        }
+
+        .mdi {
+          font-size: 32px;
+          display: block;
+        }
+      }
+    }
+
+    .vote-list {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+}
 </style>

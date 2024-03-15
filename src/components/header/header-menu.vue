@@ -1,88 +1,38 @@
 <template>
-  <div class="menu">
-    <button
-        v-if="isBack"
-        class="button back"
-        @click="back"
-    >
-      Назад
-    </button>
-
-    <button
-        v-if="(role === 'super-admin') && isListOfUsers"
-        class="button list-of-users"
-        @click="listOfUsers"
-    >
+  <div class="menu" :class="isMenu ? 'menu__open' : 'menu__close'">
+    <button class="button" @click="listUsers">
       {{ $t("accountPage.listOfUsers") }}
     </button>
 
-    <button
-        v-if="(role === 'admin' || 'super-admin') && isCreateVote"
-        class="button create-vote"
-        @click="createVote"
-    >
-      {{ $t("accountPage.createVote") }}
-    </button>
-
-    <button
-        v-if="isUserProfile"
-        class="button user-profile"
-        @click="userProfile"
-    >
+    <button class="button" @click="profile">
       {{ $t("accountPage.profile") }}
     </button>
 
-    <button
-        class="button exit"
-        @click="exit"
-    >
+    <button class="button" @click="exit">
       {{ $t("accountPage.exit") }}
     </button>
   </div>
 </template>
 
 <script setup>
+import { useStore } from "vuex"
 import { useRouter } from "vue-router";
-import { useStore } from 'vuex';
-import {computed, defineEmits, ref} from "vue";
+import {computed, defineEmits} from "vue"
 
-const store = useStore();
-
+const store = useStore()
 const router = useRouter();
-const role = computed(() => store.getters["userModule/getUserRole"]);
 const emit = defineEmits();
 
-const isBack = ref(true)
-const isListOfUsers = ref(true)
-const isCreateVote = ref(true)
-const isUserProfile = ref(true)
+const isMenu = computed(() => store.getters["appModule/getIsMenu"])
 
-router.beforeEach((to, from, next) => {
-  isBack.value = !(to.path === '/account');
-  isListOfUsers.value = !(to.path === '/account/listUsersPage');
-  isCreateVote.value = !(to.path === '/account/createVote');
-  isUserProfile.value = !(to.path === '/account/userProfilePage');
-  next();
-});
-
-function back() {
-  emit('update:close', true)
-  router.go(-1);
-}
-
-function createVote() {
-  emit('update:close', true)
-  router.push({ path: "/account/createVote" });
-}
-
-function userProfile() {
-  emit('update:close', true)
-  router.push({ path: "/account/userProfilePage"});
-}
-
-function listOfUsers() {
+function listUsers() {
   emit('update:close', true)
   router.push({ path: "/account/listUsersPage" });
+}
+
+function profile() {
+  emit('update:close', true)
+  router.push({ path: "/account/userProfilePage" });
 }
 
 function exit() {
@@ -90,28 +40,55 @@ function exit() {
   store.commit("userModule/clearDataUser");
   router.push({ path: "/" });
 }
-
 </script>
 
 <style scoped lang="scss">
 .menu {
-  margin: 0 12px;
   display: flex;
   flex-direction: column;
-  border-radius: 12px;
+  background: var(--main-color);
+  border-left: 4px solid var(--neutral-color);
+  overflow: hidden;
 
-  .list-of-users, .create-vote, .back {
-    background: var(--accent-color) !important;
-    color: var(--main-color);
+  &__open {
+    animation: open 0.3s forwards;
+    height: 1000px;
+  }
+
+  &__close {
+    animation: close 0.3s forwards;
+  }
+
+  @keyframes open {
+    0% {
+      width: 0;
+    }
+
+    100% {
+      width: 300px;
+    }
+  }
+
+  @keyframes close {
+    0% {
+      width: 300px;
+    }
+
+    100% {
+      width: 0;
+    }
   }
 
   .button {
-    background: var(--neutral-color);
-    //box-shadow: 0 4px 6px var(--shadow-color);
-    border: 0;
-    border-radius: 12px;
     padding: 12px;
-    margin-bottom: 12px;
+    margin: 12px 12px 0;
+    border-radius: 12px;
+    border: 0;
+    background: var(--neutral-color);
+
+    &:last-child {
+      margin-bottom: 12px;
+    }
   }
 }
 </style>

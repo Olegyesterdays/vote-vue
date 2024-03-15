@@ -25,7 +25,8 @@
           :key="index"
           @click="statistics"
       >
-        <img :src="ava" alt="">
+        <img v-if="ava !== ''" :src="ava" alt="">
+        <span v-else class="mdi mdi-vote"/>
         <span class="title">
           {{ title }}
         </span>
@@ -38,7 +39,9 @@
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
-import ava from "@/assets/ava.jpg";
+// import ava from "@/assets/ava.jpg";
+
+const ava = ref("")
 
 const store = useStore();
 const router = useRouter();
@@ -109,8 +112,8 @@ function statistics() {
   .my-votes {
     width: 1000px;
     margin: 0 auto 20px;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     justify-content: flex-start;
     gap: 25px;
     overflow: hidden;
@@ -122,12 +125,11 @@ function statistics() {
 
     .button {
       height: 250px;
-      width: 180px;
-      flex-grow: 0;
-      flex-shrink: 0;
-      flex-basis: auto;
       position: relative;
       overflow: hidden;
+      border-radius: 12px;
+      border: 4px solid var(--accent-color);
+      background: var(--neutral-color);
 
       img {
         position: absolute;
@@ -135,19 +137,31 @@ function statistics() {
         top: 0;
         left: 50%;
         transform: translate(-50%,0);
+        z-index: 5;
+      }
+
+      .mdi-vote {
+        font-size: 88px;
+        position: absolute;
+        width: 100%;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        color: var(--accent-color);
       }
 
       .title {
         position: absolute;
         left: 50%;
-        bottom: 0;
+        bottom: -10%;
         transform: translate(-50%, -50%);
+        background: var(--neutral-color);
+        width: 100%;
+        height: 20%;
+        z-index: 10;
       }
 
       &-create-vote {
-        border: 4px solid var(--accent-color);
-        background: var(--neutral-color);
-        border-radius: 12px;
         font-size: 88px;
 
         .mdi {
@@ -159,19 +173,43 @@ function statistics() {
         transform: scale(0.98);
       }
     }
-
-    .item {
-      border: 4px solid var(--accent-color);
-      background: var(--neutral-color);
-      border-radius: 12px;
-    }
   }
 }
 
 @media screen and (max-width: 1000px) {
   .container {
-    .my-votes, .menu-opportunities {
+    padding: 0 12px;
+
+    .menu-opportunities, .my-votes {
       width: 100%;
+    }
+
+    .my-votes {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    .my-votes {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    .my-votes {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .container {
+    .my-votes {
+      grid-template-columns: repeat(1, 1fr);
     }
   }
 }

@@ -4,7 +4,7 @@
       :class="isMenu ? 'menu__open' : ''"
       @click.stop="openingAndClosingMenu"
   >
-    <span/>
+    <span />
   </button>
 </template>
 

@@ -4,14 +4,14 @@
 
     <router-view class="content" :class="isMenu ? 'header-menu__open' : ''"/>
 
-    <TheQuickMoveButton v-if="isScrollable" />
+    <TheQuickMoveButton />
   </div>
 </template>
 
 <script setup>
 import Header from "@/components/header/header.vue";
 import { useStore } from 'vuex';
-import {computed, onMounted, ref} from "vue";
+import { computed, onMounted, ref } from "vue";
 import TheQuickMoveButton from "@/components/the-quick-move-button.vue";
 
 const store = useStore();
