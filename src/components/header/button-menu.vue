@@ -1,7 +1,7 @@
 <template>
   <button
-      class="menu"
-      :class="isMenu ? 'menu__open' : ''"
+      class="button-menu"
+      :class="isMenu ? 'button-menu__open' : ''"
       @click.stop="openingAndClosingMenu"
   >
     <span />
@@ -22,7 +22,7 @@ function openingAndClosingMenu() {
 </script>
 
 <style lang="scss" scoped>
-.menu {
+.button-menu {
   position: relative;
   display: flex;
   flex-direction: column;

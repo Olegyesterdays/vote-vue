@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <div class="header" :class="isMenu ? 'header__open' : 'header__close'">
+  <div class="container-header">
+    <div class="header">
       <img
           class="logo"
           :src="LOGO"
@@ -18,7 +18,8 @@
     </div>
 
     <HeaderMenu
-        v-if="isMenu"
+        class="menu"
+        :class="isMenu ? 'menu__open' : 'menu__close'"
         v-click-outside="openingAndClosingMenu"
         @update:close="openingAndClosingMenu"
     />
@@ -56,32 +57,16 @@ function openingAndClosingMenu() {
 </script>
 
 <style scoped lang="scss">
-.container {
-  width: 100%;
-  //height: 100%;
+.container-header {
   position: fixed;
-  z-index: 99;
-  box-sizing: border-box;
-  overflow: hidden;
+  width: 100%;
+  z-index: 1000;
 
   .header {
-    display: flex;
     align-items: center;
+    display: flex;
     justify-content: space-between;
-    background: var(--main-color);
     border-bottom: 4px solid var(--neutral-color);
-    box-shadow: 0 4px 6px var(--shadow-color);
-    position: relative;
-    z-index: 100;
-    height: auto;
-
-    &__open {
-      box-shadow: 0 0 0;
-    }
-
-    &__close {
-      height: 64px;
-    }
 
     .logo {
       height: 64px;
@@ -89,7 +74,23 @@ function openingAndClosingMenu() {
 
     .buttons {
       display: flex;
-      align-items: center;
+    }
+  }
+
+  .menu {
+    position: absolute;
+    right: 0;
+    height: 100vh;
+    //width: 100%;
+    transition: transform 0.3s;
+    background: var(--main-color);
+
+    &__open {
+      transform: translateX(0%);
+    }
+
+    &__close {
+      transform: translateX(100%);
     }
   }
 }

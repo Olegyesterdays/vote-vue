@@ -1,5 +1,5 @@
 <template>
-  <div class="menu" :class="isMenu ? 'menu__open' : 'menu__close'">
+  <div class="menu">
     <button class="button" @click="listUsers">
       {{ $t("accountPage.listOfUsers") }}
     </button>
@@ -44,40 +44,12 @@ function exit() {
 
 <style scoped lang="scss">
 .menu {
+  position: absolute;
   display: flex;
   flex-direction: column;
   background: var(--main-color);
   border-left: 4px solid var(--neutral-color);
   overflow: hidden;
-
-  &__open {
-    animation: open 0.3s forwards;
-    height: 1000px;
-  }
-
-  &__close {
-    animation: close 0.3s forwards;
-  }
-
-  @keyframes open {
-    0% {
-      width: 0;
-    }
-
-    100% {
-      width: 300px;
-    }
-  }
-
-  @keyframes close {
-    0% {
-      width: 300px;
-    }
-
-    100% {
-      width: 0;
-    }
-  }
 
   .button {
     padding: 12px;
