@@ -66,6 +66,7 @@ function openingAndClosingMenu() {
     align-items: center;
     display: flex;
     justify-content: space-between;
+    background: var(--main-color);
     border-bottom: 4px solid var(--neutral-color);
 
     .logo {

@@ -19,18 +19,11 @@
         <span class="mdi mdi-plus"/>
       </button>
 
-      <button
-          class="button item"
+      <MyCreateVoteItem
           v-for="({ title, date, voteID }, index) in myVotes"
           :key="index"
-          @click="statistics"
-      >
-        <img v-if="ava !== ''" :src="ava" alt="">
-        <span v-else class="mdi mdi-vote"/>
-        <span class="title">
-          {{ title }}
-        </span>
-      </button>
+          :title="title"
+      />
     </div>
   </div>
 </template>
@@ -39,9 +32,7 @@
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
-// import ava from "@/assets/ava.jpg";
-
-const ava = ref("")
+import MyCreateVoteItem from "@/components/account-page/my-create-vote-item.vue";
 
 const store = useStore();
 const router = useRouter();
@@ -54,10 +45,6 @@ function viewAllMyVotes() {
 
 function createVote() {
   router.push({ path: "/account/createVote" });
-}
-
-function statistics() {
-  router.push({ path: "/account/statistics" });
 }
 </script>
 
@@ -131,36 +118,6 @@ function statistics() {
       border: 4px solid var(--accent-color);
       background: var(--neutral-color);
 
-      img {
-        position: absolute;
-        width: 100%;
-        top: 0;
-        left: 50%;
-        transform: translate(-50%,0);
-        z-index: 5;
-      }
-
-      .mdi-vote {
-        font-size: 88px;
-        position: absolute;
-        width: 100%;
-        top: 20%;
-        left: 50%;
-        transform: translate(-50%, 0);
-        color: var(--accent-color);
-      }
-
-      .title {
-        position: absolute;
-        left: 50%;
-        bottom: -10%;
-        transform: translate(-50%, -50%);
-        background: var(--neutral-color);
-        width: 100%;
-        height: 20%;
-        z-index: 10;
-      }
-
       &-create-vote {
         font-size: 88px;
 
@@ -176,7 +133,7 @@ function statistics() {
   }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1012px) {
   .container {
     padding: 0 12px;
 

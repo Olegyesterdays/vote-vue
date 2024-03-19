@@ -19,6 +19,16 @@
           @input="passwordRecording($event.target.value)"
       >
     </label>
+
+    <label class="input-block">
+      <span>{{ $t('authPage.authPanel.form.fullName') }}</span>
+      <input
+          v-model="fullName"
+          class="input fullName"
+          type="text"
+          @input="fullNameRecording($event.target.value)"
+      >
+    </label>
   </div>
 </template>
 
@@ -30,13 +40,18 @@ import {useStore} from "vuex";
 const store = useStore();
 const email = computed(() => store.getters["userModule/getEmail"]);
 const password = computed(() => store.getters["userModule/getPassword"]);
+const fullName = computed(() => store.getters["userModule/getFullName"])
 
 function emailRecording(email) {
-  store.commit("userModule/email", {email: email})
+  store.commit("userModule/email", { email: email })
 }
 
 function passwordRecording(password) {
-  store.commit("userModule/password", {password: password})
+  store.commit("userModule/password", { password: password })
+}
+
+function fullNameRecording(fullName) {
+  store.commit("userModule/fullName", { fullName: fullName })
 }
 </script>
 

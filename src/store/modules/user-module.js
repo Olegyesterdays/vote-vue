@@ -8,8 +8,12 @@ export const userModule = {
         role: "",
 
         loginOrRegistration: "login",
-        email: "admin2@mail.ru",
-        password: "admin"
+        // email: "admin2@mail.ru",
+        // password: "admin"
+
+        email: "qwerty123@gmail.com",
+        password: "123",
+        fullName: "Oleg",
     },
 
     getters: {
@@ -36,6 +40,10 @@ export const userModule = {
         getPassword(state) {
             return state.password
         },
+
+        getFullName(state) {
+            return state.fullName
+        }
     },
 
     mutations: {
@@ -51,6 +59,10 @@ export const userModule = {
 
         password(state, { password }) {
             state.password = password
+        },
+
+        fullName(state, { fullName }) {
+            state.fullName = fullName
         },
 
         setTheme(state, { theme }) {
@@ -91,6 +103,7 @@ export const userModule = {
         clearEmailAndPassword(state) {
             state.email = ""
             state.password = ""
+            state.fullName = ""
         },
 
         clearDataUser(state) {
@@ -117,7 +130,8 @@ export const userModule = {
             api
                 .post("/users/login", {
                     email: state.email,
-                    password: state.password
+                    password: state.password,
+                    fullName: state.fullName
                 })
 
                 .then((response) => {

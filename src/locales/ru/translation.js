@@ -10,7 +10,8 @@ export default {
             },
             form: {
                 email: "Почта",
-                password: "Пароль"
+                password: "Пароль",
+                fullName: "Полное имя"
             }
         },
         buttonAuth: {
