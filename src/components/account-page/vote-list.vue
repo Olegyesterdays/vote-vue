@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import {computed, ref} from "vue"
+import {computed, onMounted, ref} from "vue"
 import {useStore} from "vuex"
 import {useRouter} from "vue-router"
 import MyVoteItem from "@/components/account-page/my-vote-item.vue";
@@ -32,6 +32,12 @@ const voteType = computed(() => store.getters["accountModule/getVoteType"]);
 const votingNotPassed = computed(() => store.getters["accountModule/getNotPassed"]);
 const votingPassed = computed(() => store.getters["accountModule/getPassed"]);
 const searchText = ref('');
+
+
+onMounted(() => {
+  store.dispatch("accountModule/onlyNotCompleted")
+  store.dispatch("accountModule/onlyCompleted")
+})
 
 const filteredVoting = computed(() => {
   const search = searchText.value.toLowerCase()

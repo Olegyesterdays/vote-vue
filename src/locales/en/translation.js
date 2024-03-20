@@ -25,8 +25,7 @@ export default {
         listOfUsers: "List of users",
         exit: "Exit",
         nameVote: "The name of the vote",
-        myVotes: "My votes",
-        new: "New",
+        notPassed: "Not passed",
         passed: "Passed"
     },
     statisticsPage: {

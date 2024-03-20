@@ -2,394 +2,14 @@ import api from "@/services/api.js";
 
 export const accountModule = {
     state: {
-        userID: 17,
-
         voteType: "NotPassed",
 
         vote: {
-            myVote: [
-                {
-                    title: "title myVote 1",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title myVote 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title myVote 1",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title myVote 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title myVote 1",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title myVo5te 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title myVote 1",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title myVote 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title myVote 1",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title 65myVote 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title myVote 1",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title my4Vote 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title myVote 1",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title myVote 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title myVote 1",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title myVote 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title myVote 1",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title myVote 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title myVote 1",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title myVote 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title myVgote 1",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title myVote 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title myVote 1",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title myVote 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title mgyVote 1",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "titlde myVote 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title myikrtuyVote 3",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                }
-            ],
+            myVote: [],
 
-            notPassed: [
-                {
-                    title: "title notPassed 1",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 1",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 1",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 1",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 1",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 1",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 1",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 1",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 1",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 1",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-                {
-                    title: "title notPassed 2",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                },
-            ],
+            notPassed: [],
 
-            passed: [
-                {
-                    title: "title passed 1",
-                    date: "дд.мм.гггг",
-                    voteID: ""
-                }
-            ]
+            passed: []
         }
     },
 
@@ -412,10 +32,6 @@ export const accountModule = {
     },
 
     mutations: {
-        voteTypeMyVote(state) {
-            state.voteType = "MyVote"
-        },
-
         voteTypeNotPassed(state) {
             state.voteType = "NotPassed"
         },
@@ -440,50 +56,50 @@ export const accountModule = {
     actions: {
         myCreated({ commit }) {
             api
-                .get("/users/me/createdQuizzes"
-                )
+              .get("/users/me/createdQuizzes"
+              )
 
-                .then((response) => {
-                    commit("listMyVote", {
-                        list: response
-                    })
-                })
+              .then((response) => {
+                  commit("listMyVote", {
+                      list: response.data.createdQuizzes
+                  })
+              })
 
-                .catch((error) => {
-                    console.log(error)
-                })
+              .catch((error) => {
+                  console.log(error)
+              })
         },
 
         onlyNotCompleted({ commit }) {
             api
-                .get("/user/quizzes?onlyNotCompleted=true"
-                )
+              .get("/users/me/attachedQuizzes?onlyNotCompleted=true"
+              )
 
-                .then((response) => {
-                    commit("listNotPassed", {
-                        list: response
-                    })
-                })
+              .then((response) => {
+                  commit("listNotPassed", {
+                      list: response.data.attachedQuizzes
+                  })
+              })
 
-                .catch((error) => {
-                    console.log(error)
-                })
+              .catch((error) => {
+                  console.log(error)
+              })
         },
 
         onlyCompleted({ commit }) {
             api
-                .get("/user/quizzes?onlyCompleted=true"
-                )
+              .get("/users/me/attachedQuizzes?onlyCompleted=true"
+              )
 
-                .then((response) => {
-                    commit("listPassed", {
-                        list: response
-                    })
-                })
+              .then((response) => {
+                  commit("listPassed", {
+                      list: response.data.attachedQuizzes
+                  })
+              })
 
-                .catch((error) => {
-                    console.log(error)
-                })
+              .catch((error) => {
+                  console.log(error)
+              })
         },
     },
 

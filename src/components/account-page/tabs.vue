@@ -3,7 +3,7 @@
     <input type="radio" id="radio-1" name="tabs" @change="newVote" checked/>
     <label class="tab" for="radio-1">
         <span class="text">
-          {{ $t("accountPage.new") }}
+          {{ $t("accountPage.notPassed") }}
         </span>
 
       <span class="mdi mdi-checkbox-blank-outline" />

@@ -25,8 +25,7 @@ export default {
         listOfUsers: "Список пользователей",
         exit: "Выход",
         nameVote: "Название голосования",
-        myVotes: "Мои голосования",
-        new: "Не пройденные",
+        notPassed: "Не пройденные",
         passed: "Пройденные"
     },
     statisticsPage: {

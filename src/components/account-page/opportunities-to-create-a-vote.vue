@@ -2,7 +2,7 @@
   <div class="container">
     <div class="menu-opportunities">
       <h3>
-        Создать голосование
+        {{ $t("accountPage.createVote") }}
       </h3>
 
       <button
@@ -16,7 +16,7 @@
 
     <div class="my-votes" :class="isAllMyVotes ? '' : 'my-votes__close'">
       <button class="button button-create-vote" @click="createVote">
-        <span class="mdi mdi-plus"/>
+        <span class="mdi mdi-plus" />
       </button>
 
       <MyCreateVoteItem
@@ -29,7 +29,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
+import { computed, ref, onMounted } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import MyCreateVoteItem from "@/components/account-page/my-create-vote-item.vue";
@@ -39,6 +39,9 @@ const router = useRouter();
 const isAllMyVotes = ref(false);
 const myVotes = computed(() => store.getters["accountModule/getMyVote"]);
 
+onMounted(() => {
+  store.dispatch("accountModule/myCreated")
+})
 function viewAllMyVotes() {
   isAllMyVotes.value = !isAllMyVotes.value
 }
