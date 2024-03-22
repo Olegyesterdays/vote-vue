@@ -5,18 +5,19 @@
     </h3>
 
     <label
-        class="answer"
-        v-for="({ text }, index) in options"
-        :key="index"
+      class="answer"
+      v-for="({ option_id, text }, index) in options"
+      :key="index"
     >
       {{ text }}
       <input
-          class="check-box"
-          type="checkbox"
-          :value="text"
-          v-model="severalAnswers"
-          @change="handleSelection(titleQuestion)"
+        class="check-box"
+        type="checkbox"
+        :value="option_id"
+        v-model="severalAnswers"
+        @change="handleSelection()"
       >
+
       <span class="check-style" />
     </label>
   </div>
@@ -25,7 +26,11 @@
 <script setup>
 import {defineProps, defineEmits, ref, toRaw} from "vue";
 
-defineProps({
+const props = defineProps({
+  questionId: {
+    type: Number
+  },
+
   titleQuestion: {
     type: String
   },
@@ -39,12 +44,12 @@ const emit = defineEmits();
 
 const severalAnswers = ref([]);
 
-const handleSelection = (title) => {
+const handleSelection = () => {
   emit('update:severalAnswers', {
-    title: title,
-    answer: toRaw(severalAnswers.value)
-  });
-};
+    questionId: props.questionId,
+    optionId: toRaw(severalAnswers.value)
+  })
+}
 </script>
 
 <style scoped lang="scss">

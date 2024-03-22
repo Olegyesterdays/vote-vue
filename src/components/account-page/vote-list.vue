@@ -11,9 +11,17 @@
 
     <div class="vote-list">
       <MyVoteItem
-          v-for="({ title, date, voteID, ava }, index) in voteType === 'NotPassed' ? votingNotPassed : votingPassed"
+          v-for="({
+              quiz_id,
+              title,
+              description,
+              img,
+              published_on,
+              closed_on
+          }, index) in voteType === 'NotPassed' ? votingNotPassed : votingPassed"
           :key="index"
           :title="title"
+          :voteID="quiz_id"
       />
     </div>
   </div>

@@ -5,21 +5,23 @@
     <div class="questions">
       <div
           class="question"
-          v-for="({ titleQuestion, typeQuestion, options }, index) in questions"
+          v-for="({ question_id, titleQuestion, typeQuestion, options }, index) in questions"
           :key="index"
       >
         <OneAnswer
             v-if="typeQuestion === 'one answer'"
+            :questionId="question_id"
             :titleQuestion="titleQuestion"
             :options="options"
-            @update:oneAnswer="handleOneItems($event)"
+            @update:oneAnswer="writeDownTheAnswer($event)"
         />
 
         <SeveralAnswers
             v-if="typeQuestion === 'several answers'"
+            :questionId="question_id"
             :titleQuestion="titleQuestion"
             :options="options"
-            @update:severalAnswers="handleSeveralItems($event)"
+            @update:severalAnswers="writeDownTheAnswer($event)"
         />
       </div>
     </div>
@@ -37,27 +39,24 @@
 import VoteContent from "@/components/vote-page/vote-content.vue";
 import OneAnswer from "@/components/vote-page/one-answer.vue";
 import SeveralAnswers from "@/components/vote-page/several-answers.vue";
-import { computed, ref, toRaw } from "vue";
+import { computed, onMounted, ref, toRaw } from 'vue'
 import { useStore } from "vuex";
 
 const store = useStore();
+
 const questions = computed(() => store.getters["voteModule/getQuestions"]);
-const oneAnswer = ref([]);
-const severalAnswers = ref([]);
 
-function handleOneItems(items) {
-  oneAnswer.value = items;
-  store.commit("voteModule/writeDownAnswer", {
-    payload: toRaw(oneAnswer.value)
-  });
+onMounted(() => {
+  store.dispatch("voteModule/gettingVote")
+})
+
+function writeDownTheAnswer({ questionId, optionId }) {
+  store.commit("voteModule/toggleAnswer", { questionId, optionId })
 }
 
-function handleSeveralItems(items) {
-  severalAnswers.value = items;
-  store.commit("voteModule/writeDownAnswer", {
-    payload: toRaw(severalAnswers.value)
-  });
-}
+// function writeDownTheAnswer(test) {
+//   console.log(test)
+// }
 
 function sendAnswers() {
   store.dispatch("voteModule/sendAnswers")

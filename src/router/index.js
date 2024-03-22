@@ -65,6 +65,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     const store = useStore();
     const authToken = computed(() => store.getters['userModule/getAuthToken']);
+    // const authToken = "";
 
     if (to.matched.some(record => record.meta.requiresAccount)) {
         if (!authToken.value) {

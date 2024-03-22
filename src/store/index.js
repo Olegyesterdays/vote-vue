@@ -23,10 +23,14 @@ const store = createStore({
 });
 
 store.dispatch("userModule/fetch")
+store.dispatch("voteModule/fetch")
 
 store.subscribe((mutation, state) => {
     if (mutation.type.startsWith('userModule/')) {
         store.dispatch('userModule/update')
+    }
+    if (mutation.type.startsWith('voteModule/')) {
+        store.dispatch('voteModule/update')
     }
 });
 

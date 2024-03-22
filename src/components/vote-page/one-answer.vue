@@ -5,18 +5,19 @@
     </h3>
 
     <label
-        class="answer"
-        v-for="({ text }, index) in options"
-        :key="index"
+      class="answer"
+      v-for="({ option_id, text }, index) in options"
+      :key="index"
     >
       {{ text }}
       <input
-          class="radio-button"
-          type="radio"
-          :value="text"
-          v-model="oneAnswer"
-          @change="handleSelection(titleQuestion)"
+        class="radio-button"
+        type="radio"
+        :value="option_id"
+        v-model="oneAnswer"
+        @change="handleSelection()"
       >
+
       <span class="radio-style" />
     </label>
   </div>
@@ -25,7 +26,11 @@
 <script setup>
 import {defineProps, defineEmits, ref} from "vue";
 
-defineProps({
+const props = defineProps({
+  questionId: {
+    type: Number
+  },
+
   titleQuestion: {
     type: String
   },
@@ -39,10 +44,10 @@ const emit = defineEmits();
 
 const oneAnswer = ref([]);
 
-const handleSelection = (title) => {
+const handleSelection = () => {
   emit('update:oneAnswer', {
-    title: title,
-    answer: oneAnswer.value
+    questionId: props.questionId,
+    optionId: oneAnswer.value
   });
 };
 </script>

@@ -150,7 +150,7 @@ export const userModule = {
 
         registration({ commit, state }) {
             api
-                .post("/users", {
+                .post("/users/create", {
                     email: state.email,
                     password: state.password
                 })

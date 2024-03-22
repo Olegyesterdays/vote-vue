@@ -20,7 +20,7 @@ import {useStore} from "vuex";
 const router = useRouter();
 const store = useStore();
 
-defineProps({
+const props = defineProps({
   title: {
     type: String
   },
@@ -38,6 +38,7 @@ defineProps({
   }
 })
 function takeAVote() {
+  store.commit("voteModule/setVoteID", { voteID: props.voteID})
   router.push({path: '/account/vote'})
 }
 </script>
