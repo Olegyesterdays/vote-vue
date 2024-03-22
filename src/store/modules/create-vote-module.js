@@ -3,13 +3,15 @@ import router from "@/router/index.js";
 
 export const createVoteModule = {
     state: {
-        userID: "14",
+        quiz_id: 0,
 
         creatingOrParticipants: "creating",
 
         title: "",
 
         description: "",
+
+        attachedUsers: ["fa199c4e-6e87-4afa-99f7-927d5fa8c42d"],
 
         listUsers: [
             {
@@ -142,18 +144,21 @@ export const createVoteModule = {
                     ]
                 }
             ]
+        },
+
+        quiz_id(state, { quiz_id }) {
+            state.quiz_id = quiz_id
         }
     },
 
     actions: {
         createVote({ commit, state }) {
             api
-                .post("/quiz", {
-                    quiz: {
-                        title: state.title,
-                        description: state.description,
-                        questions: state.questions
-                    }
+                .post("/quizzes", {
+                    title: state.title,
+                    description: state.description,
+                    questions: state.questions,
+                    attachedUsers: state.attachedUsers
                 })
 
                 .then((response) => {
@@ -169,17 +174,27 @@ export const createVoteModule = {
 
         createAndPublishVote({ commit, state }) {
             api
-                .post("/quiz", {
-                    quiz: {
-                        title: state.title,
-                        description: state.description,
-                        questions: state.questions
-                    }
+                .post("/quizzes", {
+                    title: state.title,
+                    description: state.description,
+                    questions: state.questions,
+                    attachedUsers: state.attachedUsers
                 })
 
                 .then((response) => {
-                    commit("clear")
+                    commit("quiz_id", { quiz_id: response.data.quiz_id })
+                })
 
+                .catch((error) => {
+                    console.log(error)
+                })
+
+            api
+                .patch(`quizzes/${state.quiz_id}/publish`
+                )
+
+                .then((response) => {
+                    commit("clear")
                     router.push('/account');
                 })
 

@@ -1,0 +1,35 @@
+{
+  "quiz": {
+    "title": "qwert123",
+    "description": "zxcvbn123",
+    "questions": [
+      {
+        "titleQuestion": "her",
+        "typeQuestion": "one answer",
+        "options": [
+          {
+            "text": "rthhgsrt"
+          },
+          {
+            "text": "hgert"
+          }
+        ]
+      },
+      {
+        "titleQuestion": "geryt",
+        "typeQuestion": "several answers",
+        "options": [
+          {
+            "text": "liut"
+          },
+          {
+            "text": "nfghjny"
+          },
+          {
+            "text": "jntyn"
+          }
+        ]
+      }
+    ]
+  }
+}
