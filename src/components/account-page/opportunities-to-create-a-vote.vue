@@ -138,7 +138,7 @@ function createVote() {
 
 @media screen and (max-width: 1012px) {
   .container {
-    padding: 0 12px;
+    margin: 0 12px;
 
     .menu-opportunities, .my-votes {
       width: 100%;

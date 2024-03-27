@@ -84,7 +84,7 @@ const filteredVoting = computed(() => {
 
 @media screen and (max-width: 1012px) {
   .container {
-    padding: 0 12px;
+    margin: 0 12px;
 
     .tabs, .vote-list, .input {
       width: 100%;
