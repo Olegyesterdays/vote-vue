@@ -7,6 +7,8 @@ export const createVoteModule = {
 
         creatingOrParticipants: "creating",
 
+        editingAQuestion: false,
+
         title: "",
 
         description: "",
@@ -60,6 +62,10 @@ export const createVoteModule = {
     },
 
     getters: {
+        getEditingAQuestion(state) {
+            return state.editingAQuestion
+        },
+
         getQuestions(state) {
             return state.questions
         },
@@ -71,9 +77,21 @@ export const createVoteModule = {
         getListUsers(state) {
             return state.listUsers
         },
+
+        getTypeAnswers(state, { indexQuestion }) {
+            return state.questions[indexQuestion].typeQuestion
+        }
     },
 
     mutations: {
+        clickOnTheQuestionCard(state) {
+            state.editingAQuestion = true
+        },
+
+        clickNotOnTheQuestionCard(state) {
+            state.editingAQuestion = false
+        },
+
         creatingOrParticipants(state) {
             state.creatingOrParticipants = state.creatingOrParticipants === "creating" ? "participants" : "creating"
         },

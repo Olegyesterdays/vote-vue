@@ -46,22 +46,32 @@ export const userProfileModule = {
 
     action: {
         gettingUserInformation({ commit }) {
-            api.get("/profileUserInformation",
-            ).then((response) => {
+            api
+              .get("/profileUserInformation",
+              )
+
+              .then((response) => {
                 commit("userInformation", { response })
-            }).catch((error) => {
+              })
+
+              .catch((error) => {
                 console.log(error)
             })
         },
 
         saveChanges({ state }) {
-            api.post("/profileSaveChanges", {
+            api
+              .post("/profileSaveChanges", {
                 userInformation: state.userInformation
-            }).then((response) => {
+              })
 
-            }).catch((error) => {
+              .then((response) => {
+
+              })
+
+              .catch((error) => {
                 console.log(error)
-            })
+              })
         }
     },
 

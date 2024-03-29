@@ -3,13 +3,13 @@
     <div class="one-answer">
       <label>
         <input
-            class="radio-button"
-            type="radio"
-            value="one answer"
-            v-model="oneItems"
-            @change="oneAnswer"
+          class="radio-button"
+          type="radio"
+          value="one answer"
+          v-model="oneItems"
+          @change="oneAnswer"
         >
-        <span class="radio-style"/>
+        <span class="radio-style" />
         Один ответ
       </label>
     </div>
@@ -17,13 +17,14 @@
     <div class="several-answers">
       <label>
         <input
-            class="radio-button"
-            type="radio"
-            value="several answers"
-            v-model="oneItems"
-            @change="severalAnswers"
+          checked
+          class="radio-button"
+          type="radio"
+          value="several answers"
+          v-model="oneItems"
+          @change="severalAnswers"
         >
-        <span class="radio-style"/>
+        <span class="radio-style" />
         Несколько ответов
       </label>
     </div>
@@ -31,19 +32,19 @@
 </template>
 
 <script setup>
-import {computed, defineEmits, ref} from 'vue'
-import {useStore} from "vuex";
+import { computed, defineEmits, ref } from 'vue'
+import { useStore } from 'vuex'
 
 const store = useStore()
-const emit = defineEmits();
-const oneItems = ref([]);
+const emit = defineEmits()
+const oneItems = ref([])
 
 function oneAnswer() {
-  emit('update:oneAnswer', "one answer");
+  emit('update:oneAnswer', 'one answer')
 }
 
 function severalAnswers() {
-  emit('update:severalAnswers', "several answers");
+  emit('update:severalAnswers', 'several answers')
 }
 </script>
 
@@ -51,11 +52,13 @@ function severalAnswers() {
 .type-answer {
   display: flex;
   flex-direction: column;
+  width: 200px;
 
   .one-answer, .several-answers {
     margin-left: 24px;
 
     label {
+      cursor: pointer;
       margin: 6px 0;
       display: block;
 
