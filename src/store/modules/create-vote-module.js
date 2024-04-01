@@ -13,7 +13,7 @@ export const createVoteModule = {
 
         description: "",
 
-        attachedUsers: ["fa199c4e-6e87-4afa-99f7-927d5fa8c42d"],
+        attachedUsers: ["88103da6-6a07-43d0-95fb-62e3ff35dd75"],
 
         listUsers: [
             {

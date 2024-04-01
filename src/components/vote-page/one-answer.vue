@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import {defineProps, defineEmits, ref} from "vue";
+import { defineProps, defineEmits, ref } from "vue";
 
 const props = defineProps({
   questionId: {
@@ -47,9 +47,9 @@ const oneAnswer = ref([]);
 const handleSelection = () => {
   emit('update:oneAnswer', {
     questionId: props.questionId,
-    optionId: oneAnswer.value
-  });
-};
+    optionId: [oneAnswer.value]
+  })
+}
 </script>
 
 <style scoped lang="scss">

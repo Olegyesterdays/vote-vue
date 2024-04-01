@@ -109,7 +109,17 @@ export const statisticsModule = {
     }
   },
 
-  mutations: {},
+  mutations: {
+    questions(state, { questions }) {
+      state.questions = questions
+    },
+
+    additionalInformation(state, { numberOfQuestions, dateOfCreation, numberOfParticipants }) {
+      state.numberOfQuestions = numberOfQuestions
+      state.dateOfCreation = dateOfCreation
+      state.numberOfParticipants = numberOfParticipants
+    }
+  },
 
   actions: {
     fetch({ commit }) {
@@ -154,7 +164,7 @@ export const statisticsModule = {
         )
 
         .then((response) => {
-
+          questions
         })
 
         .catch((error) => {

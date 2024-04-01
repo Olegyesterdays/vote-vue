@@ -8,12 +8,14 @@ export const userModule = {
         role: "",
 
         loginOrRegistration: "login",
-        // email: "admin2@mail.ru",
-        // password: "admin"
 
         email: "qwerty123@gmail.com",
         password: "123",
         fullName: "Oleg",
+
+        // email: "",
+        // password: "",
+        // fullName: "",
     },
 
     getters: {

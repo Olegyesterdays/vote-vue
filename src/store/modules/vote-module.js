@@ -7,12 +7,16 @@ export const voteModule = {
 
     questions: [],
 
-    answersID: [],
+    answers: [],
   },
 
   getters: {
     getQuestions(state) {
       return state.questions
+    },
+
+    getAnswers(state) {
+      return state.answers
     },
 
     selectedOptionIds(state) {
@@ -46,32 +50,27 @@ export const voteModule = {
       state.questions = questions;
     },
 
-    toggleAnswer(state, { questionId, optionId }) {
-      // Находим вопрос по его идентификатору
-      const question = state.questions.find(question => question.question_id === questionId);
+    writeDownAnswer(state, { questionId, optionId }) {
+      const existingAnswerIndex = state.answers.findIndex(answer => answer.questionID === questionId);
+      if (existingAnswerIndex !== -1) {
+        // Если объект с таким title уже существует, заменяем его
+        state.answers.splice(existingAnswerIndex, 1, {
+          questionID: questionId,
+          options: optionId
+        });
 
-      if (question) {
-        // Проверяем тип вопроса
-        if (question.typeQuestion === "several answers") {
-          // Если тип вопроса - несколько ответов, устанавливаем значения для каждой опции
-          question.options.forEach(option => {
-            // Если идентификатор опции есть в переданном массиве, устанавливаем значение true
-            option.answer = !!optionId.includes(option.option_id);
-          });
-        } else if (question.typeQuestion === "one answer") {
-          // Если тип вопроса - один ответ
-          question.options.forEach(option => {
-            // Устанавливаем для всех ответов значение false
-            // Устанавливаем значение true только для выбранного ответа
-            option.answer = option.option_id === optionId;
-          });
-        }
+      } else {
+        // Иначе добавляем новый объект в массив
+        state.answers.push({
+          questionID: questionId,
+          options: optionId
+        });
       }
     },
 
     clear(state) {
+      state.answers = []
       state.questions = []
-      state.formAnswers = []
       state.answersID = []
     },
 
@@ -104,12 +103,10 @@ export const voteModule = {
     },
 
     sendAnswers({ commit, state, getters }) {
-      const answersID = getters.selectedOptionIds;
-
       api
-        .post(`quizzes/${state.voteID}/attachUsersToQuiz`, {
-          answersID: answersID
-        })
+        .post(`quizzes/${state.voteID}/complete`,
+          getters.getAnswers
+        )
 
         .then((response) => {
           commit('clear')

@@ -51,14 +51,11 @@ onMounted(() => {
 })
 
 function writeDownTheAnswer({ questionId, optionId }) {
-  store.commit("voteModule/toggleAnswer", { questionId, optionId })
+  store.commit("voteModule/writeDownAnswer", { questionId, optionId })
 }
 
-// function writeDownTheAnswer(test) {
-//   console.log(test)
-// }
-
 function sendAnswers() {
+  console.log(store.getters["voteModule/getAnswers"])
   store.dispatch("voteModule/sendAnswers")
 }
 </script>
