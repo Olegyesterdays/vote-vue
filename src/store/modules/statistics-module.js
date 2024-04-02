@@ -2,106 +2,44 @@ import api from '@/services/api.js'
 
 export const statisticsModule = {
   state: {
-    voteID: 123,
+    voteID: 0,
 
-    additionalInformation: {
-      numberOfQuestions: '21',
-      dateOfCreation: 'дд.мм.гггг',
-      numberOfParticipants: '356'
-    },
+    titleVote: '',
 
-    questions: [
-      {
-        question: 'question 1',
-        answers: [
-          {
-            title: 'question 1 answer 1',
-            percent: 11
-          },
-          {
-            title: 'question 1 answer 2',
-            percent: 12
-          },
-          {
-            title: 'question 1 answer 3',
-            percent: 13
-          },
-          {
-            title: 'question 1 answer 4',
-            percent: 14
-          },
-          {
-            title: 'question 1 answer 5',
-            percent: 15
-          }
-        ]
-      },
-      {
-        question: 'question 2',
-        answers: [
-          {
-            title: 'question 2 answer 1',
-            percent: 21
-          },
-          {
-            title: 'question 2 answer 2',
-            percent: 22
-          },
-          {
-            title: 'question 2 answer 3',
-            percent: 23
-          },
-          {
-            title: 'question 2 answer 4',
-            percent: 24
-          },
-          {
-            title: 'question 2 answer 5',
-            percent: 25
-          }
-        ]
-      },
-      {
-        question: 'question 3',
-        answers: [
-          {
-            title: 'question 3 answer 1',
-            percent: 31
-          },
-          {
-            title: 'question 3 answer 2',
-            percent: 32
-          },
-          {
-            title: 'question 3 answer 3',
-            percent: 33
-          },
-          {
-            title: 'question 3 answer 4',
-            percent: 34
-          },
-          {
-            title: 'question 3 answer 5',
-            percent: 35
-          }
-        ]
-      }
-    ],
+    descriptionVote: '',
 
-    votingStatus: true
+    numberOfQuestions: 0,
+
+    dateOfCreation: 'дд.мм.гггг',
+
+    numberOfParticipants: 0,
+
+    questions: []
   },
 
   getters: {
+    getVoteID(state) {
+      return state.voteID
+    },
+
+    getTitleVote(state) {
+      return state.titleVote
+    },
+
+    getDescriptionVote(state) {
+      return state.descriptionVote
+    },
+
     getNumberOfQuestions(state) {
-      return state.additionalInformation.numberOfQuestions
+      return state.numberOfQuestions
     },
 
     getDateOfCreation(state) {
-      return state.additionalInformation.dateOfCreation
+      return state.dateOfCreation
     },
 
     getNumberOfParticipants(state) {
-      return state.additionalInformation.numberOfParticipants
+      return state.numberOfParticipants
     },
 
     getQuestions(state) {
@@ -110,80 +48,71 @@ export const statisticsModule = {
   },
 
   mutations: {
-    questions(state, { questions }) {
-      state.questions = questions
+    voteID(state, { voteID }) {
+      state.voteID = voteID
     },
 
-    additionalInformation(state, { numberOfQuestions, dateOfCreation, numberOfParticipants }) {
+    titleVote(state, { titleVote }) {
+      state.titleVote = titleVote
+    },
+
+    descriptionVote(state, { descriptionVote }) {
+      state.descriptionVote = descriptionVote
+    },
+
+    numberOfQuestions(state, { numberOfQuestions }) {
       state.numberOfQuestions = numberOfQuestions
+    },
+
+    dateOfCreation(state, { dateOfCreation }) {
       state.dateOfCreation = dateOfCreation
+    },
+
+    numberOfParticipants(state, { numberOfParticipants }) {
       state.numberOfParticipants = numberOfParticipants
+    },
+
+    questions(state, { questions }) {
+      state.questions = questions
     }
   },
 
   actions: {
-    fetch({ commit }) {
-      commit("setVoteID", { voteID: localStorage.getItem("voteID")})
-    },
-
-    update({ state }) {
-      localStorage.setItem("voteID", state.voteID);
-    },
-
-    endVoting({ state }) {
+    statisticsOnQuestions({ commit, getters }) {
       api
-        .post(`/endVoting/${state.voteID}`
-        )
+        .get(`quizzes/${getters['getVoteID']}/questionStatistics`)
 
-        .then((response) => {
+        .then(response => {
+          commit('questions', {
+            questions: response.data.Stats
+          })
 
+          commit('numberOfQuestions', { numberOfQuestions: response.data.Stats.length })
+
+          commit('numberOfParticipants', { numberOfParticipants: response.data })
         })
 
-        .catch((error) => {
-          console.log(error)
-        })
+        .catch(e => console.error(e))
     },
 
-    deleteVoting({ state }) {
+    statisticsOnVote({ commit, getters }) {
       api
-        .post(`/endVoting/${state.voteID}`
-        )
+        .get(`quizzes/${getters['getVoteID']}/statistic`)
 
-        .then((response) => {
-
+        .then(response => {
+          commit('numberOfParticipants', { numberOfParticipants: response.data.statistics.countOfAllUsers })
+          // commit("dateOfCreation", { dateOfCreation: response.data.statistics.dateOfCreation })
         })
 
-        .catch((error) => {
-          console.log(error)
-        })
+        .catch(e => console.error(e))
     },
 
-    gettingStatisticsOnQuestions({ state }) {
-      api
-        .get(`/quizzes/${state.voteID}/questionStatistics`
-        )
+    endVoting() {
 
-        .then((response) => {
-          questions
-        })
-
-        .catch((error) => {
-          console.log(error)
-        })
     },
 
-    gettingStatisticsOnVote({ state }) {
-      api
-        .get(`/quizzes/${state.voteID}/statistic`
-        )
+    deleteVoting() {
 
-        .then((response) => {
-
-        })
-
-        .catch((error) => {
-          console.log(error)
-        })
     }
   },
 

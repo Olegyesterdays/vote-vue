@@ -20,7 +20,7 @@ import {useStore} from "vuex";
 const router = useRouter();
 const store = useStore();
 
-defineProps({
+const props = defineProps({
   title: {
     type: String
   },
@@ -39,7 +39,8 @@ defineProps({
 })
 
 function statistics() {
-  router.push({ path: "/account/statistics" });
+  // store.commit("statisticsModule/voteID", { voteID: props.voteID})
+  router.push({ path: `/account/statistics/${ props.voteID }` });
 }
 </script>
 

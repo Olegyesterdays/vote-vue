@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-statistics-page">
     <AdditionalInformation class="additional-information" />
     <StatisticsVote class="statistics-vote" />
   </div>
@@ -8,10 +8,23 @@
 <script setup>
 import AdditionalInformation from "@/components/statistics-page/additional-information.vue";
 import StatisticsVote from "@/components/statistics-page/statistics-vote.vue";
+import { onMounted } from 'vue'
+import { useStore } from 'vuex';
+import { useRoute } from 'vue-router';
+
+const store = useStore();
+const route = useRoute();
+
+onMounted(() => {
+  const voteID = parseInt(route.params.id); // Преобразуем строку в число
+  store.commit("statisticsModule/voteID", { voteID });
+  store.dispatch("statisticsModule/statisticsOnVote");
+  store.dispatch("statisticsModule/statisticsOnQuestions");
+})
 </script>
 
 <style scoped lang="scss">
-.container {
+.container-statistics-page {
   margin: auto;
   width: 1000px;
   display: flex;
@@ -23,13 +36,13 @@ import StatisticsVote from "@/components/statistics-page/statistics-vote.vue";
 }
 
 @media screen and (max-width: 1000px) {
-  .container {
+  .container-statistics-page {
     width: 100%;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .container {
+  .container-statistics-page {
     .statistics-vote {
       margin-bottom: 0;
     }

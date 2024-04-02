@@ -1,52 +1,49 @@
-import api from '@/services/api.js';
+import api from '@/services/api.js'
 
 export const listUsersModule = {
-    state: {
-        list: 1,
-        users: []
+  state: {
+    list: 1,
+    users: []
+  },
+
+  getters: {
+    getList(state) {
+      return state.list
     },
 
-    getters: {
-        getList(state) {
-            return state.list
-        },
+    getUsers(state) {
+      return state.users
+    }
+  },
 
-        getUsers(state) {
-            return state.users
-        }
+  mutations: {
+    backList(state) {
+      state.list--
     },
 
-    mutations: {
-        backList(state) {
-            state.list--
-        },
-
-        nextList(state) {
-            state.list++
-        },
-
-        users(state, { users }) {
-            state.users = users
-        }
+    nextList(state) {
+      state.list++
     },
 
-    actions: {
-        actionListUsers({ commit, state }) {
-            commit("backList")
+    users(state, { users }) {
+      state.users = users
+    }
+  },
 
-            api
-                .get(`/listUsers/${ state.list }`
-                )
+  actions: {
+    actionListUsers({ commit, state }) {
+      commit('backList')
 
-                .then((response) => {
-                    commit("users", { users: response})
-                })
+      api
+        .get(`/listUsers/${state.list}`)
 
-                .catch((error) => {
-                    console.log(error)
-                })
-        },
-    },
+        .then(response => {
+          commit('users', { users: response })
+        })
 
-    namespaced: true
+        .catch(e => console.error(e))
+    }
+  },
+
+  namespaced: true
 }

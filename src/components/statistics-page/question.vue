@@ -7,21 +7,25 @@
     <div class="answers">
       <div
           class="answer"
-          v-for="({ title, percent }, index) in answers"
+          v-for="({ text, countOfVotes }, index) in answers"
           :key="index"
       >
         <div class="answer-title">
-          <span class="answer-title-text">{{ title }}</span>
-          <span class="answer-title-percent">{{ percent }} %</span>
+          <span class="answer-title-text">{{ text }}</span>
+          <span class="answer-title-percent">
+<!--            {{ countOfVotes }}-->
+<!--            / -->
+            {{ calculatePercentage(countOfVotes, answers.length) }} %
+          </span>
         </div>
-        <progress class="progress" max="100" :value="percent"/>
+        <progress class="progress" max="100" :value="calculatePercentage(countOfVotes, answers.length)"/>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { defineProps } from "vue";
+import { defineProps } from 'vue'
 
 defineProps({
   question: {
@@ -34,6 +38,12 @@ defineProps({
     default: []
   }
 })
+
+function calculatePercentage(votesForItem, totalVotes) {
+  if (totalVotes <= 0) return 0; // Возвращаем 0, если нет голосов}
+
+  return (votesForItem / totalVotes) * 100;
+}
 </script>
 
 <style scoped lang="scss">

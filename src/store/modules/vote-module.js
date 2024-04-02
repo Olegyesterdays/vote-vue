@@ -7,7 +7,7 @@ export const voteModule = {
 
     questions: [],
 
-    answers: [],
+    answers: []
   },
 
   getters: {
@@ -20,19 +20,19 @@ export const voteModule = {
     },
 
     selectedOptionIds(state) {
-      const selectedIds = [];
+      const selectedIds = []
       // Перебираем все вопросы
       state.questions.forEach(question => {
         // Перебираем все опции в текущем вопросе
         question.options.forEach(option => {
           // Если значение поля answer равно true, добавляем ID в массив
           if (option.answer === true) {
-            selectedIds.push(option.option_id);
+            selectedIds.push(option.option_id)
           }
-        });
-      });
+        })
+      })
 
-      return selectedIds;
+      return selectedIds
     }
   },
 
@@ -42,29 +42,29 @@ export const voteModule = {
       questions.forEach(question => {
         // Для каждой опции в вопросе добавляем поле answer со значением false
         question.options.forEach(option => {
-          option.answer = false;
-        });
-      });
+          option.answer = false
+        })
+      })
 
       // Записываем обновленные вопросы в состояние хранилища
-      state.questions = questions;
+      state.questions = questions
     },
 
     writeDownAnswer(state, { questionId, optionId }) {
-      const existingAnswerIndex = state.answers.findIndex(answer => answer.questionID === questionId);
+      const existingAnswerIndex = state.answers.findIndex(answer => answer.questionID === questionId)
       if (existingAnswerIndex !== -1) {
         // Если объект с таким title уже существует, заменяем его
         state.answers.splice(existingAnswerIndex, 1, {
           questionID: questionId,
           options: optionId
-        });
+        })
 
       } else {
         // Иначе добавляем новый объект в массив
         state.answers.push({
           questionID: questionId,
           options: optionId
-        });
+        })
       }
     },
 
@@ -81,25 +81,22 @@ export const voteModule = {
 
   actions: {
     fetch({ commit }) {
-      commit("setVoteID", { voteID: localStorage.getItem("voteID")})
+      commit('setVoteID', { voteID: localStorage.getItem('voteID') })
     },
 
     update({ state }) {
-      localStorage.setItem("voteID", state.voteID);
+      localStorage.setItem('voteID', state.voteID)
     },
 
     gettingVote({ commit, state }) {
       api
-        .get(`/quizzes/${state.voteID}/questions`
-        )
+        .get(`/quizzes/${state.voteID}/questions`)
 
-        .then((response) => {
+        .then(response => {
           commit('gettingVote', { questions: response.data.questions })
         })
 
-        .catch((error) => {
-          console.log(error)
-        })
+        .catch(e => console.error(e))
     },
 
     sendAnswers({ commit, state, getters }) {
@@ -108,15 +105,13 @@ export const voteModule = {
           getters.getAnswers
         )
 
-        .then((response) => {
+        .then(response => {
           commit('clear')
           router.push({ path: '/account' })
         })
 
-        .catch((error) => {
-          console.log(error)
-        })
-    },
+        .catch(e => console.error(e))
+    }
   },
 
   namespaced: true

@@ -30,6 +30,12 @@
         </div>
       </div>
 
+<!--      <ListUsers />-->
+
+<!--      <button class="button list-users" @click="listUsers">-->
+<!--        Список пользователь-->
+<!--      </button>-->
+
       <button class="button end-voting" @click="endVoting">
         {{ $t("statisticsPage.additionalInformation.endVoting") }}
       </button>
@@ -46,6 +52,8 @@ import { computed } from "vue"
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 
+import ListUsers from '@/components/statistics-page/list-users.vue'
+
 const store = useStore()
 const router = useRouter()
 
@@ -53,18 +61,23 @@ const numberOfQuestions = computed(() => store.getters['statisticsModule/getNumb
 const dateOfCreation = computed(() => store.getters['statisticsModule/getDateOfCreation'])
 const numberOfParticipants = computed(() => store.getters['statisticsModule/getNumberOfParticipants'])
 
+function listUsers() {
+
+}
+
 function endVoting() {
   store.dispatch("statisticsModule/endVoting")
 }
 
-async function deleteVoting() {
-  await store.dispatch("statisticsModule/deleteVoting")
-  await router.push('/account')
+function deleteVoting() {
+  store.dispatch("statisticsModule/deleteVoting")
+  router.push('/account')
 }
 </script>
 
 <style scoped lang="scss">
 .container {
+  margin-top: 8px;
   box-sizing: border-box;
   border-radius: 12px;
   box-shadow: 0 4px 6px var(--shadow-color);
@@ -76,7 +89,7 @@ async function deleteVoting() {
     flex-direction: column;
 
     .additional-information {
-      margin: 12px 12px 4px;
+      padding: 8px 8px 4px;
       border-radius: 12px;
 
       .item {
@@ -88,7 +101,7 @@ async function deleteVoting() {
     }
 
     .button {
-      margin: 8px 12px;
+      margin: 8px;
       padding: 12px;
       border-radius: 12px;
       border: 0;

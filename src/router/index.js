@@ -31,7 +31,7 @@ const routes = [
         meta: {requiresAccount: true}
     },
     {
-        path: '/account/statistics',
+        path: '/account/statistics/:id',
         component: StatisticsPage,
         meta: {requiresAccount: true}
     },

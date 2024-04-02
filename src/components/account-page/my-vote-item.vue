@@ -35,11 +35,17 @@ const props = defineProps({
 
   ava: {
     type: String
+  },
+
+  voteType: {
+    type: Boolean
   }
 })
 function takeAVote() {
-  store.commit("voteModule/setVoteID", { voteID: props.voteID})
-  router.push({path: '/account/vote'})
+  if (props.voteType) {
+    store.commit("voteModule/setVoteID", { voteID: props.voteID})
+    router.push({path: '/account/vote'})
+  }
 }
 </script>
 

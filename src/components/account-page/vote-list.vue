@@ -22,6 +22,7 @@
           :key="index"
           :title="title"
           :voteID="quiz_id"
+          :voteType="voteType === 'NotPassed'"
       />
     </div>
   </div>

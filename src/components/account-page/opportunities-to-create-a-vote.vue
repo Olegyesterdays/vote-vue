@@ -20,8 +20,9 @@
       </button>
 
       <MyCreateVoteItem
-          v-for="({ title, date, voteID }, index) in myVotes"
+          v-for="({ quiz_id, title, imgURI }, index) in myVotes"
           :key="index"
+          :voteID="quiz_id"
           :title="title"
       />
     </div>

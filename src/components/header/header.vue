@@ -52,7 +52,6 @@ function account() {
 
 function openingAndClosingMenu() {
   store.commit("appModule/switchIsMenu", { condition: false })
-  console.log("OK")
 }
 </script>
 
