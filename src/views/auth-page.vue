@@ -12,15 +12,16 @@
 </template>
 
 <script setup>
-import Form from "@/components/auth-page/form.vue";
-import LoginOrRegistration from "@/components/auth-page/login-or-registration.vue";
-
-import { computed } from "vue";
 import { useStore } from "vuex";
+
+import Form from "@/components/auth-page/form.vue"
+import LoginOrRegistration from "@/components/auth-page/login-or-registration.vue"
+import { computed } from 'vue'
 
 const store = useStore();
 
-const loginOrRegistration = computed(() => store.getters["userModule/getLoginOrRegistration"]);
+// const loginOrRegistration = store.getters["userModule/getLoginOrRegistration"]
+const loginOrRegistration = computed(() => store.getters["userModule/getLoginOrRegistration"])
 
 function auth() {
   store.dispatch(loginOrRegistration.value === "login" ? "userModule/login" : "userModule/registration")

@@ -19,14 +19,15 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
-import { useStore } from "vuex";
+import { useStore } from "vuex"
+import { computed } from 'vue'
 
-const store = useStore();
-const loginOrRegistration = computed(() => store.getters["userModule/getLoginOrRegistration"]);
+const store = useStore()
+// const loginOrRegistration = store.getters["userModule/getLoginOrRegistration"]
+const loginOrRegistration = computed(() => store.getters["userModule/getLoginOrRegistration"])
 
-function change() {
-  store.commit("userModule/loginOrRegistration");
+  function change() {
+  store.commit("userModule/loginOrRegistration")
 }
 </script>
 

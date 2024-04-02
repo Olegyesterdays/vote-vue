@@ -25,12 +25,14 @@
           :voteID="quiz_id"
           :title="title"
       />
+
+      <div v-intersection="uploadMoreVotes" />
     </div>
   </div>
 </template>
 
 <script setup>
-import { computed, ref, onMounted } from "vue";
+import { ref, onMounted, computed } from 'vue'
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import MyCreateVoteItem from "@/components/account-page/my-create-vote-item.vue";
@@ -38,7 +40,7 @@ import MyCreateVoteItem from "@/components/account-page/my-create-vote-item.vue"
 const store = useStore();
 const router = useRouter();
 const isAllMyVotes = ref(false);
-const myVotes = computed(() => store.getters["accountModule/getMyVote"]);
+const myVotes = computed(() => store.getters["accountModule/getMyVote"])
 
 onMounted(() => {
   store.dispatch("accountModule/myCreated")
@@ -49,6 +51,10 @@ function viewAllMyVotes() {
 
 function createVote() {
   router.push({ path: "/account/createVote" });
+}
+
+function uploadMoreVotes() {
+  store.dispatch("accountModule/uploadMoreVotes")
 }
 </script>
 

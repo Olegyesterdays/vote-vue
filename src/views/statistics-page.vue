@@ -16,8 +16,7 @@ const store = useStore();
 const route = useRoute();
 
 onMounted(() => {
-  const voteID = parseInt(route.params.id); // Преобразуем строку в число
-  store.commit("statisticsModule/voteID", { voteID });
+  store.commit("statisticsModule/voteID", { voteID: parseInt(route.params.id) });
   store.dispatch("statisticsModule/statisticsOnVote");
   store.dispatch("statisticsModule/statisticsOnQuestions");
 })

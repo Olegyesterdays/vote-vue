@@ -4,6 +4,8 @@ export const accountModule = {
   state: {
     voteType: 'NotPassed',
 
+    nextVotes: '',
+
     vote: {
       myVote: [],
 
@@ -28,6 +30,10 @@ export const accountModule = {
 
     getPassed(state) {
       return state.vote.passed
+    },
+
+    getNextVotes(state) {
+      return state.nextVotes
     }
   },
 
@@ -50,6 +56,14 @@ export const accountModule = {
 
     listPassed(state, { list }) {
       state.vote.passed = list
+    },
+
+    uploadMoreVotes(state, { uploadMoreVotes }) {
+      state.vote.myVote = [...state.vote.myVote, ...uploadMoreVotes]
+    },
+
+    nextVotes(state, { nextVotes }) {
+      state.nextVotes = nextVotes
     }
   },
 
@@ -60,6 +74,8 @@ export const accountModule = {
 
         .then(response => {
           commit('listMyVote', { list: response.data.createdQuizzes })
+
+          commit("nextVotes", { nextVotes: response.data.pagination.next_page })
         })
 
         .catch(e => console.error(e))
@@ -86,6 +102,19 @@ export const accountModule = {
 
         .catch(e => console.error(e))
     },
+
+    uploadMoreVotes({ commit, getters }) {
+      api
+        .get(getters["getNextVotes"])
+
+        .then(response => {
+          commit("uploadMoreVotes", { uploadMoreVotes: response.data.createdQuizzes })
+
+          commit("nextVotes", { nextVotes: response.data.pagination.next_page })
+        })
+
+        .catch(e => console.error(e))
+    }
   },
 
   namespaced: true

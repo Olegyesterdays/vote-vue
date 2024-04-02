@@ -2,12 +2,7 @@
   <div class="container">
     <Tabs :theNumberOfNotPassedVotes="votingNotPassed.length" />
 
-    <input
-        class="input"
-        type="text"
-        :placeholder="$t('accountPage.nameVote')"
-        v-model="searchText"
-    />
+    <SearchVote />
 
     <div class="vote-list">
       <MyVoteItem
@@ -29,28 +24,23 @@
 </template>
 
 <script setup>
-import {computed, onMounted, ref} from "vue"
+import { computed, onMounted } from 'vue'
 import {useStore} from "vuex"
 import {useRouter} from "vue-router"
-import MyVoteItem from "@/components/account-page/my-vote-item.vue";
-import Tabs from "@/components/account-page/tabs.vue";
+
+import Tabs from "@/components/account-page/tabs.vue"
+import SearchVote from '@/components/account-page/search-vote.vue'
+import MyVoteItem from "@/components/account-page/my-vote-item.vue"
 
 const store = useStore();
 const router = useRouter();
-const voteType = computed(() => store.getters["accountModule/getVoteType"]);
-const votingNotPassed = computed(() => store.getters["accountModule/getNotPassed"]);
-const votingPassed = computed(() => store.getters["accountModule/getPassed"]);
-const searchText = ref('');
-
+const voteType = computed(() => store.getters["accountModule/getVoteType"])
+const votingNotPassed = computed(() => store.getters["accountModule/getNotPassed"])
+const votingPassed = computed(() => store.getters["accountModule/getPassed"])
 
 onMounted(() => {
   store.dispatch("accountModule/onlyNotCompleted")
   store.dispatch("accountModule/onlyCompleted")
-})
-
-const filteredVoting = computed(() => {
-  const search = searchText.value.toLowerCase()
-  return voting.value.filter(vote => vote.title.toLowerCase().includes(search))
 })
 </script>
 
@@ -59,16 +49,6 @@ const filteredVoting = computed(() => {
   width: 100%;
   display: flex;
   flex-direction: column;
-
-  .input {
-    width: 1000px;
-    margin: 0 auto 12px;
-    border-radius: 40px;
-    padding: 16px;
-    box-shadow: 0 4px 6px var(--shadow-color);
-    border: 4px solid var(--additional-color__30);
-    box-sizing: border-box;
-  }
 
   .vote-list {
     width: 1000px;

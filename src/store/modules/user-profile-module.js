@@ -2,64 +2,92 @@ import api from '@/services/api.js'
 
 export const userProfileModule = {
   state: {
-    userInformation: {
       name: '',
       surname: '',
       patronymic: '',
       placeOfWork: '',
       role: '',
       post: ''
-    }
   },
 
   getters: {
-    getUserInformation(state) {
-      return state.userInformation
+    getNameUser(state) {
+      return state.name
+    },
+
+    getSurnameUser(state) {
+      return state.surname
+    },
+
+    getPatronymicUser(state) {
+      return state.patronymic
+    },
+
+    getPlaceOfWorkUser(state) {
+      return state.placeOfWork
+    },
+
+    getRoleUser(state) {
+      return state.role
+    },
+
+    getPostUser(state) {
+      return state.post
     }
   },
 
   mutations: {
     editName(state, { name }) {
-      state.userInformation.name = name
+      state.name = name
     },
 
     editSurname(state, { surname }) {
-      state.userInformation.surname = surname
+      state.surname = surname
     },
 
     editPatronymic(state, { patronymic }) {
-      state.userInformation.patronymic = patronymic
+      state.patronymic = patronymic
     },
 
     editPlaceOfWork(state, { placeOfWork }) {
-      state.userInformation.placeOfWork = placeOfWork
+      state.placeOfWork = placeOfWork
     },
 
     editRole(state, { role }) {
-      state.userInformation.role = role
+      state.role = role
     },
 
     editPost(state, { post }) {
-      state.userInformation.post = post
+      state.post = post
     }
   },
 
   action: {
-    gettingUserInformation({ commit }) {
+    userInformation({ commit }) {
       api
         .get('/profileUserInformation')
 
         .then(response => {
-          commit('userInformation', { response })
+          commit('editName', { name: response.data.name })
+          commit('editSurname', { surname: response.data.surname })
+          commit('editPatronymic', { patronymic: response.data.patronymic })
+          commit('editPlaceOfWork', { placeOfWork: response.data.placeOfWork })
+          commit('editRole', { role: response.data.role })
+          commit('editPost', { post: response.data.post })
         })
 
         .catch(e => console.error(e))
     },
 
-    saveChanges({ state }) {
+    saveChanges({ state, getters }) {
       api
         .post('/profileSaveChanges', {
-          userInformation: state.userInformation
+          name: getters["getNameUser"],
+          surname: getters["getSurnameUser"],
+          patronymic: getters["getPatronymicUser"],
+          placeOfWork: getters["getPlaceOfWorkUser"],
+          role: getters["getRoleUser"],
+          post: getters["getPostUser"],
         })
 
         .then(response => {
