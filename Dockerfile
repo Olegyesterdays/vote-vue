@@ -1,32 +1,30 @@
-# Используем официальный образ Node.js в качестве базового образа
-FROM node:16 AS build
+# Используем официальный образ Node.js
+FROM node:16 AS build-stage
 
 # Устанавливаем рабочую директорию внутри контейнера
 WORKDIR /app
 
-# Копируем package.json и package-lock.json для установки зависимостей
-COPY package.json ./
+# Копируем зависимости и файлы package.json
+COPY package.json .
+COPY package-lock.json .
 
 # Устанавливаем зависимости
 RUN npm install
 
-# Копируем все файлы приложения внутрь контейнера
+# Копируем остальные файлы приложения
 COPY . .
 
 # Собираем приложение
 RUN npm run build
 
-# Используем легковесный образ Nginx для раздачи статических файлов
-FROM nginx:alpine
+# Создаем production-стадию
+FROM nginx:alpine AS production-stage
 
-# Копируем собранные файлы из предыдущего этапа в рабочую директорию Nginx
-COPY --from=build /app/dist /usr/share/nginx/html
+# Копируем собранные файлы из предыдущей стадии
+COPY --from=build-stage /app/dist /usr/share/nginx/html
 
-# Опционально: копируем файл конфигурации Nginx (если необходимо)
-# COPY nginx.conf /etc/nginx/nginx.conf
+# Указываем порт, который будет открыт в контейнере
+EXPOSE 80
 
-# Опционально: пробрасываем порт, если требуется доступ к Nginx извне
-# EXPOSE 80
-
-# Команда запуска Nginx при старте контейнера
+# Команда для запуска Nginx в фоновом режиме
 CMD ["nginx", "-g", "daemon off;"]
