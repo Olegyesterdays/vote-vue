@@ -2,10 +2,10 @@
   <div class="container">
     <VoteContent />
     <Question
-        v-for="({ text, options }, index) in questions"
-        :key="index"
-        :question="text"
-        :answers="options"
+      v-for="({ text, options }, index) in questions"
+      :key="index"
+      :question="text"
+      :answers="options"
     />
   </div>
 </template>
@@ -18,16 +18,14 @@ import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 
 const store = useStore()
-// const router = useRouter();
+const router = useRouter();
 
 const questions = computed(() => store.getters["statisticsModule/getQuestions"])
 
-// onMounted(() => {
-//   console.log(this.$route.params.id)
-//   store.commit("statisticsModule/voteID", { voteID: router.params.id })
-//   store.dispatch("statisticsModule/statisticsOnVote")
-//   store.dispatch("statisticsModule/statisticsOnQuestions")
-// })
+onMounted(() => {
+  store.dispatch("statisticsModule/statisticsOnVote")
+  store.dispatch("statisticsModule/statisticsOnQuestions")
+})
 </script>
 
 <style scoped lang="scss">

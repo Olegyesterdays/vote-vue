@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:8013/api/v1'; // Замените на ваш базовый URL
+const baseURL = window.api.URL; // Замените на ваш базовый URL
 
 const headers = {
     Authorization: `Bearer ${ localStorage.getItem('authToken') }`

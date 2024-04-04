@@ -89,7 +89,7 @@ export const statisticsModule = {
 
           commit('numberOfQuestions', { numberOfQuestions: response.data.Stats.length })
 
-          commit('numberOfParticipants', { numberOfParticipants: response.data })
+          commit('numberOfParticipants', { numberOfParticipants: response.data.statistics.notPassedUsers.length })
         })
 
         .catch(e => console.error(e))
