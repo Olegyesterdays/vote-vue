@@ -19,6 +19,7 @@
     </div>
   </div>
 </template>
+const isMenu = computed(() => store.getters["appModule/getIsMenu"])
 
 <script setup>
 import ava from "@/assets/ava.jpg";

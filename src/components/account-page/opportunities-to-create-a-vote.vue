@@ -54,7 +54,7 @@ function createVote() {
 }
 
 function uploadMoreVotes() {
-  store.dispatch("accountModule/uploadMoreVotes")
+  store.dispatch("accountModule/addMyCreated")
 }
 </script>
 

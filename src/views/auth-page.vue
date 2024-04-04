@@ -20,7 +20,6 @@ import { computed } from 'vue'
 
 const store = useStore();
 
-// const loginOrRegistration = store.getters["userModule/getLoginOrRegistration"]
 const loginOrRegistration = computed(() => store.getters["userModule/getLoginOrRegistration"])
 
 function auth() {

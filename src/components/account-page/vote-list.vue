@@ -19,6 +19,8 @@
           :voteID="quiz_id"
           :voteType="voteType === 'NotPassed'"
       />
+
+      <div v-intersection="uploadMoreVotes" />
     </div>
   </div>
 </template>
@@ -42,6 +44,12 @@ onMounted(() => {
   store.dispatch("accountModule/onlyNotCompleted")
   store.dispatch("accountModule/onlyCompleted")
 })
+
+function uploadMoreVotes() {
+  store.dispatch(`accountModule/${
+    voteType.value === "NotPassed" ? "addOnlyNotCompleted" : "addOnlyCompleted"
+  }`)
+}
 </script>
 
 <style scoped lang="scss">
