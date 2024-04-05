@@ -14,7 +14,7 @@
       </button>
     </div>
 
-    <div class="my-votes" :class="isAllMyVotes ? '' : 'my-votes__close'">
+    <div class="my-votes" ref="animatedMyVotes">
       <button class="button button-create-vote" @click="createVote">
         <span class="mdi mdi-plus" />
       </button>
@@ -32,7 +32,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, nextTick } from 'vue'
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import MyCreateVoteItem from "@/components/account-page/my-create-vote-item.vue";
@@ -41,12 +41,23 @@ const store = useStore();
 const router = useRouter();
 const isAllMyVotes = ref(false);
 const myVotes = computed(() => store.getters["accountModule/getMyVote"])
+const maxHeight = ref("250px");
+const isOpen = ref(false);
+const animatedMyVotes = ref(null);
 
 onMounted(() => {
   store.dispatch("accountModule/myCreated")
 })
 function viewAllMyVotes() {
   isAllMyVotes.value = !isAllMyVotes.value
+  isOpen.value = !isOpen.value;
+  if (isOpen.value) {
+    nextTick(() => {
+      maxHeight.value = `${animatedMyVotes.value.scrollHeight}px`;
+    });
+  } else {
+    maxHeight.value = "250px";
+  }
 }
 
 function createVote() {
@@ -114,11 +125,8 @@ function uploadMoreVotes() {
     justify-content: flex-start;
     gap: 25px;
     overflow: hidden;
-    transition: height 0.3s ease-in-out;
-
-    &__close {
-      height: 250px;
-    }
+    transition: max-height 0.3s ease;
+    max-height: v-bind(maxHeight);
 
     .button {
       height: 250px;
