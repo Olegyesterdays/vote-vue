@@ -14,7 +14,7 @@
 
 <script setup>
 import {useRouter} from "vue-router";
-import {defineProps} from "vue";
+import {defineProps, onMounted} from "vue";
 import {useStore} from "vuex";
 
 const router = useRouter();
@@ -52,6 +52,18 @@ function statistics() {
   border-radius: 12px;
   border: 4px solid var(--accent-color);
   background: var(--neutral-color);
+  opacity: 1;
+  animation: anim 0.5s forwards;
+
+  @keyframes anim {
+    to {
+      opacity: 1;
+    }
+
+    from {
+      opacity: 0;
+    }
+  }
 
   img {
     position: absolute;

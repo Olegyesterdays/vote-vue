@@ -57,7 +57,19 @@ function takeAVote() {
   border-radius: 12px;
   border: 4px solid var(--additional-color__30);
   background: var(--main-color);
-  transition: width 0.3s ease-in-out;
+  //transition: width 0.3s ease-in-out;
+  opacity: 1;
+  animation: anim 0.5s forwards;
+
+  @keyframes anim {
+    to {
+      opacity: 1;
+    }
+
+    from {
+      opacity: 0;
+    }
+  }
 
   img {
     position: absolute;
