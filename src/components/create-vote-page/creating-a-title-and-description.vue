@@ -1,26 +1,10 @@
 <template>
   <div class="container">
-    <img
-        class="img"
-        :src="ava"
-        :alt="$t('createVotePage.creatingATitleAndDescription.img.imageAlt')"
-    />
-
-    <button
-        class="button"
-        @click="addPicture"
-    >
-      {{ ava === "" ?
-        $t("createVotePage.creatingATitleAndDescription.img.addImage") :
-        $t("createVotePage.creatingATitleAndDescription.img.deleteImage")
-      }}
-    </button>
-
     <label class="title-vote">
       <input
           class="input"
           type="text"
-          :placeholder="$t('createVotePage.creatingATitleAndDescription.titleVote')"
+          :placeholder="$t('createVotePage.titleVote')"
           @input="writeDownTitleVote($event.target.value)"
       >
     </label>
@@ -29,7 +13,7 @@
       <input
           class="input"
           type="text"
-          :placeholder="$t('createVotePage.creatingATitleAndDescription.descriptionVote')"
+          :placeholder="$t('createVotePage.descriptionVote')"
           @input="writeDownDescriptionVote($event.target.value)"
       >
     </label>
@@ -37,14 +21,9 @@
 </template>
 
 <script setup>
-import ava from "@/assets/ava.jpg";
 import { useStore } from "vuex";
 
 const store = useStore()
-
-function addPicture() {
-
-}
 
 function writeDownTitleVote(title) {
   store.commit("createVoteModule/addTitle", { title: title })
@@ -67,12 +46,7 @@ function writeDownDescriptionVote(description) {
   box-sizing: border-box;
   background: var(--main-color);
   border: 4px solid var(--neutral-color);
-
-  .img {
-    margin: 0 auto;
-    width: 100%;
-    max-width: 500px;
-  }
+  margin-top: 12px !important;
 
   .button {
     margin: 8px 12px;
@@ -100,12 +74,22 @@ function writeDownDescriptionVote(description) {
       padding: 12px;
       border-radius: 12px;
       border: 0;
-      background: var(--neutral-color);
+      text-align: center;
     }
   }
 
   .description-vote {
     margin-bottom: 12px;
+
+    .input {
+      font-size: 20px;
+    }
+  }
+
+  .title-vote {
+    .input {
+      font-size: 32px;
+    }
   }
 }
 

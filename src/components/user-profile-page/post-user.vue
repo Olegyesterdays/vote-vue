@@ -2,7 +2,7 @@
   <input
     class="input post"
     type="text"
-    placeholder="Должность"
+    :placeholder="$t('userProfilePage.postUser')"
     @input="editPost($event.target.value)"
     :value="post"
     :disabled="role !== 'superuser'"

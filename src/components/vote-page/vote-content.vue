@@ -1,34 +1,24 @@
 <template>
   <div class="container">
-    <img
-        class="voting-img"
-        :src="ava"
-        alt="Картинка голосования"
-    />
-
     <div class="content">
       <h1 class="title">
-        <!--        {{ title }}-->
-        title
+        {{ title }}
       </h1>
 
       <h3 class="description">
-        <!--        {{ description }}-->
-        description
+        {{ description }}
       </h3>
     </div>
   </div>
 </template>
-const isMenu = computed(() => store.getters["appModule/getIsMenu"])
 
 <script setup>
-import ava from "@/assets/ava.jpg";
-import {computed} from "vue";
-import {useStore} from "vuex";
+import { computed } from 'vue'
+import { useStore } from 'vuex'
 
-const store = useStore();
-const title = computed(() => store.getters['statisticsModule/getTitle'])
-const description = computed(() => store.getters['statisticsModule/getDescription'])
+const store = useStore()
+const title = computed(() => store.getters['voteModule/getTitle'])
+const description = computed(() => store.getters['voteModule/getDescription'])
 </script>
 
 <style scoped lang="scss">

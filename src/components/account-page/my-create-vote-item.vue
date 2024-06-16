@@ -8,13 +8,11 @@
       {{ title }}
     </span>
   </button>
-
-<!--  <img v-if="ava !== ''" :src="ava" alt="">-->
 </template>
 
 <script setup>
 import {useRouter} from "vue-router";
-import {defineProps, onMounted} from "vue";
+import {defineProps} from "vue";
 import {useStore} from "vuex";
 
 const router = useRouter();
@@ -39,7 +37,6 @@ const props = defineProps({
 })
 
 function statistics() {
-  // store.commit("statisticsModule/voteID", { voteID: props.voteID})
   router.push({ path: `/account/statistics/${ props.voteID }` });
 }
 </script>
@@ -63,15 +60,6 @@ function statistics() {
     from {
       opacity: 0;
     }
-  }
-
-  img {
-    position: absolute;
-    width: 100%;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%,0);
-    z-index: 5;
   }
 
   .mdi-vote {

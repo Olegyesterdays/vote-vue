@@ -1,0 +1,74 @@
+{
+  "header": {
+    "toggleLanguage": "English"
+  },
+  "authPage": {
+    "authPanel": {
+      "loginOrRegistration": {
+        "login": "Авторизоваться",
+        "registration": "Зарегистрироваться"
+      },
+      "form": {
+        "email": "Почта",
+        "password": "Пароль",
+        "fullName": "Полное имя"
+      }
+    },
+    "buttonAuth": {
+      "login": "Войти",
+      "registration": "Зарегистрировать"
+    }
+  },
+  "accountPage": {
+    "createVote": "Создать голосование",
+    "profile": "Профиль",
+    "listOfUsers": "Список пользователей",
+    "exit": "Выход",
+    "nameVote": "Название голосования",
+    "notPassed": "Не пройденные",
+    "passed": "Пройденные"
+  },
+  "statisticsPage": {
+    "numberOfQuestions": "Количество вопросов",
+    "dateOfCreation": "Дата создания",
+    "numberOfParticipants": "Количество участников",
+    "endVoting": "Завершить голосование",
+    "deleteVoting": "Удалить голосование"
+  },
+  "createVotePage": {
+    "titleVote": "Название голосования",
+    "descriptionVote": "Описание",
+    "addParticipants": "Добавить участников",
+    "question": {
+      "titleQuestion": "Название вопроса",
+      "optionQuestion": "Вариант ответа"
+    },
+    "addQuestion": "Добавить вопрос",
+    "createVote": "Создать голосование",
+    "menuSettings": {
+      "oneAnswer": "Один ответ",
+      "severalAnswers": "Несколько ответов",
+      "addOption": "Добавить ответ",
+      "deleteQuestion": "Удалить вопрос"
+    }
+  },
+  "listUser": {
+    "searchUser": "Имя пользователя"
+  },
+  "votePage": {
+    "send": "Отправить"
+  },
+  "userProfilePage": {
+    "nameUser": "Имя пользователя",
+    "surnameUser": "Фамилия пользователя",
+    "patronymicUser": "Отчество",
+    "placeOfWorkUser": "Место работы",
+    "roleUser": "Роль пользователя",
+    "postUser": "Должность пользователя",
+    "buttonSaveChanges": "Сохранить изменения"
+  },
+  "notFoundPage": {
+    "header": "Страница не найдена",
+    "description": "Извините, запрашиваемая страница не существует."
+  }
+}

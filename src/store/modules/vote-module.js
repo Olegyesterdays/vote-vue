@@ -5,12 +5,63 @@ export const voteModule = {
   state: {
     voteID: 0,
 
-    questions: [],
+    title: 'Vote title',
+
+    description: 'Vote description',
+
+    questions: [
+      {
+        question_id: 0,
+        titleQuestion: 'Question title 1',
+        typeQuestion: 'one answer',
+        options: [
+          {
+            option_id: 1,
+            text: 'Option 1'
+          },
+          {
+            option_id: 2,
+            text: 'Option 1'
+          },
+          {
+            option_id: 3,
+            text: 'Option 1'
+          }
+        ]
+      },
+      {
+        question_id: 0,
+        titleQuestion: 'Question title 2',
+        typeQuestion: 'several answers',
+        options: [
+          {
+            option_id: 1,
+            text: 'Option 1'
+          },
+          {
+            option_id: 2,
+            text: 'Option 1'
+          },
+          {
+            option_id: 3,
+            text: 'Option 1'
+          }
+        ]
+      }
+    ],
 
     answers: []
   },
 
   getters: {
+    getTitle(state) {
+      return state.title
+    },
+
+    getDescription(state) {
+      return state.description
+    },
+
     getQuestions(state) {
       return state.questions
     },
@@ -51,14 +102,15 @@ export const voteModule = {
     },
 
     writeDownAnswer(state, { questionId, optionId }) {
-      const existingAnswerIndex = state.answers.findIndex(answer => answer.questionID === questionId)
+      const existingAnswerIndex = state.answers.findIndex(
+        answer => answer.questionID === questionId
+      )
       if (existingAnswerIndex !== -1) {
         // Если объект с таким title уже существует, заменяем его
         state.answers.splice(existingAnswerIndex, 1, {
           questionID: questionId,
           options: optionId
         })
-
       } else {
         // Иначе добавляем новый объект в массив
         state.answers.push({
@@ -101,9 +153,7 @@ export const voteModule = {
 
     sendAnswers({ commit, state, getters }) {
       api
-        .post(`quizzes/${state.voteID}/complete`,
-          getters.getAnswers
-        )
+        .post(`quizzes/${state.voteID}/complete`, getters.getAnswers)
 
         .then(response => {
           commit('clear')

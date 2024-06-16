@@ -3,7 +3,7 @@
     class="button add-question"
     @click="newQuestion"
   >
-    Добавить вопрос
+    {{ $t('createVotePage.addQuestion') }}
   </button>
 </template>
 

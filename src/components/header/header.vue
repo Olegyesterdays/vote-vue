@@ -11,8 +11,6 @@
       <div class="buttons">
         <ButtonLocales />
 
-        <ButtonTheme />
-
         <ButtonMenu v-if="isMenuButton" />
       </div>
     </div>
@@ -30,7 +28,6 @@
 import LOGO from "@/assets/OCRV-Logo.svg";
 import HeaderMenu from "@/components/header/header-menu.vue";
 import ButtonLocales from "@/components/header/button-locales.vue";
-import ButtonTheme from "@/components/header/button-theme.vue";
 import ButtonMenu from "@/components/header/button-menu.vue";
 import {useStore} from 'vuex';
 import {useRouter} from 'vue-router';

@@ -1,49 +1,157 @@
 <template>
-  <div class="login-or-registration">
-    <button
-        class="button"
-        :class="loginOrRegistration === 'login' ? 'button__active' : ''"
-        @click="change"
-    >
-      {{ $t("authPage.authPanel.loginOrRegistration.login") }}
-    </button>
+  <div class="tabs">
+    <input
+      type="radio"
+      id="radio-1"
+      name="tabs"
+      @change="loginOrRegistrationButton"
+      checked
+    />
+    <label class="tab" for="radio-1">
+      <span class="text">
+        {{ $t('authPage.authPanel.loginOrRegistration.login') }}
+      </span>
 
-    <button
-        class="button"
-        :class="loginOrRegistration === 'registration' ? 'button__active' : ''"
-        @click="change"
-    >
-      {{ $t("authPage.authPanel.loginOrRegistration.registration") }}
-    </button>
+      <span class="mdi mdi-account-check" />
+    </label>
+
+    <input
+      type="radio"
+      id="radio-2"
+      name="tabs"
+      @change="loginOrRegistrationButton"
+    />
+    <label class="tab" for="radio-2">
+      <span class="text">
+        {{ $t('authPage.authPanel.loginOrRegistration.registration') }}
+      </span>
+
+      <span class="mdi mdi-account-key" />
+    </label>
+    <span class="glider"></span>
   </div>
 </template>
 
 <script setup>
-import { useStore } from "vuex"
-import { computed } from 'vue'
+import { useStore } from 'vuex'
 
 const store = useStore()
-// const loginOrRegistration = store.getters["userModule/getLoginOrRegistration"]
-const loginOrRegistration = computed(() => store.getters["userModule/getLoginOrRegistration"])
 
-  function change() {
-  store.commit("userModule/loginOrRegistration")
+function loginOrRegistrationButton() {
+  store.commit('userModule/loginOrRegistration')
 }
 </script>
 
 <style scoped lang="scss">
-.login-or-registration {
-  margin: 0 12px;
-  width: auto;
+.tabs {
+  width: 97%;
+  margin: 12px;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--main-color);
+  position: relative;
 
-  .button {
+  * {
+    z-index: 2;
+  }
+
+  input[type='radio'] {
+    display: none;
+  }
+
+  .tab {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    border-radius: 99px;
+    cursor: pointer;
+    transition: color 0.15s ease-in;
+
+    .mdi {
+      display: none;
+    }
+
+    .quantity {
+      margin-left: 12px;
+      border-radius: 50%;
+      font-size: 16px;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-color);
+      color: var(--main-color);
+    }
+  }
+
+  input[type='radio'] {
+    &:checked {
+      & + label {
+        .text,
+        .mdi {
+          color: var(--main-color);
+        }
+
+        .quantity {
+          background: var(--main-color);
+          color: var(--accent-color);
+        }
+      }
+    }
+  }
+
+  input[id='radio-1'] {
+    &:checked {
+      & ~ .glider {
+        transform: translateX(0);
+      }
+    }
+  }
+
+  input[id='radio-2'] {
+    &:checked {
+      & ~ .glider {
+        transform: translateX(100%);
+      }
+    }
+  }
+
+  input[id='radio-3'] {
+    &:checked {
+      & ~ .glider {
+        transform: translateX(200%);
+      }
+    }
+  }
+
+  .glider {
+    position: absolute;
+    display: flex;
+    height: 44px;
     width: 50%;
-    padding: 12px;
-    border: 0;
-    background: var(--main-color);
+    background-color: var(--accent-color);
+    z-index: 1;
+    border-radius: 99px;
+    transition: 0.25s ease-out;
+  }
+}
 
-    &__active {
-      border-bottom: 4px solid var(--accent-color);
+@media screen and (max-width: 400px) {
+  .container {
+    .tabs {
+      .tab {
+        .text {
+          display: none;
+        }
+
+        .mdi {
+          font-size: 32px;
+          display: block;
+        }
+      }
     }
   }
 }

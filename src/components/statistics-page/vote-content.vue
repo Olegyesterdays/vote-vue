@@ -1,30 +1,26 @@
 <template>
   <div class="container">
-    <img class="voting-img" :src="ava" alt="Картинка голосования"/>
-
     <div class="content">
       <h1 class="title">
-        <!--        {{ title }}-->
-        title
+        {{ title }}
       </h1>
       <h3 class="description">
-        <!--        {{ description }}-->
-        description
+        {{ description }}
       </h3>
     </div>
   </div>
 </template>
 
 <script setup>
-import {computed} from "vue";
-import {useStore} from "vuex";
+import { computed } from 'vue'
+import { useStore } from 'vuex'
 
-import ava from "@/assets/ava.jpg"
+const store = useStore()
 
-const store = useStore();
-
-const title = computed(() => store.getters['statisticsModule/getTitle'])
-const description = computed(() => store.getters['statisticsModule/getDescription'])
+const title = computed(() => store.getters['statisticsModule/getTitleVote'])
+const description = computed(
+  () => store.getters['statisticsModule/getDescriptionVote']
+)
 </script>
 
 <style scoped lang="scss">
@@ -49,10 +45,12 @@ const description = computed(() => store.getters['statisticsModule/getDescriptio
 
     .title {
       margin: 12px auto 0;
+      font-size: 32px;
     }
 
     .description {
       margin: 12px auto;
+      font-size: 20px;
     }
   }
 }

@@ -2,7 +2,7 @@
   <input
     class="input placeOfWork"
     type="text"
-    placeholder="Место работы"
+    :placeholder="$t('userProfilePage.placeOfWorkUser')"
     @input="editPlaceOfWork($event.target.value)"
     :value="placeOfWork"
     :disabled="role !== 'superuser'"

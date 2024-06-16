@@ -4,7 +4,7 @@
     @click="saveChanges"
     :disabled="role !== 'superuser'"
   >
-    сохранить
+    {{ $t('userProfilePage.buttonSaveChanges')}}
   </button>
 </template>
 

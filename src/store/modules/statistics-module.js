@@ -4,17 +4,52 @@ export const statisticsModule = {
   state: {
     voteID: 0,
 
-    titleVote: '',
+    titleVote: 'titleVote',
 
-    descriptionVote: '',
+    descriptionVote: 'descriptionVote',
 
-    numberOfQuestions: 0,
+    numberOfQuestions: 2,
 
-    dateOfCreation: 'дд.мм.гггг',
+    dateOfCreation: '20.05.2024',
 
-    numberOfParticipants: 0,
+    numberOfParticipants: 5,
 
-    questions: []
+    questions: [
+      {
+        text: 'question 1',
+        options: [
+          {
+            text: 'answer 1',
+            countOfVotes: 15
+          },
+          {
+            text: 'answer 1',
+            countOfVotes: 60
+          },
+          {
+            text: 'answer 1',
+            countOfVotes: 25
+          }
+        ]
+      },
+      {
+        text: 'question 2',
+        options: [
+          {
+            text: 'answer 1',
+            countOfVotes: 40
+          },
+          {
+            text: 'answer 1',
+            countOfVotes: 50
+          },
+          {
+            text: 'answer 1',
+            countOfVotes: 10
+          }
+        ]
+      }
+    ]
   },
 
   getters: {
@@ -87,9 +122,13 @@ export const statisticsModule = {
             questions: response.data.Stats
           })
 
-          commit('numberOfQuestions', { numberOfQuestions: response.data.Stats.length })
+          commit('numberOfQuestions', {
+            numberOfQuestions: response.data.Stats.length
+          })
 
-          commit('numberOfParticipants', { numberOfParticipants: response.data.statistics.notPassedUsers.length })
+          commit('numberOfParticipants', {
+            numberOfParticipants: response.data.statistics.notPassedUsers.length
+          })
         })
 
         .catch(e => console.error(e))
@@ -100,20 +139,18 @@ export const statisticsModule = {
         .get(`quizzes/${getters['getVoteID']}/statistic`)
 
         .then(response => {
-          commit('numberOfParticipants', { numberOfParticipants: response.data.statistics.countOfAllUsers })
+          commit('numberOfParticipants', {
+            numberOfParticipants: response.data.statistics.countOfAllUsers
+          })
           // commit("dateOfCreation", { dateOfCreation: response.data.statistics.dateOfCreation })
         })
 
         .catch(e => console.error(e))
     },
 
-    endVoting() {
+    endVoting() {},
 
-    },
-
-    deleteVoting() {
-
-    }
+    deleteVoting() {}
   },
 
   namespaced: true

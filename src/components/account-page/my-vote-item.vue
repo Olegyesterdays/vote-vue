@@ -8,8 +8,6 @@
       {{ title }}
     </span>
   </button>
-
-<!--  <img v-if="ava !== ''" :src="ava" alt="">-->
 </template>
 
 <script setup>
@@ -57,7 +55,6 @@ function takeAVote() {
   border-radius: 12px;
   border: 4px solid var(--additional-color__30);
   background: var(--main-color);
-  //transition: width 0.3s ease-in-out;
   opacity: 1;
   animation: anim 0.5s forwards;
 
@@ -69,14 +66,6 @@ function takeAVote() {
     from {
       opacity: 0;
     }
-  }
-
-  img {
-    position: absolute;
-    width: 100%;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
   }
 
   .mdi-vote {
@@ -92,8 +81,12 @@ function takeAVote() {
   .title {
     position: absolute;
     left: 50%;
-    bottom: 0;
+    bottom: -10%;
     transform: translate(-50%, -50%);
+    background: var(--main-color);
+    width: 100%;
+    height: 20%;
+    z-index: 10;
   }
 
   &:active {

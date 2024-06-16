@@ -1,7 +1,7 @@
 <template>
   <div class="container-statistics-page">
-    <AdditionalInformation class="additional-information" />
     <StatisticsVote class="statistics-vote" />
+    <AdditionalInformation class="additional-information" />
   </div>
 </template>
 
@@ -29,7 +29,7 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
 
-  .statistics-vote {
+  .additional-information {
     margin-bottom: 400px;
   }
 }

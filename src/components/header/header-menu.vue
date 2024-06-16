@@ -1,44 +1,53 @@
 <template>
   <div class="menu">
     <button class="button" @click="listUsers">
-      {{ $t("accountPage.listOfUsers") }}
+      <span class="mdi mdi-account-group" />
+      <span>
+        {{ $t('accountPage.listOfUsers') }}
+      </span>
     </button>
 
     <button class="button" @click="profile">
-      {{ $t("accountPage.profile") }}
+      <span class="mdi mdi-account" />
+      <span>
+        {{ $t('accountPage.profile') }}
+      </span>
     </button>
 
     <button class="button" @click="exit">
-      {{ $t("accountPage.exit") }}
+      <span class="mdi mdi-exit-run" />
+      <span>
+        {{ $t('accountPage.exit') }}
+      </span>
     </button>
   </div>
 </template>
 
 <script setup>
-import { useStore } from "vuex"
-import { useRouter } from "vue-router";
-import {computed, defineEmits} from "vue"
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+import { computed, defineEmits } from 'vue'
 
 const store = useStore()
-const router = useRouter();
-const emit = defineEmits();
+const router = useRouter()
+const emit = defineEmits()
 
-const isMenu = computed(() => store.getters["appModule/getIsMenu"])
+const isMenu = computed(() => store.getters['appModule/getIsMenu'])
 
 function listUsers() {
   emit('update:close', true)
-  router.push({ path: "/account/listUsersPage" });
+  router.push({ path: '/account/listUsersPage' })
 }
 
 function profile() {
   emit('update:close', true)
-  router.push({ path: "/account/userProfilePage" });
+  router.push({ path: '/account/userProfilePage' })
 }
 
 function exit() {
   emit('update:close', true)
-  store.commit("userModule/clearDataUser");
-  router.push({ path: "/" });
+  store.commit('userModule/clearDataUser')
+  router.push({ path: '/' })
 }
 </script>
 
@@ -56,7 +65,18 @@ function exit() {
     margin: 12px 12px 0;
     border-radius: 12px;
     border: 0;
-    background: var(--neutral-color);
+    background: var(--main-color);
+    text-align: left;
+    font-size: 16px;
+
+    &:hover {
+      background: var(--main-color);
+      background: var(--neutral-color);
+    }
+
+    .mdi {
+      margin-right: 12px;
+    }
 
     &:last-child {
       margin-bottom: 12px;

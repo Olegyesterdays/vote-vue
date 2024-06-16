@@ -3,10 +3,12 @@
     <TypeAnswer
       @update:oneAnswer="typeQuestion('one answer', indexQuestion)"
       @update:severalAnswers="typeQuestion('several answers', indexQuestion)"
+      :typeQuestion="typeQuestion"
     />
 
     <button class="button add-answer" @click="newAnswer(indexQuestion)">
-      Добавить ответ
+      <span class="mdi mdi-plus" />
+      <span>{{ $t('createVotePage.menuSettings.addOption') }}</span>
     </button>
 
     <button
@@ -14,7 +16,8 @@
       class="button delete-answer"
       @click="deleteQuestion(indexQuestion)"
     >
-      Удалить вопрос
+      <span class="mdi mdi-delete" />
+      <span>{{ $t('createVotePage.menuSettings.deleteQuestion') }}</span>
     </button>
   </div>
 </template>
@@ -34,8 +37,12 @@ defineProps({
 
   questionsLength: {
     type: Number
+  },
+  typeQuestion: {
+    type: String
   }
 })
+
 function typeQuestion(type, indexQuestion) {
   store.commit('createVoteModule/typeQuestion', { type, indexQuestion })
 }
@@ -63,10 +70,19 @@ function deleteQuestion(indexQuestion) {
 
   .button {
     margin-top: 8px;
-    padding: 8px;
+    padding: 4px;
     border: 0;
     border-radius: 8px;
     background: var(--neutral-color);
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+
+    .mdi {
+      font-size: 24px;
+      margin-right: 8px;
+    }
   }
 }
 </style>

@@ -23,6 +23,7 @@ import ButtonSaveChanges from '@/components/user-profile-page/button-save-change
 
 <style scoped lang="scss">
 .container {
+  margin-top: 80px !important;
   width: 900px;
   margin: auto;
   border-radius: 12px;

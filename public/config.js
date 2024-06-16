@@ -1,5 +1,5 @@
 const api = {
-  URL: "http://localhost:8013/api/v1"
+  URL: 'http://localhost:4040'
 }
 
 window.api = api

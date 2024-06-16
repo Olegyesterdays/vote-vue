@@ -51,7 +51,7 @@ function passed() {
   margin: 12px auto;
   display: flex;
   justify-content: space-between;
-  background-color: #fff;
+  background-color: var(--main-color);
   position: relative;
 
   * {

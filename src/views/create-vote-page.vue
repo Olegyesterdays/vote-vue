@@ -1,24 +1,21 @@
 <template>
   <div class="container">
-    <AddingParticipants />
-
     <CreatingATitleAndDescription />
     <CreateQuestion />
 
     <div class="buttons">
       <ButtonAddQuestion />
+      <AddingParticipants />
       <ButtonCreate />
-      <ButtonCreateAndPublish />
     </div>
   </div>
 </template>
 
 <script setup>
-import CreatingATitleAndDescription from "@/components/create-vote-page/creating-a-title-and-description.vue"
-import CreateQuestion from "@/components/create-vote-page/create-question.vue"
+import CreatingATitleAndDescription from '@/components/create-vote-page/creating-a-title-and-description.vue'
+import CreateQuestion from '@/components/create-vote-page/create-question.vue'
 import ButtonAddQuestion from '@/components/create-vote-page/button-add-question.vue'
 import ButtonCreate from '@/components/create-vote-page/button-create.vue'
-import ButtonCreateAndPublish from '@/components/create-vote-page/button-create-and-publish.vue'
 import AddingParticipants from '@/components/create-vote-page/adding-participants.vue'
 </script>
 

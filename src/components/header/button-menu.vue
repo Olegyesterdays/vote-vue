@@ -17,7 +17,6 @@ const isMenu = computed(() => store.getters["appModule/getIsMenu"])
 
 function openingAndClosingMenu() {
   store.commit("appModule/switchIsMenu", { condition: !isMenu.value })
-  console.log("OK")
 }
 </script>
 

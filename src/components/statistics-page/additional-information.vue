@@ -4,7 +4,7 @@
       <div class="additional-information">
         <div class="item number-of-questions">
           <div class="title">
-            {{ $t("statisticsPage.additionalInformation.numberOfQuestions") }}
+            {{ $t("statisticsPage.numberOfQuestions") }}
           </div>
           <div class="number">
             {{ numberOfQuestions }}
@@ -13,7 +13,7 @@
 
         <div class="item date-of-creation">
           <div class="title">
-            {{ $t("statisticsPage.additionalInformation.dateOfCreation") }}
+            {{ $t("statisticsPage.dateOfCreation") }}
           </div>
           <div class="date">
             {{ dateOfCreation }}
@@ -22,7 +22,7 @@
 
         <div class="item number-of-participants">
           <div class="title">
-            {{ $t("statisticsPage.additionalInformation.numberOfParticipants") }}
+            {{ $t("statisticsPage.numberOfParticipants") }}
           </div>
           <div class="number">
             {{ numberOfParticipants }}
@@ -30,18 +30,12 @@
         </div>
       </div>
 
-<!--      <ListUsers />-->
-
-<!--      <button class="button list-users" @click="listUsers">-->
-<!--        Список пользователь-->
-<!--      </button>-->
-
       <button class="button end-voting" @click="endVoting">
-        {{ $t("statisticsPage.additionalInformation.endVoting") }}
+        {{ $t("statisticsPage.endVoting") }}
       </button>
 
       <button class="button delete-vote" @click="deleteVoting">
-        {{ $t("statisticsPage.additionalInformation.deleteVoting") }}
+        {{ $t("statisticsPage.deleteVoting") }}
       </button>
     </div>
   </div>
@@ -51,8 +45,6 @@
 import { computed } from "vue"
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
-
-import ListUsers from '@/components/statistics-page/list-users.vue'
 
 const store = useStore()
 const router = useRouter()

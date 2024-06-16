@@ -1,142 +1,118 @@
 <template>
   <div class="container">
-    <div class="list">
-      <input
-          class="input"
-          type="text"
-          placeholder="ФИО"
-      >
+    <SearchUser />
 
-      <div class="list-users">
-        <UserItem
-            v-for="({ name }, index) in users"
-            :key="index"
-            :name="name"
-        />
-      </div>
-    </div>
-
-    <div class="buttons">
-      <button class="button back">
-        <span class="mdi mdi-chevron-left" />
-      </button>
-
-      <button class="button next">
-        <span class="mdi mdi-chevron-right" />
-      </button>
+    <div class="users">
+      <UserItem v-for="({name}, index) in users" :key="index" :name="name" />
     </div>
   </div>
 </template>
 
 <script setup>
-import UserItem from "@/components/list-users/user-item.vue";
-import { ref } from "vue";
+import UserItem from '@/components/list-users/user-item.vue'
+import SearchUser from '@/components/list-users/search-user.vue'
+import { ref } from 'vue'
 
 const users = ref([
   {
-    name: "Иванов Иван Иваныч 1"
+    name: "John 0"
   },
   {
-    name: "Иванов Иван Иваныч 2"
+    name: "Jane 1"
   },
   {
-    name: "Иванов Иван Иваныч 3"
+    name: "Jane 2"
   },
   {
-    name: "Иванов Иван Иваныч 4"
+    name: "Jane 1"
   },
   {
-    name: "Иванов Иван Иваныч 5"
+    name: "Jane 2"
   },
   {
-    name: "Иванов Иван Иваныч 6"
+    name: "Jane 1"
   },
   {
-    name: "Иванов Иван Иваныч 7"
+    name: "Jane 2"
   },
   {
-    name: "Иванов Иван Иваныч 8"
+    name: "Jane 1"
   },
   {
-    name: "Иванов Иван Иваныч 9"
+    name: "Jane 2"
   },
   {
-    name: "Иванов Иван Иваныч 10"
+    name: "Jane 1"
+  },
+  {
+    name: "Jane 2"
+  },
+  {
+    name: "Jane 1"
+  },
+  {
+    name: "Jane 2"
+  },
+  {
+    name: "Jane 1"
+  },
+  {
+    name: "Jane 2"
   }
 ])
 </script>
 
 <style scoped lang="scss">
 .container {
-  width: 900px;
+  width: 1000px;
   margin: auto;
-  border-radius: 12px;
-  background: var(--neutral-color);
-  box-shadow: 0 4px 6px var(--shadow-color);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
-  .list {
-    display: flex;
-    flex-direction: column;
-    height: 578px;
+  .users {
+    width: 100%;
+    margin: 0 auto 20px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 25px;
+    overflow: hidden;
+    transition: height 0.3s ease-in-out;
+  }
+}
 
-    .input {
-      margin: 12px 12px 6px;
-      padding: 12px;
-      border: 0;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px var(--shadow-color);
-    }
+@media screen and (max-width: 1000px) {
+  .container {
+    width: 100%;
 
-    .list-users {
-      margin: 6px 12px;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
+    .vote-list {
+      grid-template-columns: repeat(4, 1fr);
     }
   }
-
-  .buttons {
-    margin: 6px 12px 12px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    .button {
-      width: 100%;
-      border-radius: 12px;
-      border: 0;
-      background: var(--main-color);
-      box-shadow: 0 4px 6px var(--shadow-color);
-
-      .mdi {
-        font-size: 40px;
-      }
-
-      &:hover {
-        background: var(--accent-color);
-
-        .mdi {
-          color: var(--main-color);
-        }
-      }
-    }
-
-    .back {
-      margin-right: 6px;
-    }
-
-    .next {
-      margin-left: 6px;
+}
+@media screen and (max-width: 800px) {
+  .container {
+    .users {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 600px) {
   .container {
-    width: 100%;
+    .users {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .container {
+    .users {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
 }
 </style>

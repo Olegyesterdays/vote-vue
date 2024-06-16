@@ -2,7 +2,7 @@
   <input
     class="input name"
     type="text"
-    placeholder="Имя"
+    :placeholder="$t('userProfilePage.nameUser')"
     @input="editName($event.target.value)"
     :value="name"
     :disabled="role !== 'superuser'"

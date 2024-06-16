@@ -2,32 +2,52 @@
   <div class="container">
     <div
       class="question"
-      v-for="(question, indexQuestion) in questions"
+      v-for="(
+        { titleQuestion, typeQuestion, options }, indexQuestion
+      ) in questions"
       :key="indexQuestion"
-      @click.stop="clickOnTheQuestionCard"
+      @click.stop="() => clickOnTheQuestionCard(indexQuestion)"
       v-click-outside="clickNotOnTheQuestionCard"
     >
-      <InputTitleQuestion
-        :value="question.titleQuestion"
-        :indexQuestion="indexQuestion"
-      />
-
+      <input class="title" type="text"
+      :placeholder="$t('createVotePage.question.titleQuestion')"
+      :value="titleQuestion" @input="recordTitleQuestion($event.target.value,
+      indexQuestion)" />
 
       <div class="answers">
-        <InputAnswerQuestion
-          v-for="(option, indexAnswer) in question.options" :key="indexAnswer"
-          :value="option.text"
-          :typeQuestion="question.typeQuestion"
-          :indexQuestion="indexQuestion"
-          :indexAnswer="indexAnswer"
-          :questionOptionsLength="question.options.length"
-        />
+        <div
+          class="answer"
+          v-for="({ text }, indexAnswer) in options"
+          :key="indexAnswer"
+        >
+          <div class="input">
+            <input type="text" :value="text"
+            :placeholder="$t('createVotePage.question.optionQuestion')" @input="
+            recordTheAnswer($event.target.value, indexQuestion, indexAnswer) "
+            />
+
+            <span
+              :class="
+                typeQuestion === 'one answer' ? 'radio-style' : 'check-style'
+              "
+            />
+          </div>
+
+          <button
+            v-if="options.length > 1 && editingQuestionIndex === indexQuestion"
+            class="delete"
+            @click="deleteAnswer(indexQuestion, indexAnswer)"
+          >
+            <span class="mdi mdi-delete" />
+          </button>
+        </div>
       </div>
 
       <MenuSettings
-        v-if="editingAQuestion"
+        v-if="editingQuestionIndex === indexQuestion"
         :questionsLength="questions.length"
         :indexQuestion="indexQuestion"
+        :typeQuestion="typeQuestion"
       />
     </div>
   </div>
@@ -37,20 +57,40 @@
 import { computed } from 'vue'
 import { useStore } from 'vuex'
 
-import InputTitleQuestion from '@/components/create-vote-page/input-title-question.vue'
-import InputAnswerQuestion from '@/components/create-vote-page/input-answer-question.vue'
 import MenuSettings from '@/components/create-vote-page/menu-settings.vue'
 
 const store = useStore()
 
-const editingAQuestion = computed(() => store.getters['createVoteModule/getEditingAQuestion'])
+const editingQuestionIndex = computed(
+  () => store.getters['createVoteModule/getEditingQuestionIndex']
+)
 const questions = computed(() => store.getters['createVoteModule/getQuestions'])
 
-function clickOnTheQuestionCard() {
-  store.commit('createVoteModule/clickOnTheQuestionCard')
+function clickOnTheQuestionCard(index) {
+  store.commit('createVoteModule/setEditingQuestionIndex', index)
 }
+
 function clickNotOnTheQuestionCard() {
-  store.commit('createVoteModule/clickNotOnTheQuestionCard')
+  store.commit('createVoteModule/resetEditingQuestionIndex')
+}
+
+function recordTitleQuestion(titleQuestion, indexQuestion) {
+  store.commit('createVoteModule/recordTitleQuestion', {
+    titleQuestion,
+    indexQuestion
+  })
+}
+
+function recordTheAnswer(answer, indexQuestion, indexAnswer) {
+  store.commit('createVoteModule/recordTheAnswer', {
+    answer,
+    indexQuestion,
+    indexAnswer
+  })
+}
+
+function deleteAnswer(indexQuestion, indexAnswer) {
+  store.commit('createVoteModule/deleteAnswer', { indexQuestion, indexAnswer })
 }
 </script>
 
@@ -68,20 +108,83 @@ function clickNotOnTheQuestionCard() {
     background: var(--main-color);
     position: relative;
 
+    .title {
+      margin-bottom: 8px;
+      width: 100%;
+      padding: 12px 0;
+      border-radius: 12px;
+      border: 0;
+      text-align: center;
+    }
+
     .answers {
       display: flex;
       flex-direction: column;
 
-      .button {
-        margin-top: 8px;
-        padding: 12px;
-        border-radius: 12px;
-        border: 0;
-        background: var(--neutral-color);
+      .answer {
+        display: flex;
+        align-items: center;
+        margin-top: 6px;
 
-        &:hover {
-          background: var(--accent-color);
-          color: var(--main-color);
+        .input {
+          background: var(--neutral-color);
+          padding: 12px;
+          border-radius: 12px;
+          border: 0;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          input {
+            width: 100%;
+            border: 0;
+            background: var(--neutral-color);
+          }
+
+          .radio-style {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            right: 16px;
+            border: 2px solid var(--secondary-color);
+          }
+
+          .check-style {
+            border-radius: 4px;
+            width: 12px;
+            height: 12px;
+            right: 16px;
+            border: 2px solid var(--secondary-color);
+          }
+        }
+
+        .delete {
+          margin-left: 8px;
+          border: 0;
+          width: 40px;
+          height: 40px;
+          border-radius: 8px;
+          align-items: center;
+          justify-content: center;
+          padding: 0;
+          background: var(--neutral-color);
+
+          .mdi-delete {
+            font-size: 24px;
+          }
+
+          &:hover {
+            background: var(--accent-color);
+
+            .mdi-delete {
+              color: var(--main-color);
+            }
+          }
+
+          .mdi {
+            padding: 8px;
+          }
         }
       }
     }

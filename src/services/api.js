@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = window.api.URL; // Замените на ваш базовый URL
+const baseURL = 'http://localhost:4040' // window.api.URL; // Замените на ваш базовый URL
 
 const headers = {
     Authorization: `Bearer ${ localStorage.getItem('authToken') }`

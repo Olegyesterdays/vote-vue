@@ -2,7 +2,7 @@
   <input
     class="input patronymic"
     type="text"
-    placeholder="Отчечтво"
+    :placeholder="$t('userProfilePage.patronymicUser')"
     @input="editPatronymic($event.target.value)"
     :value="patronymic"
     :disabled="role !== 'superuser'"

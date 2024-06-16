@@ -2,7 +2,7 @@
   <input
     class="input surname"
     type="text"
-    placeholder="Фамилия"
+    :placeholder="$t('userProfilePage.surnameUser')"
     @input="editSurname($event.target.value)"
     :value="surname"
     :disabled="role !== 'superuser'"

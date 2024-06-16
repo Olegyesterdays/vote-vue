@@ -6,30 +6,43 @@
     </div>
 
     <button class="button-auth" @click="auth">
-      {{ $t(`authPage.buttonAuth.${ loginOrRegistration === 'login' ? 'login' : 'registration' }`) }}
+      {{
+        $t(
+          `authPage.buttonAuth.${
+            loginOrRegistration === 'login' ? 'login' : 'registration'
+          }`
+        )
+      }}
     </button>
   </div>
 </template>
 
 <script setup>
-import { useStore } from "vuex";
+import { useStore } from 'vuex'
 
-import Form from "@/components/auth-page/form.vue"
-import LoginOrRegistration from "@/components/auth-page/login-or-registration.vue"
+import Form from '@/components/auth-page/form.vue'
+import LoginOrRegistration from '@/components/auth-page/login-or-registration.vue'
 import { computed } from 'vue'
 
-const store = useStore();
+const store = useStore()
 
-const loginOrRegistration = computed(() => store.getters["userModule/getLoginOrRegistration"])
+const loginOrRegistration = computed(
+  () => store.getters['userModule/getLoginOrRegistration']
+)
 
 function auth() {
-  store.dispatch(loginOrRegistration.value === "login" ? "userModule/login" : "userModule/registration")
+  store.dispatch(
+    loginOrRegistration.value === 'login'
+      ? 'userModule/login'
+      : 'userModule/registration'
+  )
 }
 </script>
 
 <style scoped lang="scss">
 .container {
-  width: 900px;
+  margin-top: 80px !important;
+  width: 600px;
   margin: auto;
   border-radius: 12px;
 
@@ -47,16 +60,12 @@ function auth() {
     margin-top: 8px;
     border: 0;
     width: 100%;
-    background: var(--neutral-color);
-
-    &:hover {
-      background: var(--accent-color);
-      color: var(--main-color);
-    }
+    background: var(--accent-color);
+    color: var(--main-color);
   }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 600px) {
   .container {
     width: 100%;
 
